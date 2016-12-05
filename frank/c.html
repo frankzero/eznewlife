@@ -1,0 +1,86 @@
+<?php 
+    function id(){
+        static $c=0;
+        $c++;
+        return 'id'.$c;
+    }
+
+    function cmap_id($id){
+        static $dic=null;
+        
+        if($dic===null){
+            $conn=ff\conn();
+            $sql="select * from _category_map";
+            $rows = $conn->get([$sql], 'FETCH_OBJ');
+            for ($i=0,$imax=count($rows); $i < $imax; $i++) { 
+                $row=$rows[$i];
+                $dic[$row->from_id] = $row->to_id;
+            }
+
+        }
+
+        if(isset($dic[$id])){
+            return $dic[$id];
+        }
+
+        return 1;
+    }
+
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title></title>
+
+<style>
+body{
+    font-size:.9em;
+}
+
+.cat_name{
+    width:150px;
+    display:inline-block;
+}
+
+.p{
+    border-bottom:1px solid #000;
+}
+</style>
+</head>
+<body>
+
+<form >
+    <?php for($i=5,$imax=count($rows); $i<$imax; $i++):?>
+        <?php $row=$rows[$i];?>
+        <?php $id=cmap_id($row->id);?>
+        <p class="p">
+            <div class="cat_name"> <?=$row->name;?> </div>
+            <label ><input name="cat_<?=$row->id?>" type="radio" data-id="<?=$row->id;?>" value="1" <?=($id==1?'checked':'');?> >達人殿堂 </label>
+            <label ><input name="cat_<?=$row->id?>" type="radio" data-id="<?=$row->id;?>" value="2" <?=($id==2?'checked':'');?> >酷索一下 </label>
+            <label ><input name="cat_<?=$row->id?>" type="radio" data-id="<?=$row->id;?>" value="3" <?=($id==3?'checked':'');?> >新奇古怪 </label>
+            <label ><input name="cat_<?=$row->id?>" type="radio" data-id="<?=$row->id;?>" value="4" <?=($id==4?'checked':'');?> >兩性與生活 </label>
+            <label ><input name="cat_<?=$row->id?>" type="radio" data-id="<?=$row->id;?>" value="5" <?=($id==5?'checked':'');?> >APP市集 </label>
+        </p>
+    <?php endfor;?>
+    
+</form>
+
+<script src="/js/EZ.2.js"></script>
+
+<script>
+ff('input[type="radio"]').click(function(e){
+    var from_id = ff(this).attr('data-id');
+    var to_id = ff(this).val();
+
+    console.log(from_id, to_id);
+    var p = {};
+    p.from_id=from_id;
+    p.to_id = to_id;
+
+    xhr('/catmap', 'POST', p).send();
+});
+</script>
+</body>
+</html>

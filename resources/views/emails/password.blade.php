@@ -1,0 +1,1 @@
+點擊此處重置你的密碼：<a href="{{ url('password/reset/'.$token) }}">{{ url('password/reset/'.$token) }}</a>

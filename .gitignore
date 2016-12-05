@@ -1,0 +1,7 @@
+.env*
+error_log
+storage
+resource
+public
+enl_cache*
+
