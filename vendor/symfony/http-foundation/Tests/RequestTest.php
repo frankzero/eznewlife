@@ -1042,16 +1042,8 @@ class RequestTest extends \PHPUnit_Framework_TestCase
         $req->getContent($second);
     }
 
-    public function getContentCantBeCalledTwiceWithResourcesProvider()
-    {
-        return array(
-            'Resource then fetch' => array(true, false),
-            'Resource then resource' => array(true, true),
-        );
-    }
-
     /**
-     * @dataProvider getContentCanBeCalledTwiceWithResourcesProvider
+     * @dataProvider getContentCantBeCalledTwiceWithResourcesProvider
      * @requires PHP 5.6
      */
     public function testGetContentCanBeCalledTwiceWithResources($first, $second)
@@ -1068,14 +1060,12 @@ class RequestTest extends \PHPUnit_Framework_TestCase
             $b = stream_get_contents($b);
         }
 
-        $this->assertSame($a, $b);
+        $this->assertEquals($a, $b);
     }
 
-    public function getContentCanBeCalledTwiceWithResourcesProvider()
+    public function getContentCantBeCalledTwiceWithResourcesProvider()
     {
         return array(
-            'Fetch then fetch' => array(false, false),
-            'Fetch then resource' => array(false, true),
             'Resource then fetch' => array(true, false),
             'Resource then resource' => array(true, true),
         );
@@ -1920,32 +1910,6 @@ class RequestTest extends \PHPUnit_Framework_TestCase
         return array(
             array('a'.str_repeat('.a', 40000)),
             array(str_repeat(':', 101)),
-        );
-    }
-
-    /**
-     * @dataProvider methodSafeProvider
-     */
-    public function testMethodSafe($method, $safe)
-    {
-        $request = new Request();
-        $request->setMethod($method);
-        $this->assertEquals($safe, $request->isMethodSafe());
-    }
-
-    public function methodSafeProvider()
-    {
-        return array(
-            array('HEAD', true),
-            array('GET', true),
-            array('POST', false),
-            array('PUT', false),
-            array('PATCH', false),
-            array('DELETE', false),
-            array('PURGE', false),
-            array('OPTIONS', true),
-            array('TRACE', true),
-            array('CONNECT', false),
         );
     }
 }

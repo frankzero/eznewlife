@@ -45,7 +45,7 @@ class JavascriptRenderer extends BaseJavascriptRenderer
             'v' => $this->getModifiedTime('js')
        ]);
 
-        $html  = "<link rel='stylesheet' type='text/css' property='stylesheet' href='{$cssRoute}'>";
+        $html  = "<link rel='stylesheet' type='text/css' href='{$cssRoute}'>";
         $html .= "<script type='text/javascript' src='{$jsRoute}'></script>";
 
         if ($this->isJqueryNoConflictEnabled()) {
@@ -107,7 +107,7 @@ class JavascriptRenderer extends BaseJavascriptRenderer
         }
 
         if (is_array($uri)) {
-            $uris = [];
+            $uris = array();
             foreach ($uri as $u) {
                 $uris[] = $this->makeUriRelativeTo($u, $root);
             }

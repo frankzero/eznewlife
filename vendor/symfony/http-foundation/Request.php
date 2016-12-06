@@ -1470,7 +1470,7 @@ class Request
      */
     public function isMethodSafe()
     {
-        return in_array($this->getMethod(), array('GET', 'HEAD', 'OPTIONS', 'TRACE'));
+        return in_array($this->getMethod(), array('GET', 'HEAD'));
     }
 
     /**
@@ -1516,7 +1516,7 @@ class Request
             return stream_get_contents($this->content);
         }
 
-        if (null === $this->content || false === $this->content) {
+        if (null === $this->content) {
             $this->content = file_get_contents('php://input');
         }
 

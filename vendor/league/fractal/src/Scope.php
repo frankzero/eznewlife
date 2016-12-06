@@ -161,35 +161,9 @@ class Scope
 
         $scopeString = implode('.', (array) $scopeArray);
 
-        return in_array($scopeString, $this->manager->getRequestedIncludes());
-    }
+        $checkAgainstArray = $this->manager->getRequestedIncludes();
 
-    /**
-     * Is Excluded.
-     *
-     * Check if - in relation to the current scope - this specific segment should
-     * be excluded. That means, if a.b.c is excluded and the current scope is a.b,
-     * then c will not be allowed in the transformation whether it appears in
-     * the list of default or available, requested includes.
-     *
-     * @internal
-     *
-     * @param string $checkScopeSegment
-     *
-     * @return bool
-     */
-    public function isExcluded($checkScopeSegment)
-    {
-        if ($this->parentScopes) {
-            $scopeArray = array_slice($this->parentScopes, 1);
-            array_push($scopeArray, $this->scopeIdentifier, $checkScopeSegment);
-        } else {
-            $scopeArray = [$checkScopeSegment];
-        }
-
-        $scopeString = implode('.', (array) $scopeArray);
-
-        return in_array($scopeString, $this->manager->getRequestedExcludes());
+        return in_array($scopeString, $checkAgainstArray);
     }
 
     /**
@@ -361,7 +335,6 @@ class Scope
         if (is_callable($transformer)) {
             $transformedData = call_user_func($transformer, $data);
         } else {
-            $transformer->setCurrentScope($this);
             $transformedData = $transformer->transform($data);
         }
 

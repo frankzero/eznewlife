@@ -3,7 +3,6 @@ namespace Qiniu\Storage;
 
 use Qiniu\Auth;
 use Qiniu\Config;
-use Qiniu\Zone;
 use Qiniu\Http\Client;
 use Qiniu\Http\Error;
 
@@ -15,14 +14,10 @@ use Qiniu\Http\Error;
 final class BucketManager
 {
     private $auth;
-    private $zone;
 
-    public function __construct(Auth $auth, Zone $zone = null)
+    public function __construct(Auth $auth)
     {
         $this->auth = $auth;
-        if ($zone === null) {
-            $this->zone = new Zone();
-        }
     }
 
     /**
@@ -135,14 +130,11 @@ final class BucketManager
      * @return mixed      成功返回NULL，失败返回对象Qiniu\Http\Error
      * @link  http://developer.qiniu.com/docs/v6/api/reference/rs/copy.html
      */
-    public function copy($from_bucket, $from_key, $to_bucket, $to_key, $force = false)
+    public function copy($from_bucket, $from_key, $to_bucket, $to_key)
     {
         $from = \Qiniu\entry($from_bucket, $from_key);
         $to = \Qiniu\entry($to_bucket, $to_key);
         $path = '/copy/' . $from . '/' . $to;
-        if ($force) {
-            $path .= '/force/true';
-        }
         list(, $error) = $this->rsPost($path);
         return $error;
     }
@@ -158,14 +150,11 @@ final class BucketManager
      * @return mixed      成功返回NULL，失败返回对象Qiniu\Http\Error
      * @link  http://developer.qiniu.com/docs/v6/api/reference/rs/move.html
      */
-    public function move($from_bucket, $from_key, $to_bucket, $to_key, $force = false)
+    public function move($from_bucket, $from_key, $to_bucket, $to_key)
     {
         $from = \Qiniu\entry($from_bucket, $from_key);
         $to = \Qiniu\entry($to_bucket, $to_key);
         $path = '/move/' . $from . '/' . $to;
-        if ($force) {
-            $path .= '/force/true';
-        }
         list(, $error) = $this->rsPost($path);
         return $error;
     }
@@ -217,12 +206,7 @@ final class BucketManager
         $resource = \Qiniu\base64_urlSafeEncode($url);
         $to = \Qiniu\entry($bucket, $key);
         $path = '/fetch/' . $resource . '/to/' . $to;
-
-        $ak = $this->auth->getAccessKey();
-        $ioHost = $this->zone->getIoHost($ak, $bucket);
-
-        $url = $ioHost . $path;
-        return $this->post($url, null);
+        return $this->ioPost($path);
     }
 
     /**
@@ -238,12 +222,7 @@ final class BucketManager
     {
         $resource = \Qiniu\entry($bucket, $key);
         $path = '/prefetch/' . $resource;
-
-        $ak = $this->auth->getAccessKey();
-        $ioHost = $this->zone->getIoHost($ak, $bucket);
-
-        $url = $ioHost . $path;
-        list(, $error) = $this->post($url, null);
+        list(, $error) = $this->ioPost($path);
         return $error;
     }
 

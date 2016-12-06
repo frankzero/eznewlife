@@ -48,7 +48,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
             }
         );
 
-        $this->commands(['command.debugbar.clear']);
+        $this->commands(array('command.debugbar.clear'));
     }
 
     /**
@@ -169,6 +169,6 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     public function provides()
     {
-        return ['debugbar', 'command.debugbar.clear'];
+        return array('debugbar', 'command.debugbar.clear');
     }
 }

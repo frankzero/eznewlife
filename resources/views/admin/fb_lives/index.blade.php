@@ -32,15 +32,15 @@
                         {!!Form::open(['method'=>'post','id' => 'av_user_list','class'=>"form-inline  form-group",'files' => true])!!}
                         <div class="form-group input-group">
                             <span class="input-group-addon">#</span>
-                            {!!Form::text('fb_live_id',(Input::get('fb_live_id')) ? Input::get('fb_live_id') : '',array('class' => 'form-control input-sm input-70','id'=>'fb_live_id','placeholder'=>'編號'))!!}
+                            {!!Form::text('fb_live_id',(Input::get('fb_live_id')) ? Input::get('fb_live_id') : $db_fb_live_id,array('class' => 'form-control input-sm input-70','id'=>'fb_live_id','placeholder'=>'編號'))!!}
                         </div>
                         <div class="form-group input-group">
                             <span class="input-group-addon"><i class="fa fa-facebook"></i>#</span>
-                            {!!Form::text('fb_video_d',(Input::get('fb_video_id')) ? Input::get('fb_video_id') : '',array('class' => 'form-control input-sm input-100' ,'id'=>'fb_video_id','placeholder'=>'FB Video ID'))!!}
+                            {!!Form::text('fb_video_d',(Input::get('fb_video_id')) ? Input::get('fb_video_id') : $db_fb_video_id,array('class' => 'form-control input-sm input-100' ,'id'=>'fb_video_id','placeholder'=>'FB Video ID'))!!}
                         </div>
                         <div class="form-group input-group">
                             <span class="input-group-addon"><i class="fa fa-question"></i></span>
-                            {!!Form::text('title',(Input::get('title')) ? Input::get('title') : '',array('class' => 'form-control input-sm','id'=>'title','placeholder'=>'問項'))!!}
+                            {!!Form::text('title',(Input::get('title')) ? Input::get('title') : $db_title,array('class' => 'form-control input-sm','id'=>'title','placeholder'=>'問項'))!!}
                         </div>
 
 
@@ -50,9 +50,9 @@
                         </div>
                         <div class="form-group input-group">
                             <span class="input-group-addon"><i class="fa  fa-calendar-plus-o"></i></span>
-                            {!!Form::text('created_at',(Input::get('created_at')) ? Input::get('created_at') : '',array('class' => 'form-control input-sm input-100' ,'id'=>'created_at','placeholder'=>'新增日期'))!!}
+                            {!!Form::text('created_at',(Input::get('created_at')) ? Input::get('created_at') : $db_created_at,array('class' => 'form-control input-sm input-100' ,'id'=>'created_at','placeholder'=>'新增日期'))!!}
                             <span class="input-group-addon"><i class="fa  fa-calendar-check-o"></i></span>
-                            {!!Form::text('updated_at',(Input::get('updated_at')) ? Input::get('updated_at') : '',array('class' => 'form-control input-sm input-100' ,'id'=>'updated_at','placeholder'=>'修改日期'))!!}
+                            {!!Form::text('updated_at',(Input::get('updated_at')) ? Input::get('updated_at') : $db_updated_at,array('class' => 'form-control input-sm input-100' ,'id'=>'updated_at','placeholder'=>'修改日期'))!!}
                         </div>
                         {!! Form::close() !!}
 
@@ -281,7 +281,7 @@
          //   rows = rows + '<td>'+value.udpateder.name+'</td>';
           // rows = rows + '<td>'+value.updated_user+'</td>';
             rows = rows + '<td>'+value.created_at+'</td>';
-            rows = rows + '<td>'+value.updated_at+'</td>';
+            rows = rows + '<td>'+value.updated_at+'</td>';     
             rows = rows + '<td><a href="/fb_lives/'+value.id+'"  target="_blank" class="btn btn-default btn-xs small-btn" rel="nofollow" data-toggle="tooltip" data-placement="bottom" data-original-title="查看">'+'<i class="fa fa-search"></i>'+'</a> &nbsp;&nbsp;';
 
             rows = rows + '<a href="/admin/fb_lives/'+value.id+'/edit"  class="btn btn-default btn-xs small-btn" rel="nofollow" data-toggle="tooltip" data-placement="bottom" data-original-title="修改">'+'<i class="fa fa-edit"></i>'+'</a> &nbsp;&nbsp;';

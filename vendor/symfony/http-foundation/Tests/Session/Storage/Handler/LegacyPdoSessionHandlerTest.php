@@ -58,7 +58,7 @@ class LegacyPdoSessionHandlerTest extends \PHPUnit_Framework_TestCase
     {
         $storage = new LegacyPdoSessionHandler($this->pdo, array('db_table' => 'bad_name'));
         $this->setExpectedException('RuntimeException');
-        $storage->read('foo');
+        $storage->read('foo', 'bar');
     }
 
     public function testWriteRead()

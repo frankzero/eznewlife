@@ -200,7 +200,6 @@ class QuestionHelper extends Helper
      *
      * @param OutputInterface $output
      * @param Question        $question
-     * @param resource        $inputStream
      *
      * @return string
      */
@@ -317,8 +316,7 @@ class QuestionHelper extends Helper
     /**
      * Gets a hidden response from user.
      *
-     * @param OutputInterface $output      An Output instance
-     * @param resource        $inputStream The handler resource
+     * @param OutputInterface $output An Output instance
      *
      * @return string The answer
      *

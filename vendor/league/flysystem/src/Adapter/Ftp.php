@@ -7,7 +7,6 @@ use League\Flysystem\Adapter\Polyfill\StreamedCopyTrait;
 use League\Flysystem\AdapterInterface;
 use League\Flysystem\Config;
 use League\Flysystem\Util;
-use League\Flysystem\Util\MimeType;
 use RuntimeException;
 
 class Ftp extends AbstractFtpAdapter
@@ -375,11 +374,11 @@ class Ftp extends AbstractFtpAdapter
      */
     public function getMimetype($path)
     {
-        if ( ! $metadata = $this->getMetadata($path)) {
+        if ( ! $metadata = $this->read($path)) {
             return false;
         }
 
-        $metadata['mimetype'] = MimeType::detectByFilename($path);
+        $metadata['mimetype'] = Util::guessMimeType($path, $metadata['contents']);
 
         return $metadata;
     }
@@ -415,7 +414,7 @@ class Ftp extends AbstractFtpAdapter
      */
     public function readStream($path)
     {
-        $stream = fopen('php://temp', 'w+b');
+        $stream = fopen('php://temp', 'w+');
         $result = ftp_fget($this->getConnection(), $stream, $path, $this->transferMode);
         rewind($stream);
 

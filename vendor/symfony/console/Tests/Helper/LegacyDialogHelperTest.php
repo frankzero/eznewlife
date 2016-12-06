@@ -248,6 +248,11 @@ class LegacyDialogHelperTest extends \PHPUnit_Framework_TestCase
         return $output;
     }
 
+    private function hasStderrSupport()
+    {
+        return false === $this->isRunningOS400();
+    }
+
     private function hasSttyAvailable()
     {
         exec('stty 2>&1', $output, $exitcode);

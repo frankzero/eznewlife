@@ -16,7 +16,7 @@ There are no real limits on what characters can be used in a tag. It uses a slug
 #### Composer Install (for Laravel/Lumen 5)
 	
 ```shell
-composer require rtconner/laravel-tagging "~2.1"
+composer require rtconner/laravel-tagging "~2.0"
 ```
 
 #### Install and then Run the migrations
@@ -45,6 +45,9 @@ $app->configure('tagging');
 // Add this line in your service provider section
 $app->register(Conner\Tagging\Providers\LumenTaggingServiceProvider::class);
 ```
+
+Done. Eloquent is required, Facades are not.
+
 
 After these two steps are done, you can edit config/tagging.php with your prefered settings.
 	
@@ -83,34 +86,6 @@ Article::existingTags(); // return collection of all existing tags on any articl
 ```
 
 [More examples in the documentation](docs/usage-examples.md)
-
-
-### Tag Groups
-
-You can create groups with the following artisan command
-
-```php
-php artisan tagging:create-group MyTagGroup
-```
-
-Set the tag group for a tag
-
-```php
-$tag->setGroup('MyTagGroup');
-```
-
-To get all the tags in a certain group
-
-```php
-Tag::inGroup('MyTagGroup')->get()
-```
-
-Check if a tag is in a group
-
-```php
-$tag->isInGroup('MyTagGroup');
-```
-
 
 ### Configure
 

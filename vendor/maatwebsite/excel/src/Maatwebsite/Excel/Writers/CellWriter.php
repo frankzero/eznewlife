@@ -119,7 +119,7 @@ class CellWriter {
     public function setFontWeight($bold = true)
     {
         return $this->setStyle('font', array(
-            'bold' => ($bold === 'bold' || $bold === true)
+            'bold' => ($bold == 'bold' || $bold) ? true : false
         ));
     }
 

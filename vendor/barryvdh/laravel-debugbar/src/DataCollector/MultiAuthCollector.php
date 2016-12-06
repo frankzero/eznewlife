@@ -53,22 +53,22 @@ class MultiAuthCollector extends AuthCollector
      */
     public function getWidgets()
     {
-        $widgets = [
-            "auth" => [
+        $widgets = array(
+            "auth" => array(
                 "icon" => "lock",
                 "widget" => "PhpDebugBar.Widgets.VariableListWidget",
                 "map" => "auth.guards",
                 "default" => "{}"
-            ]
-        ];
+            )
+        );
 
         if ($this->showName) {
-            $widgets['auth.name'] = [
+            $widgets['auth.name'] = array(
                 'icon' => 'user',
                 'tooltip' => 'Auth status',
                 'map' => 'auth.names',
                 'default' => '',
-            ];
+            );
         }
 
         return $widgets;

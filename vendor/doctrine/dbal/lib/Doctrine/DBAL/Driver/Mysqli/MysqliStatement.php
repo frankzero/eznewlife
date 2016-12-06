@@ -242,7 +242,7 @@ class MysqliStatement implements \IteratorAggregate, Statement
     {
         $values = $this->_fetch();
         if (null === $values) {
-            return false;
+            return null;
         }
 
         if (false === $values) {
@@ -282,7 +282,7 @@ class MysqliStatement implements \IteratorAggregate, Statement
                 $rows[] = $row;
             }
         } else {
-            while (($row = $this->fetch($fetchMode)) !== false) {
+            while (($row = $this->fetch($fetchMode)) !== null) {
                 $rows[] = $row;
             }
         }
@@ -296,7 +296,7 @@ class MysqliStatement implements \IteratorAggregate, Statement
     public function fetchColumn($columnIndex = 0)
     {
         $row = $this->fetch(PDO::FETCH_NUM);
-        if (false === $row) {
+        if (null === $row) {
             return false;
         }
 

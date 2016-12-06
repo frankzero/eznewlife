@@ -1,8 +1,9 @@
 <?php namespace Stevenyangecho\UEditor;
 
+use Illuminate\Routing\Router;
+use Illuminate\Foundation\Support\Providers\RouteServiceProvider;
 
-use Illuminate\Support\ServiceProvider;
-class UEditorServiceProvider extends ServiceProvider
+class UEditorServiceProvider extends RouteServiceProvider
 {
 
 
@@ -16,13 +17,13 @@ class UEditorServiceProvider extends ServiceProvider
     /**
      * Bootstrap the application events.
      *
-     *
+     * @param  \Illuminate\Routing\Router $router
      * @return void
      */
-    public function boot()
+    public function boot(Router $router)
     {
 
-
+        parent::boot($router);
         $viewPath = realpath(__DIR__ . '/../resources/views');
         $this->loadViewsFrom($viewPath, 'UEditor');
         $this->publishes([
@@ -50,16 +51,7 @@ class UEditorServiceProvider extends ServiceProvider
         }
         \View::share('UeditorLangFile', $file);
 
-        $router = app('router');
-        //need add auth
-        $config = config('UEditorUpload.core.route', []);
-        $config['namespace'] = __NAMESPACE__;
 
-
-        //定义路由
-        $router->group($config, function ($router) {
-            $router->any('/laravel-u-editor-server/server', 'Controller@server');
-        });
     }
 
     /**
@@ -69,13 +61,32 @@ class UEditorServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
+        parent::register();
         $configPath = realpath(__DIR__ . '/../config/UEditorUpload.php');
         $this->mergeConfigFrom($configPath, 'UEditorUpload');
         $this->publishes([$configPath => config_path('UEditorUpload.php')], 'config');
 
     }
 
+    /**
+     * Define the routes for the application.
+     *
+     * @return void
+     */
+    public function map()
+    {
+
+
+        $router = app('router');
+        //need add auth
+        $config = config('UEditorUpload.core.route', []);
+        $config['namespace'] = __NAMESPACE__;
+
+        //定义路由
+        $router->group($config, function ($router) {
+            $router->any('/laravel-u-editor-server/server', 'Controller@server');
+        });
+    }
 
     /**
      * Get the services provided by the provider.

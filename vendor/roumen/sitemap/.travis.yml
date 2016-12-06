@@ -6,13 +6,13 @@ php:
   - 7.0
   - hhvm
 
-sudo: false
-
 branches:
  only:
   - master
   - laravel4
 
-install: composer install --no-interaction --prefer-source
+before_script:
+  - curl -s http://getcomposer.org/installer | php
+  - php composer.phar install
 
 script: phpunit

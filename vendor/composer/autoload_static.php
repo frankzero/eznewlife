@@ -10,26 +10,20 @@ class ComposerStaticInite76e4747f70cc7d802edb026271547c6
         '1d1b89d124cc9cb8219922c9d5569199' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
-        'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
-        'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
-        '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
-        'bd9634f2d41831496de0d3dfe4c94881' => __DIR__ . '/..' . '/symfony/polyfill-php56/bootstrap.php',
-        '65fec9ebcfbb3cbb4fd0d519687aea01' => __DIR__ . '/..' . '/danielstjules/stringy/src/Create.php',
+        'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
-        'e7223560d890eab89cda23685e711e2c' => __DIR__ . '/..' . '/psy/psysh/src/Psy/functions.php',
+        'bd9634f2d41831496de0d3dfe4c94881' => __DIR__ . '/..' . '/symfony/polyfill-php56/bootstrap.php',
+        'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
+        '65fec9ebcfbb3cbb4fd0d519687aea01' => __DIR__ . '/..' . '/danielstjules/stringy/src/Create.php',
         'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
+        'e7223560d890eab89cda23685e711e2c' => __DIR__ . '/..' . '/psy/psysh/src/Psy/functions.php',
+        '841780ea2e1d6545ea3a253239d59c05' => __DIR__ . '/..' . '/qiniu/php-sdk/src/Qiniu/functions.php',
+        '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
+        '752af1c2bdb339e8474c3c31b22b7d54' => __DIR__ . '/..' . '/illuminate/html/helpers.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
-        '841780ea2e1d6545ea3a253239d59c05' => __DIR__ . '/..' . '/qiniu/php-sdk/src/Qiniu/functions.php',
-        'cf150f72bd303a2ff07711c9a70f2d53' => __DIR__ . '/..' . '/google/apiclient/src/Google/autoload.php',
-        '7745382c92b7799bf1294b1f43023ba2' => __DIR__ . '/..' . '/tracy/tracy/src/shortcuts.php',
-        '948fab7911aa366553464041e4ab1b33' => __DIR__ . '/..' . '/recca0120/terminal/src/helpers.php',
-        '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
-        '752af1c2bdb339e8474c3c31b22b7d54' => __DIR__ . '/..' . '/illuminate/html/helpers.php',
         '4a1f389d6ce373bda9e57857d3b61c84' => __DIR__ . '/..' . '/barryvdh/laravel-debugbar/src/helpers.php',
-        '28c326dc1cc904774a1a8347c16c58a8' => __DIR__ . '/..' . '/recca0120/laravel-tracy/src/helpers.php',
-        'cb61d74ad51d00867155534456b38b23' => __DIR__ . '/..' . '/mews/purifier/src/helpers.php',
         'b4e3f29b106af37a2bb239f73cdf68c7' => __DIR__ . '/../..' . '/app/helpers.php',
     );
 
@@ -72,16 +66,9 @@ class ComposerStaticInite76e4747f70cc7d802edb026271547c6
             'Symfony\\Component\\Debug\\' => 24,
             'Symfony\\Component\\CssSelector\\' => 30,
             'Symfony\\Component\\Console\\' => 26,
-            'Symfony\\Component\\ClassLoader\\' => 30,
             'SuperClosure\\' => 13,
             'Stringy\\' => 8,
             'Stevenyangecho\\UEditor\\' => 23,
-            'Spatie\\LaravelAnalytics\\' => 24,
-        ),
-        'R' => 
-        array (
-            'Recca0120\\Terminal\\' => 19,
-            'Recca0120\\LaravelTracy\\' => 23,
         ),
         'Q' => 
         array (
@@ -90,14 +77,12 @@ class ComposerStaticInite76e4747f70cc7d802edb026271547c6
         'P' => 
         array (
             'Psy\\' => 4,
-            'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
             'PhpParser\\' => 10,
         ),
         'M' => 
         array (
             'Monolog\\' => 8,
-            'Mews\\Purifier\\' => 14,
         ),
         'L' => 
         array (
@@ -147,7 +132,6 @@ class ComposerStaticInite76e4747f70cc7d802edb026271547c6
         ),
         'B' => 
         array (
-            'Barryvdh\\LaravelIdeHelper\\' => 26,
             'Barryvdh\\Debugbar\\' => 18,
         ),
         'A' => 
@@ -243,10 +227,6 @@ class ComposerStaticInite76e4747f70cc7d802edb026271547c6
         array (
             0 => __DIR__ . '/..' . '/symfony/console',
         ),
-        'Symfony\\Component\\ClassLoader\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/class-loader',
-        ),
         'SuperClosure\\' => 
         array (
             0 => __DIR__ . '/..' . '/jeremeamia/SuperClosure/src',
@@ -259,18 +239,6 @@ class ComposerStaticInite76e4747f70cc7d802edb026271547c6
         array (
             0 => __DIR__ . '/..' . '/stevenyangecho/laravel-u-editor/src',
         ),
-        'Spatie\\LaravelAnalytics\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/spatie/laravel-analytics/src',
-        ),
-        'Recca0120\\Terminal\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/recca0120/terminal/src',
-        ),
-        'Recca0120\\LaravelTracy\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/recca0120/laravel-tracy/src',
-        ),
         'Qiniu\\' => 
         array (
             0 => __DIR__ . '/..' . '/qiniu/php-sdk/src/Qiniu',
@@ -278,10 +246,6 @@ class ComposerStaticInite76e4747f70cc7d802edb026271547c6
         'Psy\\' => 
         array (
             0 => __DIR__ . '/..' . '/psy/psysh/src/Psy',
-        ),
-        'Psr\\Log\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
         ),
         'Psr\\Http\\Message\\' => 
         array (
@@ -294,10 +258,6 @@ class ComposerStaticInite76e4747f70cc7d802edb026271547c6
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
-        ),
-        'Mews\\Purifier\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/mews/purifier/src',
         ),
         'League\\OAuth1\\' => 
         array (
@@ -387,10 +347,6 @@ class ComposerStaticInite76e4747f70cc7d802edb026271547c6
         array (
             0 => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon',
         ),
-        'Barryvdh\\LaravelIdeHelper\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/barryvdh/laravel-ide-helper/src',
-        ),
         'Barryvdh\\Debugbar\\' => 
         array (
             0 => __DIR__ . '/..' . '/barryvdh/laravel-debugbar/src',
@@ -415,10 +371,6 @@ class ComposerStaticInite76e4747f70cc7d802edb026271547c6
             array (
                 0 => __DIR__ . '/..' . '/roumen/sitemap/src',
             ),
-            'RobbieP\\CloudConvertLaravel\\' => 
-            array (
-                0 => __DIR__ . '/..' . '/robbiep/cloudconvert-laravel/src',
-            ),
             'Rap2hpoutre\\LaravelLogViewer\\' => 
             array (
                 0 => __DIR__ . '/..' . '/rap2hpoutre/laravel-log-viewer/src',
@@ -426,6 +378,10 @@ class ComposerStaticInite76e4747f70cc7d802edb026271547c6
         ),
         'P' => 
         array (
+            'Psr\\Log\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/psr/log',
+            ),
             'Prophecy\\' => 
             array (
                 0 => __DIR__ . '/..' . '/phpspec/prophecy/src',
@@ -434,20 +390,9 @@ class ComposerStaticInite76e4747f70cc7d802edb026271547c6
             array (
                 0 => __DIR__ . '/..' . '/phpspec/phpspec/src',
             ),
-            'Patchwork' => 
-            array (
-                0 => __DIR__ . '/..' . '/patchwork/utf8/class',
-            ),
             'PHPExcel' => 
             array (
                 0 => __DIR__ . '/..' . '/phpoffice/phpexcel/Classes',
-            ),
-        ),
-        'N' => 
-        array (
-            'Normalizer' => 
-            array (
-                0 => __DIR__ . '/..' . '/patchwork/utf8/class',
             ),
         ),
         'M' => 
@@ -472,18 +417,15 @@ class ComposerStaticInite76e4747f70cc7d802edb026271547c6
                 0 => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src',
             ),
         ),
-        'I' => 
+        'G' => 
         array (
-            'Ipunkt\\LaravelAnalytics\\' => 
+            'Guzzle\\Tests' => 
             array (
-                0 => __DIR__ . '/..' . '/ipunkt/laravel-analytics/src',
+                0 => __DIR__ . '/..' . '/guzzle/guzzle/tests',
             ),
-        ),
-        'H' => 
-        array (
-            'HTMLPurifier' => 
+            'Guzzle' => 
             array (
-                0 => __DIR__ . '/..' . '/ezyang/htmlpurifier/library',
+                0 => __DIR__ . '/..' . '/guzzle/guzzle/src',
             ),
         ),
         'D' => 
@@ -528,25 +470,21 @@ class ComposerStaticInite76e4747f70cc7d802edb026271547c6
                 0 => __DIR__ . '/..' . '/mtdowling/cron-expression/src',
             ),
         ),
-        'B' => 
-        array (
-            'Barryvdh' => 
-            array (
-                0 => __DIR__ . '/..' . '/barryvdh/reflection-docblock/src',
-            ),
-        ),
     );
 
     public static $classMap = array (
         'AdvTableSeeder' => __DIR__ . '/../..' . '/database/seeds/AdvTableSeeder.php',
-        'AlterFbLives' => __DIR__ . '/../..' . '/database/migrations/2016_11_29_103814_alter_fb_lives.php',
-        'AlterFbLives02' => __DIR__ . '/../..' . '/database/migrations/2016_12_01_151049_alter_fb_lives02.php',
         'AnimationTableSeeder' => __DIR__ . '/../..' . '/database/seeds/AnimationTableSeeder.php',
         'ArticleMapTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ArticleMapTableSeeder.php',
         'ArticleSourceTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ArticleSourceTableSeeder.php',
         'ArticleTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ArticleTableSeeder.php',
         'CategoryTableSeeder' => __DIR__ . '/../..' . '/database/seeds/CategoryTableSeeder.php',
+        'CreateEnlUser' => __DIR__ . '/../..' . '/database/migrations/2016_06_06_155418_create_enl_user.php',
         'CreateFbLives' => __DIR__ . '/../..' . '/database/migrations/2016_11_28_154155_create_fb_lives.php',
+        'CreateGodUsers' => __DIR__ . '/../..' . '/database/migrations/2016_11_28_154024_create_god_users.php',
+        'CreateTagGroupsTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_29_073615_create_tag_groups_table.php',
+        'CreateTaggedTable' => __DIR__ . '/../..' . '/database/migrations/2014_01_07_073615_create_tagged_table.php',
+        'CreateTagsTable' => __DIR__ . '/../..' . '/database/migrations/2014_01_07_073615_create_tags_table.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
         'EmailTableSeeder' => __DIR__ . '/../..' . '/database/seeds/EmailTableSeeder.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
@@ -1088,18 +1026,7 @@ class ComposerStaticInite76e4747f70cc7d802edb026271547c6
         'SessionHandlerInterface' => __DIR__ . '/..' . '/symfony/http-foundation/Resources/stubs/SessionHandlerInterface.php',
         'TestCase' => __DIR__ . '/../..' . '/tests/TestCase.php',
         'Text_Template' => __DIR__ . '/..' . '/phpunit/php-text-template/src/Template.php',
-        'Tracy\\Bar' => __DIR__ . '/..' . '/tracy/tracy/src/Tracy/Bar.php',
-        'Tracy\\BlueScreen' => __DIR__ . '/..' . '/tracy/tracy/src/Tracy/BlueScreen.php',
-        'Tracy\\Bridges\\Nette\\TracyExtension' => __DIR__ . '/..' . '/tracy/tracy/src/Bridges/Nette/TracyExtension.php',
-        'Tracy\\Debugger' => __DIR__ . '/..' . '/tracy/tracy/src/Tracy/Debugger.php',
-        'Tracy\\DefaultBarPanel' => __DIR__ . '/..' . '/tracy/tracy/src/Tracy/DefaultBarPanel.php',
-        'Tracy\\Dumper' => __DIR__ . '/..' . '/tracy/tracy/src/Tracy/Dumper.php',
-        'Tracy\\FireLogger' => __DIR__ . '/..' . '/tracy/tracy/src/Tracy/FireLogger.php',
-        'Tracy\\Helpers' => __DIR__ . '/..' . '/tracy/tracy/src/Tracy/Helpers.php',
-        'Tracy\\IBarPanel' => __DIR__ . '/..' . '/tracy/tracy/src/Tracy/IBarPanel.php',
-        'Tracy\\ILogger' => __DIR__ . '/..' . '/tracy/tracy/src/Tracy/ILogger.php',
-        'Tracy\\Logger' => __DIR__ . '/..' . '/tracy/tracy/src/Tracy/Logger.php',
-        'Tracy\\OutputDebugger' => __DIR__ . '/..' . '/tracy/tracy/src/Tracy/OutputDebugger.php',
+        'UpdateTagsTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_29_073615_update_tags_table.php',
         'UserTableSeeder' => __DIR__ . '/../..' . '/database/seeds/UserTableSeeder.php',
         'willvincent\\Rateable\\MigrationCommand' => __DIR__ . '/..' . '/willvincent/laravel-rateable/src/commands/MigrationCommand.php',
     );

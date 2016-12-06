@@ -117,6 +117,12 @@ class ArticleController extends Controller
             $isTagChanged=true;
 
         } else {
+            $response["message"]='error';
+            $response["url"]=    'http://admin.eznewlife.com/admin/articles/list?length=100&is_deleted=0&page=1&dir=DESC';
+            return $response;
+            return Response::json($response);
+
+           // return redirect('http://admin.eznewlife.com/admin/articles/list?length=100&is_deleted=0&page=1&dir=DESC');
             $data['updated_user']=Auth::user()->get()->id;
             $article = Article::with('tagged','ez_map')->find($data["id"]);
             $old=$article->tags->pluck('name')->all();

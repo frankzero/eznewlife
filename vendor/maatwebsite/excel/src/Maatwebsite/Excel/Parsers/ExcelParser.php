@@ -446,7 +446,7 @@ class ExcelParser {
                 if ( $this->cellNeedsParsing($index) )
                 {
                     // Set the value
-                    $parsedCells[(string) $index] = $this->parseCell($index);
+                    $parsedCells[$index] = $this->parseCell($index);
                 }
 
                 $i++;
@@ -462,14 +462,7 @@ class ExcelParser {
         }
 
         // Return array with parsed cells
-        $cells = new CellCollection($parsedCells);
-
-        if (! $this->reader->hasHeading()) {
-            // Cell index starts at 0 when no heading
-            return $cells->values();
-        }
-
-        return $cells;
+        return new CellCollection($parsedCells);
     }
 
     /**

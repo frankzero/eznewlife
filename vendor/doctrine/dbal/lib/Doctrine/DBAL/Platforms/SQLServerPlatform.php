@@ -160,16 +160,13 @@ class SQLServerPlatform extends AbstractPlatform
      */
     public function getDropForeignKeySQL($foreignKey, $table)
     {
-        if (! $foreignKey instanceof ForeignKeyConstraint) {
-            $foreignKey = new Identifier($foreignKey);
+        if ($foreignKey instanceof ForeignKeyConstraint) {
+            $foreignKey = $foreignKey->getQuotedName($this);
         }
 
-        if (! $table instanceof Table) {
-            $table = new Identifier($table);
+        if ($table instanceof Table) {
+            $table = $table->getQuotedName($this);
         }
-
-        $foreignKey = $foreignKey->getQuotedName($this);
-        $table = $table->getQuotedName($this);
 
         return 'ALTER TABLE ' . $table . ' DROP CONSTRAINT ' . $foreignKey;
     }
@@ -928,14 +925,12 @@ class SQLServerPlatform extends AbstractPlatform
     {
         if (strpos($table, ".") !== false) {
             list($schema, $table) = explode(".", $table);
-            $schema = $this->quoteStringLiteral($schema);
-            $table = $this->quoteStringLiteral($table);
+            $schema = "'" . $schema . "'";
         } else {
             $schema = "SCHEMA_NAME()";
-            $table = $this->quoteStringLiteral($table);
         }
 
-        return "({$tableColumn} = {$table} AND {$schemaColumn} = {$schema})";
+        return "({$tableColumn} = '{$table}' AND {$schemaColumn} = {$schema})";
     }
 
     /**
@@ -1495,9 +1490,7 @@ class SQLServerPlatform extends AbstractPlatform
      */
     public function getTruncateTableSQL($tableName, $cascade = false)
     {
-        $tableIdentifier = new Identifier($tableName);
-
-        return 'TRUNCATE TABLE ' . $tableIdentifier->getQuotedName($this);
+        return 'TRUNCATE TABLE '.$tableName;
     }
 
     /**

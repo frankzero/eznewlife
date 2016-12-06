@@ -8,7 +8,7 @@ use Symfony\Component\HttpKernel\DataCollector\Util\ValueExporter;
 
 class ViewCollector extends TwigCollector
 {
-    protected $templates = [];
+    protected $templates = array();
     protected $collect_data;
 
     /**
@@ -20,7 +20,7 @@ class ViewCollector extends TwigCollector
     {
         $this->collect_data = $collectData;
         $this->name = 'views';
-        $this->templates = [];
+        $this->templates = array();
         $this->exporter = new ValueExporter();
     }
 
@@ -31,18 +31,18 @@ class ViewCollector extends TwigCollector
 
     public function getWidgets()
     {
-        return [
-            'views' => [
+        return array(
+            'views' => array(
                 'icon' => 'leaf',
                 'widget' => 'PhpDebugBar.Widgets.TemplatesWidget',
                 'map' => 'views',
                 'default' => '[]'
-            ],
-            'views:badge' => [
+            ),
+            'views:badge' => array(
                 'map' => 'views.nb_templates',
                 'default' => 0
-            ]
-        ];
+            )
+        );
     }
 
     /**
@@ -73,28 +73,28 @@ class ViewCollector extends TwigCollector
         if (!$this->collect_data) {
             $params = array_keys($view->getData());
         } else {
-            $data = [];
+            $data = array();
             foreach ($view->getData() as $key => $value) {
                 $data[$key] = $this->exporter->exportValue($value);
             }
             $params = $data;
         }
 
-        $this->templates[] = [
+        $this->templates[] = array(
             'name' => $path ? sprintf('%s (%s)', $name, $path) : $name,
             'param_count' => count($params),
             'params' => $params,
             'type' => $type,
-        ];
+        );
     }
 
     public function collect()
     {
         $templates = $this->templates;
 
-        return [
+        return array(
             'nb_templates' => count($templates),
             'templates' => $templates,
-        ];
+        );
     }
 }

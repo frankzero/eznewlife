@@ -1,21 +1,9 @@
 <?= '<'.'?'.'xml version="1.0" encoding="UTF-8"?>'."\n" ?>
 <?php if ($style != null) echo '<'.'?'.'xml-stylesheet href="'.$style.'" type="text/xsl"?>'."\n"; ?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
 <?php foreach($items as $item) : ?>
   <url>
     <loc><?= $item['loc'] ?></loc>
-    <?php
-      if ($item['lastmod'] !== null) {
-        echo '<lastmod>' . date('Y-m-d\TH:i:sP', strtotime($item['lastmod'])) . '</lastmod>' . "\n";
-      }
-    ?>
-    <?php
-      if (!empty($item['alternates'])) {
-        foreach ($item['alternates'] as $alternate) {
-          echo '<xhtml:link rel="alternate" media="' . $alternate['media'] . '" href="' . $alternate['url'] . '" />' . "\n";
-        }
-      }
-    ?>
     <news:news>
       <news:publication>
         <news:name><?= $item['googlenews']['sitename'] ?></news:name>

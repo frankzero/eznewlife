@@ -444,8 +444,7 @@ abstract class AbstractFtpAdapter extends AbstractAdapter
 
         // Check for the correct date/time format
         $format = strlen($date) === 8 ? 'm-d-yH:iA' : 'Y-m-dH:i';
-        $dt = DateTime::createFromFormat($format, $date . $time);
-        $timestamp = $dt ? $dt->getTimestamp() : (int) strtotime("$date $time");
+        $timestamp = DateTime::createFromFormat($format, $date . $time)->getTimestamp();
 
         if ($size === '<DIR>') {
             $type = 'dir';
@@ -469,7 +468,11 @@ abstract class AbstractFtpAdapter extends AbstractAdapter
      */
     protected function detectSystemType($item)
     {
-        return preg_match('/^[0-9]{2,4}-[0-9]{2}-[0-9]{2}/', $item) ? 'windows' : 'unix';
+        if (preg_match('/^[0-9]{2,4}-[0-9]{2}-[0-9]{2}/', $item)) {
+            return $this->systemType = 'windows';
+        }
+
+        return $this->systemType = 'unix';
     }
 
     /**

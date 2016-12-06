@@ -46,14 +46,14 @@ class IlluminateRouteCollector extends DataCollector implements Renderable
     protected function getRouteInformation($route)
     {
         if (!is_a($route, 'Illuminate\Routing\Route')) {
-            return [];
+            return array();
         }
         $uri = head($route->methods()) . ' ' . $route->uri();
 		$action = $route->getAction();
 
-        $result = [
+        $result = array(
     	   'uri' => $uri ?: '-',
-        ];
+        );
 
         $result = array_merge($result, $action);
 
@@ -109,21 +109,21 @@ class IlluminateRouteCollector extends DataCollector implements Renderable
      */
     public function getWidgets()
     {
-        $widgets = [
-            "route" => [
+        $widgets = array(
+            "route" => array(
                 "icon" => "share",
                 "widget" => "PhpDebugBar.Widgets.VariableListWidget",
                 "map" => "route",
                 "default" => "{}"
-            ]
-        ];
+            )
+        );
         if (Config::get('debugbar.options.route.label', true)) {
-            $widgets['currentroute'] = [
+            $widgets['currentroute'] = array(
                 "icon" => "share",
                 "tooltip" => "Route",
                 "map" => "route.uri",
                 "default" => ""
-            ];
+            );
         }
         return $widgets;
     }

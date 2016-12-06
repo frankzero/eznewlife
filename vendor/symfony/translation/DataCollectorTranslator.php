@@ -108,7 +108,7 @@ class DataCollectorTranslator implements TranslatorInterface, TranslatorBagInter
      * @param string|null $locale
      * @param string|null $domain
      * @param string      $id
-     * @param string      $translation
+     * @param string      $trans
      */
     private function collectMessage($locale, $domain, $id, $translation)
     {
@@ -124,14 +124,14 @@ class DataCollectorTranslator implements TranslatorInterface, TranslatorBagInter
         } elseif ($catalogue->has($id, $domain)) {
             $state = self::MESSAGE_EQUALS_FALLBACK;
 
-            $fallbackCatalogue = $catalogue->getFallbackCatalogue();
+            $fallbackCatalogue = $catalogue->getFallBackCatalogue();
             while ($fallbackCatalogue) {
                 if ($fallbackCatalogue->defines($id, $domain)) {
                     $locale = $fallbackCatalogue->getLocale();
                     break;
                 }
 
-                $fallbackCatalogue = $fallbackCatalogue->getFallbackCatalogue();
+                $fallbackCatalogue = $fallbackCatalogue->getFallBackCatalogue();
             }
         } else {
             $state = self::MESSAGE_MISSING;

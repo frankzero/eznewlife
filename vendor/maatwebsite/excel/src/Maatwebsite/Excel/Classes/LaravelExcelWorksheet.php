@@ -110,9 +110,6 @@ class LaravelExcelWorksheet extends PHPExcel_Worksheet {
     {
         parent::__construct($pParent, $pTitle);
         $this->setParent($pParent);
-        // check if we should generate headings
-        // defaults to true if not overridden by settings
-        $this->autoGenerateHeading = Config::get('excel.export.generate_heading_by_indices', true);
     }
 
     /**
@@ -674,7 +671,10 @@ class LaravelExcelWorksheet extends PHPExcel_Worksheet {
      */
     protected function generateHeadingByIndices()
     {
-        return $this->autoGenerateHeading;
+        if (!$this->autoGenerateHeading)
+            return false;
+
+        return Config::get('excel.export.generate_heading_by_indices', false);
     }
 
     /**

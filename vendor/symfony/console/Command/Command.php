@@ -569,8 +569,6 @@ class Command
      * Add a command usage example.
      *
      * @param string $usage The usage, it'll be prefixed with the command name
-     *
-     * @return Command The current instance
      */
     public function addUsage($usage)
     {

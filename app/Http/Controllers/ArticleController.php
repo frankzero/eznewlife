@@ -854,7 +854,14 @@ class ArticleController extends Controller
             cache_put($cate_cache, $cate_articles, $expiresAt);
         }
 
-        return view('articles.instant')->withArticle($article)->with('foot_articles', $cate_articles);
+
+        $content=view('articles.instant')->withArticle($article)->with('foot_articles', $cate_articles);
+        $content = replace_eznewlife($content);
+
+        // $content =str_replace("http://getez.info/focus_photo","http://demo.getez.info/focus_photo",$content);
+
+        pp($content);
+        return $content;
 
     }
     public function overview(){
