@@ -1,0 +1,59 @@
+<?php
+    if(!$this) exit;
+    $requireJS=$p->requireJS;
+    $requireCSS=$p->requireCSS;
+    
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=320, user-scalable=0" />
+<title><?php echo $this->app;?></title>
+<link rel="stylesheet" type="text/css" href="/plugin/jquery-ui-1.10.3.custom/css/redmond/jquery-ui-1.10.3.custom.css">
+<link rel="stylesheet" type="text/css" href="css/normalize.css">
+<link rel="stylesheet" type="text/css" href="css/index.css" />
+<link rel="stylesheet" type="text/css" href="css/image_upload.css" />
+<link rel="stylesheet" type="text/css" href="css/loadmask.css" />
+<?php echo $requireCSS;?>
+<style type="text/css">
+<!--
+
+-->
+</style>
+
+</head>
+
+<body class="css3loadmask">
+<div id="spinner" class="spinner"><div class="dot1"></div><div class="dot2"></div></div>
+<div id="fb-root"></div>
+
+<div id="main" style="display:none;">
+    
+</div>
+
+<script src="/plugin/jquery-ui-1.10.3.custom/js/jquery-1.9.1.js"></script>
+<script src="/plugin/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
+<script src="/<?php echo APPDIR?>ez-admin/js/EZ.js"></script>
+<script src="/<?php echo APPDIR?>ez-admin/js/index.js"></script>
+<script src="/<?php echo APPDIR?>ez-admin/js/controller.js"></script>
+<script src="mvvm.js"></script>
+<?php echo $requireJS;?>
+<script>
+window.onload=function(){
+    if(EZ._GET.states) EZ.httpstate.load(EZ._GET.states);
+    else EZ.exec({controller:'view.main.show',container:'main'});
+    
+}
+window.onpopstate = function(e){
+    console.log(e.state);
+    if(e.state) EZ.httpstate.load(e.state);
+}
+
+var g = {};
+g.ip = '<?php echo $this->getip();?>';
+g.appdir='<?php echo APPDIR;?>';
+
+</script>
+</body>
+</html>

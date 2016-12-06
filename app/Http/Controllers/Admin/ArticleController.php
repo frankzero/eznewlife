@@ -99,6 +99,11 @@ class ArticleController extends Controller
 
         if (!isset($data['id']) or empty($data['id'])){
             // $article = new Article();
+            $response["message"]='error';
+            $response["redirect"]=    '/admin/articles/list?length=100&is_deleted=0&page=1&dir=DESC';
+            return $response;
+            return Response::json($response);
+            /*
             $data['created_user']=$data['updated_user']=Auth::user()->get()->id;
 
             $article=Article::create($data);
@@ -115,12 +120,10 @@ class ArticleController extends Controller
             $article = Article::with('tagged','ez_map')->find($article->id);
 
             $isTagChanged=true;
+            */
 
         } else {
-            $response["message"]='error';
-            $response["url"]=    'http://admin.eznewlife.com/admin/articles/list?length=100&is_deleted=0&page=1&dir=DESC';
-            return $response;
-            return Response::json($response);
+
 
            // return redirect('http://admin.eznewlife.com/admin/articles/list?length=100&is_deleted=0&page=1&dir=DESC');
             $data['updated_user']=Auth::user()->get()->id;

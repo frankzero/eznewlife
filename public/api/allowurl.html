@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+    <h1>簡體 會自動轉繁體</h1>
+    <?php $i=1;?>
+    <?php foreach($urls as $host => $u):?>
+    
+    <p> <?=$i++;?> <a href="http://<?=$host;?>" target="_blank"><?=$host;?></a>  <?php echo ($u[2]===true?'簡體':'') ; ?></p>
+    
+    <?php endforeach;?>
+
+</body>
+</html>

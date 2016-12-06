@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+
+<?php 
+if(!$this) exit;
+
+?>
+
+<title><?php echo $this->config['app'];?></title>
+<meta name="viewport" content="width=340, user-scalable=0" />
+<link type="text/css" rel="stylesheet" href="/<?php echo APPDIR;?>web/css/<?php if($this->is_mobile) echo 'm_'?>index.css"/>
+<!--[if IE 7]>
+
+<![endif]-->
+
+<script type="text/javascript">
+
+</script>
+
+<style type="text/css">
+<!--
+
+-->
+</style>
+
+</head>
+<body>
+<div id="fb-root"></div>
+<div id="main">
+    
+    <div class="header">
+        <a href="<?php echo URL;?>"><img src="<?php echo APPDIR;?>images/logo.jpg"></a>
+    </div>
+    
+    <div class="form1_wrapper">
+        <form id="form1" method="POST"  onsubmit="shorturl();">
+            <input class="text" type="text" name="url" value="" placeholder="在這邊輸入網址">
+            <input type="hidden" name="cmd" value="shorturl">
+            <button class="myButton" style="font-size:1.2rem;">縮址</button>
+        </form>
+    </div>
+    
+    <div id="result" class="result">
+    
+    </div>
+    
+</div>
+
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="/plugin/EZ/EZ.js"></script>
+<script>
+EZ.api = function(cmd,p,callback){
+    
+    EZ.ajax(
+        '/<?php echo APPDIR;?>api/'
+        ,{cmd:cmd,param:p}
+        ,callback
+    );
+}
+function shorturl(e){
+    e = e || window.event;
+    var f = EZ.getForm('form1');
+    
+    if(f.url.length<5){
+        alert('網址不正確');
+        e.preventDefault();
+        return;
+    }
+    EZ.api(f.cmd,f,function(response){
+        console.log(response);
+        r=EZ.json_decode(response);
+        console.log(r);
+        var data = r.data;
+        document.getElementById('result').innerHTML = tpl_result(data);
+        
+    });
+    
+    e.preventDefault();
+}
+
+function tpl_result(data){
+    console.log(data);
+    var shorturl = data[1];
+    var qrcode = data[3];
+    var h = '';
+    h+='<div>您的短網址</div>';
+    h+='<div><input class="text"type="text" value="'+shorturl+'"></div>';
+    h+='<div>qrcode</div>';
+    h+='<div><input class="text" type="text" value="'+qrcode+'"></div>';
+    h+='<div style="text-align:center;"><img src="'+qrcode+'" style=""></div>';
+    return h;
+}
+
+</script>
+</body>
+</html>
+

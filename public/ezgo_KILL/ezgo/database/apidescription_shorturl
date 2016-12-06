@@ -1,0 +1,1 @@
+{"GET":[],"POST":{"cmd":"shorturl","param":{"url":"zaxc@ezgo.cc","cmd":"shorturl"}},"response":{"success":1,"msg":"","data":[25,"http:\/\/ezgo.cc\/aslOmh","aslOmh","http:\/\/ezgo.cc\/qr\/aslOmh.jpg","http:\/\/zaxc@ezgo.cc"]},"api_message":"shorturl","url":"http:\/\/www.ezgo.cc\/ezgo\/api\/","query":["select * from dictionary where url=?"],"addtime":1399903213}

@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+
+<?php 
+if(!$this) exit;
+
+
+?>
+
+<title><?php echo $p->title;?></title>
+<?php echo $p->meta;?>
+<meta name="viewport" content="width=360, user-scalable=0" />
+<link type="text/css" rel="stylesheet" href="/<?php echo APPDIR;?>web/css/<?php if($this->is_mobile) echo 'm_'?>single.css"/>
+<!--[if IE 7]>
+
+<![endif]-->
+
+<script type="text/javascript">
+
+</script>
+
+<style type="text/css">
+<!--
+
+-->
+</style>
+
+</head>
+<body>
+<div id="fb-root"></div>
+<div id="main">
+    
+    <div class="header">
+        <a href="<?php echo URL;?>"><img src="<?php echo APPDIR;?>images/logo.jpg"></a>
+    </div>
+    
+    <div class="preview">
+        <img src="http://s.wordpress.com/mshots/v1/<?php echo urlencode($p->url);?>?w=180" />
+        <div class="content">
+            <h1><?php echo $p->title;?></h1>
+            <p><?php echo $p->description;?></p>
+        </div>
+    </div>
+    
+    <div style="clear:both;"></div>
+    
+    <div class="content">
+		<p><input class="urltext" type="text" value="<?php echo $p->url;?>" disabled></p>
+		
+        <?php if($p->safe):?>
+            <h1 style="color:green;">這是安全網站，您可以放心前往。</h1>
+        <?php else:?>
+            <h1 style="color:red;">這很可能是危險網站，建議您勿前往此站！</h1>
+        <?php endif;?>
+        
+        <?php if($this->is_mobile):?>
+            <div id="ad_block_2">
+                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- ezgo mobile -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:300px;height:250px"
+                     data-ad-client="ca-pub-6621952572807243"
+                     data-ad-slot="8095637371"></ins>
+                <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        <?php else:?>
+            <div id="ad_block_1">
+                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- ezgo 728*90 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:728px;height:90px"
+                     data-ad-client="ca-pub-6621952572807243"
+                     data-ad-slot="5421372578"></ins>
+                <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        <?php endif;?>
+        
+        <a class="myButton" href="<?php echo $p->url;?>"> 立即前往</a>
+    </div>
+    
+    <div class="footer">
+        網址安全性掃描由 <img src="http://www.google.com/images/malware_logo.gif"/> 提供
+    </div>
+    
+    <div class="qrcode">
+        <img src="http://ezgo.cc/qr/<?php echo $p->id;?>.jpg" />
+    </div>
+</div>
+
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="/plugin/EZ/EZ.js"></script>
+<script>
+EZ.api = function(cmd,p,callback){
+    
+    EZ.ajax(
+        '/<?php echo APPDIR;?>api/'
+        ,{cmd:cmd,param:p}
+        ,callback
+    );
+}
+function shorturl(e){
+    e = e || window.event;
+    var f = EZ.getForm('form1');
+    
+    EZ.api(f.cmd,f,function(response){
+        console.log(response);
+        r=EZ.json_decode(response);
+        console.log(r);
+        var data = r.data;
+        document.getElementById('result').innerHTML = tpl_result(data);
+        
+    });
+    
+    e.preventDefault();
+}
+
+function tpl_result(data){
+    console.log(data);
+    var shorturl = data[1];
+    var qrcode = data[3];
+    var h = '';
+    h+='<div>您的短網址</div>';
+    h+='<div><input type="text" value="'+shorturl+'"></div>';
+    h+='<div>qrcode</div>';
+    h+='<div><input type="text" value="'+qrcode+'"></div>';
+    h+='<div><img src="'+qrcode+'" style="width:100px;"></div>';
+    return h;
+}
+
+</script>
+</body>
+</html>
+

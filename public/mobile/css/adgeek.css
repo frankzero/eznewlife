@@ -1,0 +1,60 @@
+.adgeek_popup_ad {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    z-index: 20001;  
+}
+.adgeek-overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: black;
+    opacity: 0.8;
+}
+.adgeek_popup_wrapper {
+    display: block;
+    width: 300px;
+    height: 321px;
+    margin: 80px auto;
+}
+.adgeek_popup {
+    width: 300px;
+    margin: 0 auto;
+    position: fixed;
+    background-color: #fff;
+    z-index: 1000;
+}
+
+ .adgeek_banner_close {
+    position: absolute;
+    top: -45px;
+    right: 5px;
+    width: 40px;
+    height: 40px;
+    background: url(http://eznewlife.com/mobile/images/close.png) center no-repeat;
+    cursor: pointer;
+    z-index: 20000;
+    color: white;
+}
+
+ .adgeek_skip_ad {
+    border: none;
+    display: block;
+    width: 300px;
+    height: 52px;
+    line-height: 52px;
+    text-shadow: 1px 2px 2px #5F5F5F;
+    text-align: center;
+    font-size: 30px;
+    color: #fff;
+    -webkit-background-size: 300px 52px;
+    background: #33C2E6;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+}

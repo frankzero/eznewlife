@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<title> closure 簡單講</title>
+<meta property="fb:admins" content="1828552130"/>
+<style>
+body{
+  background:#333;
+  font-size:14px;
+  line-height:1.8;
+}
+p{
+  margin-top:20px;
+}
+
+span{
+  color:red;
+  font-wight:red;
+}
+.main{
+  padding:20px;
+  width:600px;
+  margin:0 auto;
+  background:#fff;
+}
+h3{
+  background:#333;
+  color:#fff;
+  padding:5px;
+}
+</style>
+</head>
+<body>
+<div class="main">
+<h1>javescript closure 簡單講</h1>
+
+<h3>程式範例 1</h3>
+<code><pre>
+  function foo(){
+    alert(val);
+   }
+  foo();
+  
+</pre></code>
+<p>執行以後 val 會是什麼?  答案是 undefined </p>
+  <p>(簡單吧 !! ok 下一個程式)</p>
+  
+<h3>程式範例 2</h3>
+<code><pre>
+  var val = 5;
+
+  function foo(){
+      alert(val);
+  }
+
+  foo();
+</pre></code>
+
+<p>執行結果 val 會是多少?</p>
+<p>
+  沒錯 ,跟你想的一樣 ,答案是 5
+</p>
+<p>
+  如果到這邊你覺得沒啥了不起，恭喜， 你已經取得 closure 的精隨了。<br> 那今天就講到這邊囉 (喂~~~~)
+</p>
+
+<p>
+  好吧 接著我們仔細的探討一下 為什麼範例2的 val 會是5<br> 在那之前先提一個概念  => <span>scope / LexicalEnvironment</span>
+</p>
+<h3>Function scope</h3>
+  <code><pre>
+  var val = 5;
+  function foo(){
+      var x = 1;
+      var y = 2;
+      var z = function(){
+        // empty function
+      }
+      alert(val);
+  }
+ 
+  foo();
+</pre></code>
+<p>
+   在 javascript 每一個 function 都有自己專屬的 scope, 同一個變數名稱  在不同的 scope 底下 關聯到的值 是不一樣的. 在瀏覽器中 最上層的 scope 是一個 叫做 window 的物件 , 所以你 定義了一個變數 var val = 5;以後  也可以用 window.val 呼叫他<br>
+</p>
+  
+  <p>上面的範例 我們在function 裡面 alert(val); 
+    但是 function foo 底下只有三個變數 x , y , z <br>
+    foo->x=1 <br>
+    foo->y=2 <br>
+    foo->z=function(){};<br>
+    <span>( 下面 統一用 foo->x 代表 foo scope 底下的變數 x , 比較整潔 )</span><br>
+    看的出來 foo->val 是找不到的 也就是 undefined , 但是這一段程式執行出來 結果卻是<span>5</span>. 這不科學阿 不是應該 undefined 才對嗎?? 所以他一定有多做什麼事情 , 才會在執行以後去找到5
+  </p>
+    
+  <p>
+    在看一次程式 ,會直覺的想到 , 應該是 <span>往上找</span>
+    ,也就是往 function 外面去找 所以才會在 最上層 (window) 找到 val. 可是 <span>往上找</span> 這三個字太抽象了 , 我們接著要實際探討一下 <span>往上找</span> 到底是怎麼找 . 先看一個範例
+  </p>
+  <h3>程式範例 3</h3>
+    <code><pre>
+  var val = 5;
+  function foo(){
+      alert(val);
+  }
+  
+  function bar(){
+    var val = 6;
+    foo();
+  }
+  
+  bar();
+</pre></code>
+  <p>
+    執行 bar 以後 這次 alert(val) 會顯示什麼? <br><a id="ans1" onclick="document.getElementById('ans1').innerHTML='5'" style="color:blue;cursor:pointer;">想一下再點我看答案</a>
+  </p>
+  <p>
+    這個範例只是要讓你思考一下, 如果你很清楚答案 , 那基本上 你已經差不多瞭解 closure 了. 現在我們來解釋一下 之前提到的 <span>往上找 <span>
+  </p>
+  <h3>[[Scope]]</h3>
+  <code><pre>
+  var val = 5;
+  function foo(){
+      var x = 1;
+      alert(val);
+  }
+  
+</pre></code>
+  <p>
+    上面的程式有2個變數 <br>
+    window->val<br>
+    window->foo<br>
+    可是程式好像還有 x = 1? 因為他是在 function foo底下 ,只有當function 執行的時候 才會產生這個 function 專屬的 scope ,同時 x 才會產生 , 目前並沒有執行 foo 這個 function
+    
+  </p>
+  <p>
+    but~~~  foo 其實還有一個隱藏的屬性 叫做 [[Scope]]
+    <a href="http://dmitrysoshnikov.com/ecmascript/chapter-4-scope-chain/#scope-of-functions-created-via-function-constructor" target="_blank">ECMA-262</a> 的定義如下
+  </p>
+    <p>[[Scope]] is a hierarchical chain of all parent variable objects, which are above the current function context; the chain is saved to the function at its creation.
+    </p>
+  <p>
+    <br ><span>
+    當一個 function 被產生 , 這個 function 同時也產生一個隱藏的屬性[[Scope]] , 他指向這個function 所存在的 scope  </span>
+  </p>
+  <p>
+    上面的範例 foo 的 [[Scope]] 指向的對象 就是 window ,<br>因為 foo 是 存在 window scope 的一個 function
+  </p>
+   <p>
+     底下開始說明 這個範例到底是怎麼找到 val 的 <br>
+     為了省事 我用 window , foo 代表他們的 scope
+    </p>
+  <span>
+   <p>
+     foo 執行以前 有這些變數<br>
+     window->val = 5 <br>
+     window->foo = function <br>
+     foo.[[Scope]] = window <br>
+   </p>
+   <p>
+     foo 執行以後 <br>
+     window->val = 5 <br>
+     window->foo = function <br>
+     foo.[[Scope]] = window <br>
+     foo->x = 1<br>
+   </p>
+    <p>
+      當你在 foo底下找 val的時候 <br>
+      流程看起來會是這樣<br>
+      1. 找 foo->val 沒東西<br>
+      2. 問 foo.[[Scope]] 我還可以去哪邊找 val , 於是前往 window <br>
+      3. 找 window->val 有值 , 回傳5.
+    </p>
+    <p>
+        補充 : function 的 [[Scope]] 屬性 是在 function 建立的時候 就已經有了 , 也就是說 他只會指向一個地方 該 function 所存在的scope<br>
+        但是 function 可以在任何地方被執行 , 不管在哪裡執行 , 只要在 function scope 找不到變數 他就會透過 [[Scope]] 去該 function 被建立的地方找
+        , 如果該function 也是在其他 function 被建立 , 而且還是找不到這個變數 , 那就會在透過其他 function 的 [[Scope]] 再一次往上一層找 。 一直找到最上層 (通常是window) 為止, 這就是 Scope chain
+        
+    </p>
+      </span>
+     <p>現在可以再回到範例3 看一下 就很清楚為什麼答案是5了 </p>
+     <p> 到這邊 closure 已經講完了 , 下面的範例只是讓你驗證一下而已 , 任督二脈已打通者 可以直接離開本頁</p>
+  
+  <h3>程式範例 4 (封裝)</h3>
+   <code><pre>
+  
+  function Factory(){
+     var v = {};
+     var obj = {
+       get : function(key){
+         return v[key];
+       }
+       ,set : function(key, val){
+         v[key] = val;
+       }
+     }
+     return obj;
+  }
+ 
+  var dic = Factory();
+  
+  dic.set('x',1);
+  dic.set('y',2);
+  alert(dic.get('x')+' '+dic.get('y'));
+</pre></code>
+      
+ <p>
+   當 Factory 執行之前 有下列 function<br>
+   <span>
+   window->Factory<br>
+   window->Factory.[[Scope]]=window</span>
+ </p>  
+ <p>
+   Factory 執行以後 多產生2個 function<br>
+   <span>
+  
+   Factory->obj.get<br>
+   Factory->obj.get.[[Scope]]=Factory<br>
+   Factory->obj.set<br>
+   Factory->obj.set.[[Scope]]=Factory<br></span>
+   
+ </p>
+ <p>
+   我們在 Factory 最後 return obj 給 window.dic<br>
+   於是 window->dic = obj  <br>
+   <span>window->dic.get.[[Scope]] = Factory->obj.get.[[Scope]] = Factory<br>
+   window->dic.set.[[Scope]] = Factory->obj.set.[[Scope]] = Factory<br></span>
+   
+ </p>
+     
+ <p>
+   所以dic.set('x',1) 執行之後 找變數v的流程是這樣 <br>
+   1. 先找dic.set->v => 找不到 <br>
+   2. 問 dic.set.[[Scope]]<br>
+   3. 找 Factory->v => 找到了
+ </p>
+  <p>執行 dic.get 也是一樣流程</p>
+  <p>你會發現 Factory scope 底下的變數 v 現在只能透過 <br>dic.get.[[Scope]] <br>dic.set.[[Scope]]<br> 去找到他 , 沒有其他人可以關聯了.<br> 看起來就像是 dic 這個物件的私有變數一樣 . 不過看完上面的解釋以後 你應該更瞭解, 其實 dic 並沒有辦法去存取 v , 真正有辦法存取 v 的 是 dic.set 跟 dic.get這2個 function 透過他的隱藏屬性 [[Scope]] 去存取 . dic只是沾了這2個 function 的光 看起來好像他擁有 v 這個變數一樣 
+  </p>
+  <p>
+    如果你現在給 dic 賦予一個 function
+  </p>
+    <code><pre>
+    var dic = Factory();
+    dic.delete = function(key){
+        v[key] = null;
+    }
+      </pre></code>
+  <p>
+   因為 delete.[[Scope]] = window;
+   所以 他在 delete scope 裡面找 v 找不到 會去 window->v ,
+    而不是Factory->v , 他並沒有辦法刪掉 從get,set 找到的變數v 從這邊就可以知道 dic 並沒有真正的擁有 Factory->v ,
+  </p>
+    
+  <p>
+    看完這篇以後 , 希望你可以忘掉什麼是 closure , 很自然的知道程式中變數是從哪關聯的。 畢竟心中無劍才是使劍的最高境界。  網路上有很多closure範例 是好幾層巢狀的function 。 你可以去驗證一下。
+    <br>下面是本篇參考連結 <br>
+    <a href="http://dmitrysoshnikov.com/ecmascript/es5-chapter-3-1-lexical-environments-common-theory/#static-lexical-scope" target="_blank">ecmascript</a><br>
+    <a href="http://javascript.info/tutorial/closures" target="_blank">closure</a><br>
+  </p>
+  <p>也歡迎指正</p>
+  <div><fb:comments href="eznewlife.com/writesomething/closure.html" num_posts="5" width="600" mobile="false"></fb:comments></div>
+</div>
+    
+<script>
+(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/zh_TW/all.js";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+window.fbAsyncInit = function(){
+    console.log('fbAsyncInit');
+
+    FB.init({
+        appId:'186231384812164', // App ID
+        status:true, // check login status
+        cookie:true, // enable cookies to allow the server to access the session
+        xfbml:true,  // parse XFBML
+        oauth:true
+    });
+};
+</script>
+</body>
+</html>

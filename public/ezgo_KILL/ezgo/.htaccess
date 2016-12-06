@@ -1,0 +1,4 @@
+Options -Indexes
+RewriteEngine On //開啟Rewrite功能
+RewriteRule ^([0-9A-Za-z]+)$ index.php?id=$1
+

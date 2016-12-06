@@ -1,0 +1,246 @@
+
+
+.adultPanel{
+  color: #fff;
+  text-align: center;
+  background-color: #090909;
+  position:fixed;
+  left:0;
+  right:0;
+  top:0;
+  bottom:0;
+  z-index:9999;
+  font-family: 'Source Sans Pro', sans-serif, 微軟正黑體, 微软雅黑, 'Helvetica Neue', Helvetica, Arial, メイリオ, '맑은 고딕';
+}
+
+.adultPanel a,
+.adultPanel a:focus,
+.adultPanel a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+/* Links */
+
+/* Custom default button */
+.adultPanel .btn-default,
+.adultPanel .btn-default:hover,
+.adultPanel .btn-default:focus {
+  color: #333;
+  text-shadow: none; /* Prevent inheritence from `body` */
+  background-color: #fff;
+  border: 1px solid #fff;
+}
+
+
+/* Extra markup and styles for table-esque vertical and horizontal centering */
+.adultPanel .site-wrapper {
+  display: table;
+  width: 100%;
+  height: 100%; /* For at least Firefox */
+  min-height: 100%;
+  -webkit-box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+  box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+}
+.adultPanel .site-wrapper-inner {
+  display: table-cell;
+  vertical-align: middle;
+}
+.adultPanel .cover-container {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* Padding for spacing */
+.adultPanel .inner {
+  padding: 30px;
+}
+
+
+/*
+ * Header
+ */
+.adultPanel .masthead-brand {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.adultPanel .masthead-nav > li {
+  display: inline-block;
+}
+.adultPanel .masthead-nav > li + li {
+  margin-left: 20px;
+}
+.adultPanel .masthead-nav > li > a {
+  padding-right: 0;
+  padding-left: 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff; /* IE8 proofing */
+  color: rgba(255,255,255,.75);
+  border-bottom: 2px solid transparent;
+}
+.adultPanel .masthead-nav > li > a:hover,
+.adultPanel .masthead-nav > li > a:focus {
+  background-color: transparent;
+  border-bottom-color: #a9a9a9;
+  border-bottom-color: rgba(255,255,255,.25);
+}
+.adultPanel .masthead-nav > .active > a,
+.adultPanel .masthead-nav > .active > a:hover,
+.adultPanel .masthead-nav > .active > a:focus {
+  color: #fff;
+  border-bottom-color: #fff;
+}
+
+@media (min-width: 768px) {
+  .adultPanel .masthead-brand {
+    float: left;
+  }
+  .adultPanel .masthead-nav {
+    float: right;
+  }
+}
+
+
+/*
+ * Cover
+ */
+
+.adultPanel .cover {
+  padding: 0 20px;
+}
+.adultPanel .cover .btn-lg {
+  padding: 10px 20px;
+  font-weight: bold;
+}
+
+
+/*
+ * Footer
+ */
+
+.adultPanel .mastfoot {
+  color: #999; /* IE8 proofing */
+  color: rgba(255,255,255,.5);
+}
+
+
+/*
+ * Affix and center
+ */
+
+@media (min-width: 768px) {
+  /* Pull out the header and footer */
+  .adultPanel .masthead {
+    position: fixed;
+    top: 0;
+  }
+  .adultPanel .mastfoot {
+    position: fixed;
+    bottom: 0;
+  }
+  /* Start the vertical centering */
+  .adultPanel .site-wrapper-inner {
+    vertical-align: middle;
+  }
+  /* Handle the widths */
+  .adultPanel .masthead,
+  .adultPanel .mastfoot,
+  .adultPanel .cover-container {
+    width: 100%; /* Must be percentage or pixels for horizontal alignment */
+  }
+}
+
+@media (min-width: 992px) {
+  .adultPanel .masthead,
+  .adultPanel .mastfoot,
+  .adultPanel .cover-container {
+    width: 800px;
+  }
+}
+::selection {
+  background: #ff9100;
+  color: #fff;
+  font-size: 25px;
+}
+.adultPanel h1 {
+  color:white;
+  font-variant: small-caps;
+  margin-bottom: 30px;
+}
+
+
+.adultPanel .btn {
+  margin: 5px 0px;
+}
+
+
+.adultPanel .nav>li:hover {
+  background-color: #804275;
+}
+
+.adultPanel .navbar-nav>li>a {
+
+  font-size: 18px;
+}
+
+#adult-p,#adult-h1{
+  color: #060202;
+}
+
+#adult-p{
+  text-align: left;
+}
+
+
+
+.adultPanel .adultimg{
+  float:left;
+  width:150px;
+}
+
+@media (min-width: 768px) {
+  .adultPanel .adultimg{
+    width:150px;
+  }
+}
+
+
+@media (min-width: 992px) {
+  .adultPanel .adultimg{
+    width:150px;
+  }
+
+}
+
+
+@media (min-width: 1200px) {
+  .adultPanel .adultimg{
+    width:200px;
+  }
+
+}
+.box{
+  padding: 20px;
+}
+
+
+@media only screen and (min-device-width :300px) and (max-device-width : 680px) {
+
+  .adultPanel .adultimg{
+    width:36%;
+  }
+  #logo{
+    width:50%;
+  }
+  .lead {font-size:14px;}
+}
+@media only screen and (min-device-width :200px) and (max-device-width : 320px) {
+  .adultPanel .adultimg{
+    width:22%;
+  }
+  #logo{
+    width:50%;
+  }
+  .lead {font-size:12px;}
+}

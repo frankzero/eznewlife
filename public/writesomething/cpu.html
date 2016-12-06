@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<title> closure 簡單講</title>
+<meta property="fb:admins" content="1828552130"/>
+<style>
+span{
+    color:red;
+}
+</style>
+</head>
+<body>
+<h3>跑 10萬次迴圈 的毫秒數</h3>
+
+<p>
+.157(12核)<br>
+AMD Opteron(tm) 6388P<br>
+<span>1427</span> ms<br>
+</p>
+
+<p>.115(32核 最貴那台)<br>
+AMD Opteron(tm) 6272<br>
+<span>1374</span> ms<br>
+</p>
+
+<p>.162 (qlink)<br>
+Intel(R) Xeon(R) CPU E3-1230 v3 @ 3.30GHz<br>
+<span>757</span> ms<br>
+</p>
+
+<p>.242 (funvdo)<br>
+Intel(R) Xeon(R) CPU E3-1230 V2 @ 3.30GHz<br>
+<span>1034</span> ms<br>
+</p>
+
+<p>.100 (enl)<br>
+Intel(R) Xeon(R) CPU E3-1230 V2 @ 3.30GHz<br>
+<span>1025</span> ms<br>
+</p>
+
+<p>.179 (hostgator)<br>
+Intel(R) Xeon(R) CPU E3-1230 V2 @ 3.30GHz<br>
+<span>1001</span> ms<br>
+</p>
+
+
+
+
+<h3>cpu 測試 圖表 </h3>
+<a href="http://www.cpubenchmark.net/cpu.php?cpu=AMD+Opteron+6272&id=1569" target="_blank">cpu bench</a> <br >
+<a href="http://www.cpubenchmark.net/singleThread.html" target="_blank">cpu bench</a>
+
+<h3>centos cpu  版本 </h3>
+<pre>
+# cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c 
+
+跑回圈 測速度 
+
+登入 ssh 以後
+
+sh 
+
+ts=$(($(date +%s%N)/1000000))
+i=0
+while [ "$i" != 100000 ]
+do
+i=$(($i+1))
+#echo "$i"
+done
+te=$(($(date +%s%N)/1000000))
+echo $(($te-$ts))
+</pre>
+</body>
+</html>

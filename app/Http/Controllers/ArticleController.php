@@ -859,7 +859,10 @@ class ArticleController extends Controller
         $content = replace_eznewlife($content);
 
         // $content =str_replace("http://getez.info/focus_photo","http://demo.getez.info/focus_photo",$content);
+        $tidy = tidy_parse_string($content);
 
+        $body = $tidy->Body();
+        echo $body->value;
         pp($content);
         return $content;
 

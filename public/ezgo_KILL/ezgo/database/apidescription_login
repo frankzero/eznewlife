@@ -1,0 +1,1 @@
+{"GET":{"cmd":"login","tt":"1396245095518"},"POST":{"cmd":"login","param":{"user":"frank","password":"10281028"},"timeout":"30"},"response":{"success":1,"msg":"","data":{"sid":"0FS8U5QQnfnu0aIZd6sJ"}},"api_message":"admin \u767b\u5165","url":"http:\/\/ezgo.cc\/ezgo\/ez-admin\/api.php?cmd=login&tt=1396245095518","query":[],"addtime":1396245095}

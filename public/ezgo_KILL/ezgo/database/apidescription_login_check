@@ -1,0 +1,1 @@
+{"GET":{"cmd":"get_user_info","tt":"1396245465616"},"POST":{"cmd":"get_user_info","timeout":"30"},"response":{"success":1,"msg":"","data":"frank"},"api_message":"admin \u78ba\u8a8d\u767b\u5165","url":"http:\/\/ezgo.cc\/ezgo\/ez-admin\/api.php?cmd=get_user_info&tt=1396245465616","query":[],"addtime":1396245465}

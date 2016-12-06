@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+
+<title>ezgo</title>
+<meta name="viewport" content="width=360, user-scalable=0" />
+<link type="text/css" rel="stylesheet" href="<?=client_path(__APP__);?>css/<?= is_mobile() === 1 ? 'm_' : '';  ?>index.css"/>
+
+<!--[if IE 7]>
+
+<![endif]-->
+
+<script type="text/javascript">
+
+</script>
+
+<style type="text/css">
+<!--
+
+-->
+</style>
+
+</head>
+<body>
+<div id="fb-root"></div>
+<div id="main">
+    
+    <div class="header">
+        <a href="<?=client_path(__APP__);?>"><img src="<?=client_path(__APP__);?>images/logo.gif"></a>
+    </div>
+    
+    <div class="form1_wrapper">
+        <form id="form1" method="POST" >
+            <input class="text" type="text" name="url" value="" placeholder="在這邊輸入網址">
+            <input type="hidden" name="cmd" value="shorturl">
+            <button id="btn1" class="myButton" style="font-size:1.2rem;" >縮址</button>
+        </form>
+    </div>
+    
+    <div id="result" class="result">
+    
+    </div>
+    
+</div>
+
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="<?=client_path(__APP__);?>/js/ff.js"></script>
+
+<script>
+
+var api = function(p){
+    
+    return ff.xhr('<?=client_path(__APP__);?>api/', 'POST', p).send();
+
+};
+
+
+function shorturl(e){
+    e = e || window.event;
+
+    e.preventDefault();
+    var f = ff('#form1').val();
+    console.log(f);
+    
+    if(f.url.length<5){
+        alert('網址不正確');
+        e.preventDefault();
+        return;
+    }
+
+    api(f).then(function(xhr){
+        
+        var r = xhr.parse();
+        console.log(r);
+        document.getElementById('result').innerHTML = tpl_result(r);
+    });
+
+
+    
+    
+}
+
+function tpl_result(data){
+    console.log(data);
+    var short_url = data.short_url;
+    //var qrcode = data[3];
+    var h = '';
+    h+='<div>您的短網址</div>';
+    h+='<div><input class="text"type="text" value="'+short_url+'"></div>';
+    //h+='<div>qrcode</div>';
+    //h+='<div><input class="text" type="text" value="'+qrcode+'"></div>';
+    //h+='<div style="text-align:center;"><img src="'+qrcode+'" style=""></div>';
+    return h;
+}
+
+
+ff('#form1').bind('submit',shorturl);
+
+</script>
+
+
+
+
+
+
+<!--google analytic-->
+<script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-29579256-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+</script>
+
+</body>
+</html>
+

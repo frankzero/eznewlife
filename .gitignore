@@ -2,6 +2,11 @@
 error_log
 storage
 resource
-public
 enl_cache*
+public/animation_photos
+public/images
+public/focus_photos
+public/uploads
+public/wp-content
+
 

@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-TW">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title></title>
+
+<script type="text/javascript" src="/plugin/EZ/EZ.js" ></script>
+
+<style>
+<!--
+body{
+    height:2000px;
+}
+.ad_float_wrapper{
+    display:block;
+    width:300px;
+    margin:10px auto;
+}
+.ad_float{
+    width:300px;
+    margin:0 auto;
+    position:fixed;
+    display:none;
+}
+.banner_close{
+    position:absolute;
+    top:5px;
+    right:5px;
+    width:40px;
+    height:40px;
+    background:url(http://fun-vdo.com/video/images/close.png) center no-repeat;
+    cursor:pointer;
+    z-index:10000;
+    
+}
+.skip_ad{
+    border:none;
+    display:block;
+    width:300px;
+    height:52px;
+    line-height:52px;
+    text-shadow:1px 2px 2px #5F5F5F;
+    text-align:center;
+    font-size:30px;
+    color:#fff;
+    -webkit-background-size:300px 52px;
+    background:#33C2E6;
+    margin:0;
+    padding:0;
+    cursor:pointer;
+}
+-->
+</style>
+<script>
+window.addEventListener('load',function(e){
+    var ad_float = document.getElementById('ad_float');
+    console.log(EZ.readCookie('ad_float'));
+    if(!EZ.readCookie('ad_float')){
+        ad_float.style.display='block';
+        document.getElementById('ad_close_button').onclick=close_ad;
+        document.getElementById('ad_close_icon').onclick=close_ad;
+    }
+});
+function close_ad(e){
+    document.getElementById('ad_float').style.display='none';
+    EZ.setCookie('ad_float',1,60000);
+}
+</script>
+</head>
+<body>
+
+<div class="ad_float_wrapper">
+    <div id="ad_float" class="ad_float">
+        <div id="ad_block_9" style="width:300px;height:250px;">
+            <!-- 右下欄廣告 -->
+            <!--YAHOO DR NEW-->
+            <!-- BEGIN STANDARD TAG - 300 x 250 - SITE CODE REQUIRED : SECTION CODE REQUIRED - DO NOT MODIFY -->
+            <div style="width:300px;height:250px;">
+            <script>
+            document.write("<script src='http://drd.hauchi.com.tw/DRD/drd_drid_1431.js?rnd=" + Math.random() + Date.parse(new Date()) + "'></sc" + "ript>");
+            </script>
+            </div>
+            <!-- END TAG -->
+            <!--YAHOO DR NEW-->
+        </div>
+        <input id="ad_close_button" type="button" class="skip_ad" value="關閉廣告">
+        <div id="ad_close_icon" class="banner_close"></div>
+    </div>
+</div>
+
+</body>
+</html>

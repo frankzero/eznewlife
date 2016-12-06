@@ -136,7 +136,7 @@
 {{--bootbox---}}
 <script src="//cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
 {{---DIY---}}
-<script src="{{('/js/admin_main.js')}}?v=1"></script>
+<script src="{{('/js/admin_main.js')}}?v=2"></script>
 <script src="{{('/js/function.js')}}"></script>
 <script src="{{('/js/EZ.2.js')}}"></script>
 <script src="//cdn.jsdelivr.net/clipboard.js/1.5.5/clipboard.min.js"></script>

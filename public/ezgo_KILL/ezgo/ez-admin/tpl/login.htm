@@ -1,0 +1,66 @@
+<?php
+    if(!$this) exit;
+    $data=$this->data;
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>TV LIST</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=320, user-scalable=0" />
+<link rel="stylesheet" href="/<?php echo APPDIR;?>ez-admin/css/login.css" type="text/css" />
+<style type="text/css">
+<!--
+
+-->
+</style>
+</head>
+<body>
+
+<form id="form1" class="loginform" autocomplete="on" onsubmit="return false;">
+<label for="username">username</label><input type="text" id="user" name="user" class="placeholder" placeholder="Username">
+<label for="password">password</label><input type="password" id="password" name="password" class="placeholder" placeholder="Password">
+<input id="submit" type="submit" class="submit" value="Log In" >
+</form>
+
+<script src="/plugin/jquery-ui-1.10.3.custom/js/jquery-1.9.1.js"></script>
+<script src="/plugin/EZ/EZ.js"></script>
+<script>
+window.onload=function(){
+    EZ.deleteCookie('sid');
+    var submit = document.getElementById('submit');
+    var form1 = document.getElementById('form1');
+    submit.addEventListener('click',login,true);
+    //form1.addEventListener('keypress',keypress,true);
+}
+function keypress(e){
+    e = e || window.event;
+    if(e.which==13){
+        login(e);
+    }
+}
+
+function login(e){
+    var user = document.getElementById('user').value;
+    var password = document.getElementById('password').value;
+    EZ.api('login',{user:user,password:password},function(response){
+        console.log(response);
+        var r={};
+        try{
+            r=eval('('+response+')');
+        }catch(e){
+            r.success=false;
+            console.log(e);
+        }
+        if(r.success){
+            EZ.setCookie('sid',r.data.sid,86400000);
+            location.replace('');
+        }else{
+            alert(r.msg);
+        }
+    });
+}
+
+</script>
+</body>
+</html>
