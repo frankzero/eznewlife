@@ -373,6 +373,7 @@ console.log('<?=phpversion();?>');
 </script>
 <!--20161109 廣告CODE-->
 <script type="text/javascript" src="https://ssl.sitemaji.com/ysm_eznewlife.js"></script>
+<script type="text/javascript" src="https://ssl.sitemaji.com/ypa/eznewlife.js"></script>
 
 </body>
 </html>

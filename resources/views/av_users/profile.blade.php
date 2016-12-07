@@ -130,7 +130,7 @@
             },
             email: {
                 remote: {
-                    url: "{{route('av.user.check_repeat')}}",
+                    url: "{{https(route('av.user.check_repeat'))}}",
                     type: "post",
                     data: {
                         type: 'update_email',

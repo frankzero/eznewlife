@@ -5,6 +5,10 @@
  * Date: 2015/12/22
  * Time: 上午 10:50
  */
+function https($url){
+    $url=str_replace("http:","https:",$url);
+    return $url;
+}
 function see_also($url){
     if (preg_match("/http:\/\//i",$url)){
         return urldecode(str_replace("http","https",$url));
@@ -266,7 +270,7 @@ function save_tag_cache($name = null, $type = null)
 
 
 
-    // $all_tags = App\Article::existingTags()->pluck('name')->all();
+//   $all_tags = App\Article::existingTags()->pluck('name')->all();
 
     $conn = oconn('M');
 
@@ -278,6 +282,7 @@ function save_tag_cache($name = null, $type = null)
         //echo $row[0]."\n";
         $all_tags[]= $row[0];
     }
+
 
 
 
@@ -298,8 +303,9 @@ function save_tag_cache($name = null, $type = null)
 
             $tmp_cache = 'enl_tag_ids_' . ucfirst($tname);
 
-            $tag_articles = App\Article::publish()->enl()->with('tagged')->withAnyTag([$tname])->orderBy('publish_at')->lists('id')->toArray();
-            //echo $tmp_cache."<br>";
+            $tag_articles =\App\Article::publish()->enl()->with('tagged')->orderBy('publish_at')->lists('id');
+            //->toArray();
+            dd($tmp_cache);
             if (count($tag_articles) > 0) cache_forever($tmp_cache, $tag_articles);
         }
     }
@@ -309,7 +315,7 @@ function save_tag_cache($name = null, $type = null)
     if ($type == "dark" or $name != null) {
         foreach ($all_tags as $k => $tname) {
             $tmp_cache = 'dark_tag_ids_' . ucfirst($tname);
-            $tag_articles = App\Article::publish()->dark()->with('tagged')->withAnyTag([$tname])->orderBy('publish_at')->lists('id')->toArray();
+            $tag_articles =\App\Article::publish()->dark()->with('tagged')->withAnyTag([$tname])->orderBy('publish_at')->lists('id')->toArray();
             if (count($tag_articles) > 0) cache_forever($tmp_cache, $tag_articles);
             //echo $tmp_cache."<br>";
         }
@@ -949,6 +955,7 @@ function article_instant_content($content)
     //  $my_ad='<figure class="op-ad"><iframe width="300" height="250" style="border:0; margin:0;" src="https://www.facebook.com/adnw_request?placement=643012882521252_643012889187918&adtype=banner300x250"></iframe></figure>';
     //將所有br 改成<p>
     //去雜質
+
     $content = str_replace('admin.eznewlife.com', 'eznewlife.com', $content);
 
     $content = str_replace('../../../', 'http://eznewlife.com/', $content);
@@ -971,7 +978,11 @@ function article_instant_content($content)
     $reg = '/<(\w+)>(.*?)<\/\1>/';
     $content = preg_replace('/<span([^<]*)style="([^<]*)color: #ff0000;([^<]*)">([^<]*)<\/span>/i', '</p><aside>$4</aside><p>', $content);
 
-
+    //pp($content);
+   // pp(strlen($content));
+    $content=Purifier::clean($content);
+   // pp($content);
+  //  pp(strlen($content));
     /// h1 -h6 是強調
     //$content  = preg_replace('/<h[1-6]>(.*?)<\/h[1-6]>/', '<adide>$1<adide>',  $content );
     /***所有div 換成p*/

@@ -32,10 +32,10 @@
 
             @foreach ($articles as $k=> $article)
                 <div class=" col-lg-4 col-md-4 col-sm-6 col-xs-12 img-item"   itemscope itemtype="http://schema.org/ImageObject"
-                     onclick="window.location='{{route('avbodies.show', ['id'=>$article->ez_map[0]->unique_id])}}'">
+                     onclick="window.location='/{{$article->ez_map[0]->unique_id}}'">
 
                     <div class="hovereffect" >
-                        <a href="{{route('avbodies.show', ['id'=>$article->ez_map[0]->unique_id])}}">
+                        <a href="/{{$article->ez_map[0]->unique_id}}">
                             @if (File::exists( public_path() . '/focus_photos'."/".$article->photo) and !empty($article->photo))
                                 <img src="{!!("/focus_photos/400/".$article->photo) !!}?lastmod={!!date("YmdH")!!}"   itemprop="contentUrl"
                                      class="img-responsive img-thumbnail center-block" alt="{{$article->title}}">
@@ -45,7 +45,7 @@
                             @endif
                         </a>
                         <div class="overlay">
-                            <h2 itemprop="name"> <a href="{{route('avbodies.show', ['id'=>$article->ez_map[0]->unique_id])}}">
+                            <h2 itemprop="name"> <a href="/{{$article->ez_map[0]->unique_id}}">
                                     @if ((strlen(strip_tags($article->title))-mb_strlen(strip_tags($article->title))<5))
                                         {{---english---}}
                                         @if (strlen(strip_tags($article->title))<70)

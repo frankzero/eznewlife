@@ -24,11 +24,11 @@
 
             @for ($i = 0; $i < 1; $i++)
                 <div class="row center-block  "
-                     onclick="window.location='{{route('darks.show', ['id'=>$rand_articles[$i]->ez_map[0]->unique_id])}}' "></div>
+                     onclick="window.location='/{{$rand_articles[$i]->ez_map[0]->unique_id}}' "></div>
                     <div class="thumbnail rand_hover "  itemscope itemtype="http://schema.org/ImageObject">
 
 
-                        <a href="{{route('darks.show', ['id'=>$rand_articles[$i]->ez_map[0]->unique_id])}}">
+                        <a href="/{{$rand_articles[$i]->ez_map[0]->unique_id}}">
                             @if (File::exists( public_path() . '/focus_photos'."/".$rand_articles[$i]->photo) and !empty($rand_articles[$i]->photo))
                                 <img src="{!!("/focus_photos/400/".$rand_articles[$i]->photo) !!}?lastmod={{date("YmdH")}}" itemprop="contentUrl"
                                      class="img-responsive img-thumbnail right-thumbnail"
@@ -46,7 +46,7 @@
                             <h3>
 
                                 <a
-                                        href="{{route('darks.show', ['id'=>$rand_articles[$i]->ez_map[0]->unique_id])}}" itemprop="name">
+                                        href="/{{$rand_articles[$i]->ez_map[0]->unique_id}}" itemprop="name">
                                     <strong>
                                         @if ((strlen(strip_tags($rand_articles[$i]->title))-mb_strlen(strip_tags($rand_articles[$i]->title))<5))
                                             {{---english---}}

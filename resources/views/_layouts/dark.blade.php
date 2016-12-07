@@ -30,7 +30,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{URL("/")}}"><img src="{{("/images/dark_logo.png")}}" alt="logo" title="logo" class="logo">@if (Route::currentRouteName() =="darks.category" and $mobile==true ) - <small>{{$page['sub_title']}}</small> @endif</a>
+            <a class="navbar-brand" href="/"><img src="{{("/images/dark_logo.png")}}" alt="logo" title="logo" class="logo">@if (Route::currentRouteName() =="darks.category" and $mobile==true ) - <small>{{$page['sub_title']}}</small> @endif</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
             <ul class="nav navbar-nav">
@@ -38,7 +38,7 @@
                 @foreach($categories as $cid=>$name)
                     <li @if ( $page['sub_title'] ==$name ) class=" active" @endif>
 
-                        <a href="{{route('darks.category',[$cid,$name])}}">{{$name}}</a>
+                        <a href="{{https(route('darks.category',[$cid,$name]))}}">{{$name}}</a>
                     </li>
                 @endforeach
                 @endif
@@ -52,27 +52,27 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="blockblock" style="display: none">
             <a class="btn bg-light-blue btn-group-xs share-circle"
-               href="http://www.facebook.com/sharer/sharer.php?u={!!rawurldecode($page['share_url'])!!}&description={!!rawurldecode($page['sub_title'])!!}"
+               href="http://www.facebook.com/sharer/sharer.php?u={!!rawurldecode(https($page['share_url']))!!}&description={!!rawurldecode($page['sub_title'])!!}"
                target="_blank" alt="Facebook">
                 <i class="fa fa-facebook"></i>
             </a>
             <a class="btn bg-red btn-group-xs share-circle"
-               href="https://plus.google.com/share?url={!!rawurldecode($page['share_url'])!!}&t={!!rawurldecode($page['sub_title'])!!}"
+               href="https://plus.google.com/share?url={!!rawurldecode(https($page['share_url']))!!}&t={!!rawurldecode($page['sub_title'])!!}"
                target="_blank">
                 <i class="fa fa-google-plus"></i></a>
 
             <a class="btn bg-aqua share-circle"
-               href="https://twitter.com/intent/tweet?url={!!rawurldecode($page['share_url'])!!}&text={!!rawurldecode($page['sub_title'])!!}"
+               href="https://twitter.com/intent/tweet?url={!!rawurldecode(https($page['share_url']))!!}&text={!!rawurldecode($page['sub_title'])!!}"
                target="_blank">
                 <i class="fa fa-twitter"></i></a>
             @if ($mobile==true)
                 <a class="btn share-circle" style="background-color:#1DCD00;color:white "
-                   href="http://line.me/R/msg/text/?{!!rawurldecode($page['sub_title'])!!}%0D%0A{!!rawurldecode($page['share_url'])!!}"
+                   href="http://line.me/R/msg/text/?{!!rawurldecode($page['sub_title'])!!}%0D%0A{!!rawurldecode(https($page['share_url']))!!}"
                    target="_blank">
                     <strong style="font-family: Noto Sans CJK JP Black">L</strong></a>
             @else
                 <a class="btn share-circle" style="background-color: rgb(210,87,47) ;color:white "
-                   href="http://www.plurk.com/?qualifier=shares&status={!!rawurldecode($page['share_url'])!!}"
+                   href="http://www.plurk.com/?qualifier=shares&status={!!rawurldecode(https($page['share_url']))!!}"
                    target="_blank">
                     <strong style="font-family: Noto Sans CJK JP Black">P</strong></a>
             @endif
@@ -112,7 +112,7 @@
         <footer itemscope itemtype="http://schema.org/Organization">
             <div class="row">
                 <div class="col-lg-8 col-md-12  text-center">
-                    <p>Copyright &copy;  <a href="{{URL("/")}}" itemprop="url">  <span itemprop="name">ENL暗黑網</span></a> {{date('Y')}}</p>
+                    <p>Copyright &copy;  <a href="/" itemprop="url">  <span itemprop="name">ENL暗黑網</span></a> {{date('Y')}}</p>
                 </div>
             </div>
             <!-- /.row -->
@@ -129,7 +129,7 @@
         var site_name="ENL暗黑網";
         var site_url="dark.eznewlife.com";
         var title="ENL暗黑網";
-        var site_leave_url='http://eznewlife.com';
+        var site_leave_url='https://eznewlife.com';
     </SCRIPT>
 <!-- jQuery -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -200,6 +200,7 @@
     </script>
     <!--20161109 廣告CODE-->
     <script type="text/javascript" src="https://ssl.sitemaji.com/ysm_eznewlife.js"></script>
+    <script type="text/javascript" src="https://ssl.sitemaji.com/ypa/eznewlife.js"></script>
 @stack('scripts')
 
 </body>

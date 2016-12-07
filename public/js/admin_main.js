@@ -560,7 +560,7 @@ function saveToDB() {
                     $('#unique_id').val(jqObj[0].unique_id);
                     $(".form-status-holder").append(
                         " &nbsp;&nbsp;<a class=\"btn btn-xs btn-success\" href=" + jqObj[0].url + "  target='_" + jqObj[0].unique_id + "'>"
-                        + ' &nbsp;<i class="fa  fa-location-arrow"></i> 查看前台文章#' + jqObj[0].unique_id + "</a>"
+                        + ' &nbsp;<i class="fa  fa-location-arrow"></i> 查看admin前台文章#' + jqObj[0].unique_id + "</a>"
                         + " &nbsp;&nbsp;<a class=\"btn btn-xs btn-primary\" href=" + jqObj[0].share_url + "  target='_" + jqObj[0].unique_id + "'>"
                         + ' &nbsp;<i class="fa  fa-location-arrow"></i> 分享#' + jqObj[0].unique_id + "</a>"
                         + " &nbsp;&nbsp;<a class=\"btn btn-xs btn-danger\" href=" + jqObj[0].debug_url + "  target='_" + jqObj[0].unique_id + "'>"

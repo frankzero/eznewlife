@@ -128,7 +128,7 @@
         <!-- Wrapper for slides -->
         <div class="carousel-inner " role="listbox">
             @foreach ($articles as $k=> $article)
-                <div class="item @if ($k==0) active @endif"  onclick="window.top.location.href='{{route('darks.show', ['id'=>$article->ez_map[0]->unique_id])}}'"><a href="{{route('darks.show', ['id'=>$article->ez_map[0]->unique_id])}}" target="_top" >
+                <div class="item @if ($k==0) active @endif"  onclick="window.top.location.href='/{{$article->ez_map[0]->unique_id}}'"><a href="/{{$article->ez_map[0]->unique_id}}" target="_top" >
                     @if (File::exists( public_path() . '/focus_photos'."/".$article->photo) and !empty($article->photo))
                         <img src="{!!("/focus_photos/".$article->photo) !!}?lastmod={!!date("YmdH")!!}"
                              class="img-responsive img-thumbnail img-small center-block" alt="{{$article->title}}">
@@ -139,7 +139,7 @@
                         </a>
                     <div class="carousel-caption">
                         <h3>
-                            <a href="{{route('darks.show', ['id'=>$article->ez_map[0]->unique_id])}}" target="_top">
+                            <a href="/{{$article->ez_map[0]->unique_id}}" target="_top">
                                 @if ((strlen(strip_tags($article->title))-mb_strlen(strip_tags($article->title))<10))
                                     <!---english--->
                                     @if (strlen(strip_tags($article->title))<43)
@@ -161,7 +161,7 @@
                             </a>
                         </h3>
                         <h5>
-                            <a href="{{route('darks.show', ['id'=>$article->ez_map[0]->unique_id])}}" target="_top">
+                            <a href="/{{$article->ez_map[0]->unique_id}}" target="_top">
                                 @if ((strlen(strip_tags($article->summary))-mb_strlen(strip_tags($article->summary))<10))
                                     <!---english--->
                                     @if (strlen(strip_tags($article->summary))<155)

@@ -35,7 +35,7 @@ class ArticleController extends Controller
         //return  response()->json(Input::all());
         // $data=Input::all();
         //編輯中的草稿文章 可以為即時文章…但不會放到rss 裡
-        
+
         //return Response::json($response);
 
 
@@ -103,7 +103,6 @@ class ArticleController extends Controller
             $response["redirect"]=    '/admin/articles/list?length=100&is_deleted=0&page=1&dir=DESC';
             return $response;
             return Response::json($response);
-            /*
             $data['created_user']=$data['updated_user']=Auth::user()->get()->id;
 
             $article=Article::create($data);
@@ -120,7 +119,6 @@ class ArticleController extends Controller
             $article = Article::with('tagged','ez_map')->find($article->id);
 
             $isTagChanged=true;
-            */
 
         } else {
 
@@ -129,7 +127,7 @@ class ArticleController extends Controller
             $data['updated_user']=Auth::user()->get()->id;
             $article = Article::with('tagged','ez_map')->find($data["id"]);
             $old=$article->tags->pluck('name')->all();
-            
+
             $old_cid=$article->category_id;
             $old_publish_at = $article->publish_at;
 
@@ -138,7 +136,7 @@ class ArticleController extends Controller
                 $isTagChanged = true;
             }else{
                 $isTagChanged = false;
-               
+
             }
 
             $article->update($data);
@@ -154,7 +152,7 @@ class ArticleController extends Controller
         }
 
 
-        
+
 
 
         if (Request::hasFile('photo')) {
@@ -207,11 +205,12 @@ class ArticleController extends Controller
 
         $master_url = Config::get('app.master_url');
         $domain_url = Config::get('app.domain');
-
+       // echo $master_url;
 
         $article_url=$master_url.'/'.$article->ez_map[0]->unique_id ."/". hyphenize($article->title);
         $debug_url='https://developers.facebook.com/tools/debug/og/object/?q='.rawurlencode($article_url);
         $share_url='https://www.facebook.com/sharer/sharer.php?u='.rawurlencode($article_url)."&description=".rawurlencode($article->title);
+
         $response=
         ['id'=>$article->id,'unique_id'=>$article->ez_map[0]->unique_id,
             'url'=>route('articles.show',[$article->ez_map[0]->unique_id,hyphenize($article->title)]), //admin.eznewlife.com
@@ -226,7 +225,7 @@ class ArticleController extends Controller
         //記得 public/js/admin_main.js
         foreach ($domain_url as $site =>$site_url){
             if ($site=="ENL" or $site=="Getez") $site_title= "/".hyphenize($article->title); else $site_title="";
-            $response[$site]="http://".$site_url."/".$article->ez_map[0]->unique_id.$site_title;
+            $response[$site]="https://".$site_url."/".$article->ez_map[0]->unique_id.$site_title;
         }
 
         $doPublish = false;
@@ -236,7 +235,7 @@ class ArticleController extends Controller
             $doPublish=true;
         }
 
-        
+
 
         if($isTagChanged === true || $doPublish === true ){
 

@@ -29,7 +29,7 @@
         <div class="col-lg-9" id="main-show-comic">
 
             <article class="article-main"  itemscope itemtype="http://schema.org/ImageGallery">
-                <link itemprop="mainEntityOfPage" href="{{route('avbodies.show',$article->ez_map[0]->unique_id)}}?page={!!Input::get('page')?Input::get('page'):1!!}" />
+                <link itemprop="mainEntityOfPage" href="/{{$article->ez_map[0]->unique_id}}?page={!!Input::get('page')?Input::get('page'):1!!}" />
                 <div class="body">
                     <h1  itemprop="headline name">{{ $article->title }}</h1>
                     <h2 class="hidden" itemprop="about">{{$page['title']}}</h2>
@@ -207,10 +207,10 @@
 
             @foreach ($rand_articles as $k=> $rand_article)
                 <div class=" col-lg-4 col-md-4 col-sm-6 col-xs-12 img-item"
-                     onclick="window.location='{{route('avbodies.show', ['id'=>$rand_article->ez_map[0]->unique_id])}}'">
+                     onclick="window.location='/{{$rand_article->ez_map[0]->unique_id}}'">
 
                     <div class="hovereffect rand_img">
-                        <a href="{{route('avbodies.show', ['id'=>$rand_article->ez_map[0]->unique_id])}}">
+                        <a href="/{{$rand_article->ez_map[0]->unique_id}}">
                             @if (File::exists( public_path() . '/focus_photos'."/".$rand_article->photo) and !empty($rand_article->photo))
                                 <img src="{!!("/focus_photos/400/".$rand_article->photo) !!}?lastmod={!!date("YmdH")!!}"
                                      class="img-responsive img-thumbnail center-block" alt="{{$rand_article->title}}">
@@ -221,7 +221,7 @@
                         </a>
                         <div class="overlay">
                             <h2>
-                                <a href="{{route('avbodies.show', ['id'=>$rand_article->ez_map[0]->unique_id])}}">
+                                <a href="/{{$rand_article->ez_map[0]->unique_id}}">
                                     @if ((strlen(strip_tags($rand_article->title))-mb_strlen(strip_tags($rand_article->title))<10))
                                         {{---english---}}
                                         @if (strlen(strip_tags($rand_article->title))<90)
@@ -315,7 +315,7 @@
         requestRunning = true;
         $.ajax({
             type: "GET",
-            url: "{{route('avbodies.collect',$article->id)}}",
+            url: "{{https(route('avbodies.collect',$article->id))}}",
             cache: false,
             contentType: false,
             processData: false,

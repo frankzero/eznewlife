@@ -50,7 +50,7 @@
             <h1   itemprop="headline name">{{ $article->title }}</h1>
             <span itemprop="author" class="hidden">{{$article->author->name}}</span>
             <h2 class="hidden" itemprop="about">{{$article->description}}</h2>
-            <link itemprop="mainEntityOfPage" href="{{route('darks.show',$article->ez_map[0]->unique_id)}}?page={!!Input::get('page')?Input::get('page'):1!!}" />
+            <link itemprop="mainEntityOfPage" href="{{https(route('darks.show',$article->ez_map[0]->unique_id))}}?page={!!Input::get('page')?Input::get('page'):1!!}" />
             <time itemprop="dateModified" datetime="{{$article->updated_at_iso}}" class="hidden">{{$article->updated_at_iso}}</time>
             <time itemprop="datePublished" datetime="{{$article->publish_at}}" class="hidden">{{substr($article->publish_at,0,10)}}</time>
                         <span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
@@ -68,21 +68,19 @@
                                 <div class="col-lg-12" >
 
                                     @foreach ($article->tags->pluck('name')->all() as $key =>$tag_name)
-                                        <a href="{{route('darks.tag',['name'=>$tag_name])}}" class="btn btn-xs btn-flat bg-orange">{!!$tag_name!!}</a>
+                                        <a href="/tag/{{$tag_name}}" class="btn btn-xs btn-flat bg-orange">{!!$tag_name!!}</a>
                                     @endforeach
                                 </div>
                             </div>
                         @endif
-                        @if( Auth::user()->check() )
-                            <a href="{{route('admin.articles.edit',['id'=>$article->id])}}" class="btn btn-warning btn-xs"><i class="fa fa-pencil-square-o"></i></a>
-                        @endif
+
                     </div>
                     <div class="col-xs-3">
                         <script src="https://apis.google.com/js/platform.js" async defer></script>
                         <g:plusone></g:plusone>
                     </div>
                     <div class="fb-like col-xs-2" data-layout="button_count"
-                         data-href="{!!($page['share_url'])!!}"></div>
+                         data-href="{!!(https($page['share_url']))!!}"></div>
                 </div>
 
                 <div class="row share" id="share" style="margin-top: 15px">
@@ -90,34 +88,34 @@
 
 
                         <a class="btn bg-light-blue btn-block btn-flat"
-                           href="http://www.facebook.com/sharer/sharer.php?u={!!rawurldecode($page['share_url'])!!}&description={!!rawurldecode($page['sub_title'])!!}"
+                           href="http://www.facebook.com/sharer/sharer.php?u={!!rawurldecode(https($page['share_url']))!!}&description={!!rawurldecode($page['sub_title'])!!}"
                            target="_blank" alt="Facebook">
                             <i class="fa fa-facebook " id="fb_share"></i> <span class="share_btn">分享FB</span>
                         </a>
                     </div>
                     <div class="col-xs-3">
                         <a class="btn bg-red btn-block  btn-flat"
-                           href="https://plus.google.com/share?url={!!rawurldecode($page['share_url'])!!}&t={!!rawurldecode($page['sub_title'])!!}"
+                           href="https://plus.google.com/share?url={!!rawurldecode(https($page['share_url']))!!}&t={!!rawurldecode($page['sub_title'])!!}"
                            target="_blank">
                             <i class="fa fa-google-plus"></i><span class="share_btn">分享 G+</span></a>
                     </div>
                     <div class="col-xs-3">
                         <a class="btn bg-aqua btn-block  btn-flat"
-                           href="https://twitter.com/intent/tweet?url={!!rawurldecode($page['share_url'])!!}&text={!!rawurldecode($page['sub_title'])!!}"
+                           href="https://twitter.com/intent/tweet?url={!!rawurldecode(https($page['share_url']))!!}&text={!!rawurldecode($page['sub_title'])!!}"
                            target="_blank">
                             <i class="fa fa-twitter"></i><span class="share_btn">分享 Twitter</span></a>
                     </div>
                     <div class="col-xs-3">
                         @if ($mobile==true)
                             <a class="btn btn-block  btn-flat" style="background-color:#1DCD00;color:white "
-                               href="http://line.me/R/msg/text/?{!!rawurldecode($page['sub_title'])!!}%0D%0A{!!rawurldecode($page['share_url'])!!}"
+                               href="http://line.me/R/msg/text/?{!!rawurldecode($page['sub_title'])!!}%0D%0A{!!rawurldecode(https($page['share_url']))!!}"
                                target="_blank">
                                 <strong style="font-family: Noto Sans CJK JP Black">L</strong> <span class="share_btn">&nbsp;分享 LINE</span></a>
 
 
                         @else
                             <a class="btn btn-block  btn-flat" style="background-color: rgb(210,87,47) ;color:white "
-                               href="http://www.plurk.com/?qualifier=shares&status={!!rawurldecode($page['share_url'])!!}"
+                               href="http://www.plurk.com/?qualifier=shares&status={!!rawurldecode(https($page['share_url']))!!}"
                                target="_blank">
                                 <strong style="font-family: Noto Sans CJK JP Black">P</strong> <span class="share_btn">&nbsp;分享 Plurk</span></a>
                         @endif
@@ -205,7 +203,7 @@
 
     <aside class="comments" id="comments">
 
-        <article class="fb-comments" data-href="{{$page['share_url']}}" data-numposts="5"
+        <article class="fb-comments" data-href="{{https($page['share_url'])}}" data-numposts="5"
                  data-width="100%">
         </article>
 
@@ -233,11 +231,11 @@
         @for ($i = 3; $i < 9; $i++)
             @if(isset($rand_articles[$i]))
                 <div class=" col-lg-4 col-xs-12 col-sm-6"
-                     onclick="window.location='{{route('darks.show', ['id'=>$rand_articles[$i]->ez_map[0]->unique_id])}}'">
+                     onclick="window.location='/{{$rand_articles[$i]->ez_map[0]->unique_id}}'">
                     <div class="thumbnail rand_hover "   itemscope itemtype="http://schema.org/ImageObject" >
 
 
-                        <a href="{{route('darks.show', ['id'=>$rand_articles[$i]->ez_map[0]->unique_id])}}">
+                        <a href="/{{$rand_articles[$i]->ez_map[0]->unique_id}}">
                             @if (File::exists( public_path() . '/focus_photos'."/".$rand_articles[$i]->photo) and !empty($rand_articles[$i]->photo))
                                 <img src="{!!("/focus_photos/400/".$rand_articles[$i]->photo) !!}?lastmod={!!date("YmdH")!!}" itemprop="contentUrl"
                                      class="img-responsive img-thumbnail img-200" alt="{{$rand_articles[$i]->title}}">
@@ -254,7 +252,7 @@
                             <h4>
 
                                 <a
-                                        href="{{route('darks.show', ['id'=>$rand_articles[$i]->ez_map[0]->unique_id])}}">
+                                        href="/{{$rand_articles[$i]->ez_map[0]->unique_id}}">
                                     <strong itemprop="name">
                                         @if ((strlen(strip_tags($rand_articles[$i]->title))-mb_strlen(strip_tags($rand_articles[$i]->title))<5))
                                             {{---english---}}
@@ -298,11 +296,11 @@
 
             @for ($i = 0; $i < 2; $i++)
                 <div class="row center-block  "
-                     onclick="window.location='{{route('darks.show', ['id'=>$rand_articles[$i]->ez_map[0]->unique_id])}}'">
+                     onclick="window.location='/{{$rand_articles[$i]->ez_map[0]->unique_id}}'">
                     <div class="thumbnail rand_hover"   itemscope itemtype="http://schema.org/ImageObject">
 
 
-                        <a href="{{route('darks.show', ['id'=>$rand_articles[$i]->ez_map[0]->unique_id])}}">
+                        <a href="/{{$rand_articles[$i]->ez_map[0]->unique_id}}">
                             @if (File::exists( public_path() . '/focus_photos'."/".$rand_articles[$i]->photo) and !empty($rand_articles[$i]->photo))
                                 <img src="{!!("/focus_photos/400/".$rand_articles[$i]->photo) !!}?lastmod={!!date("YmdH")!!}" itemprop="contentUrl"
                                      class="img-responsive img-thumbnail right-thumbnail" alt="{{$rand_articles[$i]->title}}">
@@ -318,7 +316,7 @@
                             <h4>
 
                                 <a
-                                        href="{{route('darks.show', ['id'=>$rand_articles[$i]->ez_map[0]->unique_id])}}">
+                                        href="/{{$rand_articles[$i]->ez_map[0]->unique_id}}">
                                     <strong itemprop="name">
                                         @if ((strlen(strip_tags($rand_articles[$i]->title))-mb_strlen(strip_tags($rand_articles[$i]->title))<5))
                                             {{---english---}}

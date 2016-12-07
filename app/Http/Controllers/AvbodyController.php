@@ -88,6 +88,7 @@ class AvbodyController extends Controller
             }
         }
         $articles=$this->paginate(array_reverse($articles),12,count($avbody),'new_page');
+        $articles->setPath(''); //重要
 
         $tmp_cache = 'avbody_best_articles_15' . Input::get('best_page');
         if (cache_has($tmp_cache)) {
@@ -104,6 +105,7 @@ class AvbodyController extends Controller
                 }
             }
             $best_articles=$this->paginate(array_reverse($best_articles), 12,count($avbody),'best_page');
+            $best_articles->setPath(''); //重要
             cache_put($tmp_cache, $best_articles, $expiresAt);
         }
 
@@ -564,6 +566,7 @@ class AvbodyController extends Controller
             $best_articles =  Article::publish()->avbody()->with('author', 'ez_map')->orderBy('score', 'desc')->paginate(15,['*'],'best_page');
             cache_put($tmp_cache, $best_articles, $expiresAt);
         }
+        $best_articles->setPath(''); //重要
         $agent = new Agent();
         //1.手機專屬 2.桌機上方 3.正方形
 

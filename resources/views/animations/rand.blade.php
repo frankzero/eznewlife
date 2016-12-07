@@ -238,13 +238,13 @@
                                     data-clipboard-target="#url_{{$animation->id}}"><i class="fa fa-copy"></i></button>
                             <!-- /btn-group -->
                             <input type="text" class="col-lg-8 input-xs" id="url_{{$animation->id}}"
-                                   value="http://getez.info/animations/{{$animation->id}}">
+                                   value="https://getez.info/animations/{{$animation->id}}">
 
                             <a class="btn btn-default btn-xs "
-                               href="{!!"https://developers.facebook.com/tools/debug/og/object/?q=".rawurlencode('http://getez.info/animations/'.$animation->id)!!}"
+                               href="{!!"https://developers.facebook.com/tools/debug/og/object/?q=".rawurlencode('https://getez.info/animations/'.$animation->id)!!}"
                                target="_{{$animation->id}}"> &nbsp;<i class="fa  fa-bug"></i></a>
                             <a class="btn btn-default btn-xs"
-                               href="{!!"https://www.facebook.com/sharer/sharer.php?u=".rawurlencode('http://getez.info/animations/'.$animation->id)!!}"
+                               href="{!!"https://www.facebook.com/sharer/sharer.php?u=".rawurlencode('https://getez.info/animations/'.$animation->id)!!}"
                                target="_{{$animation->id}}"> &nbsp;<i class="fa  fa-facebook"></i></a>
 
                         </div>

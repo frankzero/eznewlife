@@ -2,7 +2,7 @@
 
 return [
 
-    /*
+	/*
     |--------------------------------------------------------------------------
     | Application Debug Mode
     |--------------------------------------------------------------------------
@@ -13,25 +13,25 @@ return [
     |
     */
 	'sql_log' => env('APP_SQL_LOG', false),
-    'debug' =>  !function_exists('fdebug')?false:fdebug(),
-    'title' => env('APP_TITLE','EzNewLife'),
+	'debug' =>  !function_exists('fdebug')?false:fdebug(),
+	'title' => env('APP_TITLE','EzNewLife'),
 	'domain' => env('APP_DOMAIN','ad.'),
-	'photo_url'=>'http://getez.info/focus_photos/',
-	'animation_url'=>["ENL"=>"http://eznewlife.com","GoGo"=>"http://gogotest.co","Getez"=>'http://getez.info'],
-    'master_url'=>"http://getez.info",
-    'logs'=>['facebookDebugger'],
-    'app_id'=> '1001677996555993',
-    'domain'=>[
-        "ENL"=>'eznewlife.com',
-        "Getez"=>'getez.info',
-        "Dark"=>'dark.eznewlife.com',
-        "DarkGetez"=>'dark.getez.info',
-        "AV"=>'avbody.info',
-        'God'=>'godreply.tw'
-        ],
-    'porn_categories'=>[7,8,9],
+	'photo_url'=>'https://getez.info/focus_photos/',
+	'animation_url'=>["ENL"=>"https://eznewlife.com","GoGo"=>"http://gogotest.co","Getez"=>'https://getez.info'],
+	'master_url'=>"https://getez.info",
+	'logs'=>['facebookDebugger'],
+	'app_id'=> '1001677996555993',
+	'domain'=>[
+		"ENL"=>'eznewlife.com',
+		"Getez"=>'getez.info',
+		"Dark"=>'dark.eznewlife.com',
+		"DarkGetez"=>'dark.getez.info',
+		"AV"=>'avbody.info',
+		'God'=>'godreply.me'
+	],
+	'porn_categories'=>[7,8,9],
 	'cdn' => env('APP_CDN','cdn.eznewlife.com'),
-    /*
+	/*
     |--------------------------------------------------------------------------
     | Application URL
     |--------------------------------------------------------------------------
@@ -42,9 +42,9 @@ return [
     |
     */
 
-    'url' => 'https://localhost',
+	'url' => 'https://localhost',
 
-    /*
+	/*
     |--------------------------------------------------------------------------
     | Application Timezone
     |--------------------------------------------------------------------------
@@ -55,9 +55,9 @@ return [
     |
     */
 
-    'timezone' => 'Asia/Taipei',
+	'timezone' => 'Asia/Taipei',
 
-    /*
+	/*
     |--------------------------------------------------------------------------
     | Application Locale Configuration
     |--------------------------------------------------------------------------
@@ -68,9 +68,9 @@ return [
     |
     */
 
-    'locale' => 'zh_TW',
+	'locale' => 'zh_TW',
 
-    /*
+	/*
     |--------------------------------------------------------------------------
     | Application Fallback Locale
     |--------------------------------------------------------------------------
@@ -81,9 +81,9 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+	'fallback_locale' => 'en',
 
-    /*
+	/*
     |--------------------------------------------------------------------------
     | Encryption Key
     |--------------------------------------------------------------------------
@@ -94,11 +94,11 @@ return [
     |
     */
 
-    'key' => env('APP_KEY', 'SomeRandomString'),
+	'key' => env('APP_KEY', 'SomeRandomString'),
 
-    'cipher' => 'AES-256-CBC',
+	'cipher' => 'AES-256-CBC',
 
-    /*
+	/*
     |--------------------------------------------------------------------------
     | Logging Configuration
     |--------------------------------------------------------------------------
@@ -111,9 +111,9 @@ return [
     |
     */
 
-    'log' => 'daily',
+	'log' => 'daily',
 
-    /*
+	/*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
     |--------------------------------------------------------------------------
@@ -124,49 +124,49 @@ return [
     |
     */
 
-    'providers' => [
+	'providers' => [
 
-        /*
+		/*
          * Laravel Framework Service Providers...
          */
-        Illuminate\Foundation\Providers\ArtisanServiceProvider::class,
-        //Illuminate\Auth\AuthServiceProvider::class,
-        Kbwebs\MultiAuth\AuthServiceProvider::class,
-        Illuminate\Broadcasting\BroadcastServiceProvider::class,
-        Illuminate\Bus\BusServiceProvider::class,
-        Illuminate\Cache\CacheServiceProvider::class,
-        Illuminate\Foundation\Providers\ConsoleSupportServiceProvider::class,
-        Illuminate\Routing\ControllerServiceProvider::class,
-        Illuminate\Cookie\CookieServiceProvider::class,
-        Illuminate\Database\DatabaseServiceProvider::class,
-        Illuminate\Encryption\EncryptionServiceProvider::class,
-        Illuminate\Filesystem\FilesystemServiceProvider::class,
-        Illuminate\Foundation\Providers\FoundationServiceProvider::class,
-        Illuminate\Hashing\HashServiceProvider::class,
-        Illuminate\Mail\MailServiceProvider::class,
-        Illuminate\Pagination\PaginationServiceProvider::class,
-        Illuminate\Pipeline\PipelineServiceProvider::class,
-        Illuminate\Queue\QueueServiceProvider::class,
-        Illuminate\Redis\RedisServiceProvider::class,
-        //Illuminate\Auth\Passwords\PasswordResetServiceProvider::class,
-        Kbwebs\MultiAuth\PasswordResets\PasswordResetServiceProvider::class,
-        Illuminate\Session\SessionServiceProvider::class,
-        Illuminate\Translation\TranslationServiceProvider::class,
-        Illuminate\Validation\ValidationServiceProvider::class,
-        Illuminate\View\ViewServiceProvider::class,
+		Illuminate\Foundation\Providers\ArtisanServiceProvider::class,
+		//Illuminate\Auth\AuthServiceProvider::class,
+		Kbwebs\MultiAuth\AuthServiceProvider::class,
+		Illuminate\Broadcasting\BroadcastServiceProvider::class,
+		Illuminate\Bus\BusServiceProvider::class,
+		Illuminate\Cache\CacheServiceProvider::class,
+		Illuminate\Foundation\Providers\ConsoleSupportServiceProvider::class,
+		Illuminate\Routing\ControllerServiceProvider::class,
+		Illuminate\Cookie\CookieServiceProvider::class,
+		Illuminate\Database\DatabaseServiceProvider::class,
+		Illuminate\Encryption\EncryptionServiceProvider::class,
+		Illuminate\Filesystem\FilesystemServiceProvider::class,
+		Illuminate\Foundation\Providers\FoundationServiceProvider::class,
+		Illuminate\Hashing\HashServiceProvider::class,
+		Illuminate\Mail\MailServiceProvider::class,
+		Illuminate\Pagination\PaginationServiceProvider::class,
+		Illuminate\Pipeline\PipelineServiceProvider::class,
+		Illuminate\Queue\QueueServiceProvider::class,
+		Illuminate\Redis\RedisServiceProvider::class,
+		//Illuminate\Auth\Passwords\PasswordResetServiceProvider::class,
+		Kbwebs\MultiAuth\PasswordResets\PasswordResetServiceProvider::class,
+		Illuminate\Session\SessionServiceProvider::class,
+		Illuminate\Translation\TranslationServiceProvider::class,
+		Illuminate\Validation\ValidationServiceProvider::class,
+		Illuminate\View\ViewServiceProvider::class,
 
-        /*
+		/*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
-        Barryvdh\Debugbar\ServiceProvider::class,
-        Illuminate\Html\HtmlServiceProvider::class,
-        yajra\Datatables\DatatablesServiceProvider::class,
-        Intervention\Image\ImageServiceProvider::class,
-        Conner\Tagging\Providers\TaggingServiceProvider::class,
+		App\Providers\AppServiceProvider::class,
+		App\Providers\AuthServiceProvider::class,
+		App\Providers\EventServiceProvider::class,
+		App\Providers\RouteServiceProvider::class,
+		Barryvdh\Debugbar\ServiceProvider::class,
+		Illuminate\Html\HtmlServiceProvider::class,
+		yajra\Datatables\DatatablesServiceProvider::class,
+		Intervention\Image\ImageServiceProvider::class,
+		Conner\Tagging\Providers\TaggingServiceProvider::class,
 		//Stevenyangecho\UEditor\UEditorServiceProvider::class,
 		Roumen\Sitemap\SitemapServiceProvider::class,
 		Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
@@ -177,9 +177,9 @@ return [
 		Maatwebsite\Excel\ExcelServiceProvider::class,
 
 
-    ],
+	],
 
-    /*
+	/*
     |--------------------------------------------------------------------------
     | Class Aliases
     |--------------------------------------------------------------------------
@@ -190,51 +190,51 @@ return [
     |
     */
 
-    'aliases' => [
+	'aliases' => [
 
-        'App'       => Illuminate\Support\Facades\App::class,
-        'Artisan'   => Illuminate\Support\Facades\Artisan::class,
-        'Auth'      => Illuminate\Support\Facades\Auth::class,
-        'Blade'     => Illuminate\Support\Facades\Blade::class,
-        'Bus'       => Illuminate\Support\Facades\Bus::class,
-        'Cache'     => Illuminate\Support\Facades\Cache::class,
-        'Config'    => Illuminate\Support\Facades\Config::class,
-        'Cookie'    => Illuminate\Support\Facades\Cookie::class,
-        'Crypt'     => Illuminate\Support\Facades\Crypt::class,
-        'DB'        => Illuminate\Support\Facades\DB::class,
-        'Eloquent'  => Illuminate\Database\Eloquent\Model::class,
-        'Event'     => Illuminate\Support\Facades\Event::class,
-        'File'      => Illuminate\Support\Facades\File::class,
-        'Gate'      => Illuminate\Support\Facades\Gate::class,
-        'Hash'      => Illuminate\Support\Facades\Hash::class,
-        'Input'     => Illuminate\Support\Facades\Input::class,
-        'Inspiring' => Illuminate\Foundation\Inspiring::class,
-        'Lang'      => Illuminate\Support\Facades\Lang::class,
-        'Log'       => Illuminate\Support\Facades\Log::class,
-        'Mail'      => Illuminate\Support\Facades\Mail::class,
-        'Password'  => Illuminate\Support\Facades\Password::class,
-        'Queue'     => Illuminate\Support\Facades\Queue::class,
-        'Redirect'  => Illuminate\Support\Facades\Redirect::class,
-        'Redis'     => Illuminate\Support\Facades\Redis::class,
-        'Request'   => Illuminate\Support\Facades\Request::class,
-        'Response'  => Illuminate\Support\Facades\Response::class,
-        'Route'     => Illuminate\Support\Facades\Route::class,
-        'Schema'    => Illuminate\Support\Facades\Schema::class,
-        'Session'   => Illuminate\Support\Facades\Session::class,
-        'Storage'   => Illuminate\Support\Facades\Storage::class,
-        'URL'       => Illuminate\Support\Facades\URL::class,
-        'Validator' => Illuminate\Support\Facades\Validator::class,
-        'View'      => Illuminate\Support\Facades\View::class,
-        'Debugbar' => Barryvdh\Debugbar\Facade::class,
-        'Form'      => Illuminate\Html\FormFacade::class,
-        'Html'      => Illuminate\Html\HtmlFacade::class,
-        'Datatables' => yajra\Datatables\Datatables::class,
-        'Image' => Intervention\Image\Facades\Image::class,
-		      'Agent' => Jenssegers\Agent\Facades\Agent::class,
-			  'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+		'App'       => Illuminate\Support\Facades\App::class,
+		'Artisan'   => Illuminate\Support\Facades\Artisan::class,
+		'Auth'      => Illuminate\Support\Facades\Auth::class,
+		'Blade'     => Illuminate\Support\Facades\Blade::class,
+		'Bus'       => Illuminate\Support\Facades\Bus::class,
+		'Cache'     => Illuminate\Support\Facades\Cache::class,
+		'Config'    => Illuminate\Support\Facades\Config::class,
+		'Cookie'    => Illuminate\Support\Facades\Cookie::class,
+		'Crypt'     => Illuminate\Support\Facades\Crypt::class,
+		'DB'        => Illuminate\Support\Facades\DB::class,
+		'Eloquent'  => Illuminate\Database\Eloquent\Model::class,
+		'Event'     => Illuminate\Support\Facades\Event::class,
+		'File'      => Illuminate\Support\Facades\File::class,
+		'Gate'      => Illuminate\Support\Facades\Gate::class,
+		'Hash'      => Illuminate\Support\Facades\Hash::class,
+		'Input'     => Illuminate\Support\Facades\Input::class,
+		'Inspiring' => Illuminate\Foundation\Inspiring::class,
+		'Lang'      => Illuminate\Support\Facades\Lang::class,
+		'Log'       => Illuminate\Support\Facades\Log::class,
+		'Mail'      => Illuminate\Support\Facades\Mail::class,
+		'Password'  => Illuminate\Support\Facades\Password::class,
+		'Queue'     => Illuminate\Support\Facades\Queue::class,
+		'Redirect'  => Illuminate\Support\Facades\Redirect::class,
+		'Redis'     => Illuminate\Support\Facades\Redis::class,
+		'Request'   => Illuminate\Support\Facades\Request::class,
+		'Response'  => Illuminate\Support\Facades\Response::class,
+		'Route'     => Illuminate\Support\Facades\Route::class,
+		'Schema'    => Illuminate\Support\Facades\Schema::class,
+		'Session'   => Illuminate\Support\Facades\Session::class,
+		'Storage'   => Illuminate\Support\Facades\Storage::class,
+		'URL'       => Illuminate\Support\Facades\URL::class,
+		'Validator' => Illuminate\Support\Facades\Validator::class,
+		'View'      => Illuminate\Support\Facades\View::class,
+		'Debugbar' => Barryvdh\Debugbar\Facade::class,
+		'Form'      => Illuminate\Html\FormFacade::class,
+		'Html'      => Illuminate\Html\HtmlFacade::class,
+		'Datatables' => yajra\Datatables\Datatables::class,
+		'Image' => Intervention\Image\Facades\Image::class,
+		'Agent' => Jenssegers\Agent\Facades\Agent::class,
+		'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 		'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
 
-    ],
+	],
 
 ];

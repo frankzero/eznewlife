@@ -236,6 +236,7 @@ class DarkController extends Controller
             }
         }
         $cate_articles=$this->paginate(array_reverse($cate_articles), 10,count($ids[$id]));
+        $cate_articles->setPath(''); //重要
 
         $share_url = rawurldecode(route('darks.category', ['id' => $id, 'name' => $name]));
 
@@ -288,6 +289,7 @@ class DarkController extends Controller
         }
         $tag_articles=$this->paginate(array_reverse($tag_articles), 10,count($tag_ids));
 
+        $tag_articles->setPath(''); //重要
 
         $share_url = rawurldecode(route('darks.tag', ['name' => $name]));
 
@@ -353,6 +355,8 @@ class DarkController extends Controller
             }
         }
         $articles=$this->paginate(array_reverse($articles), 5,count($dark));
+        $articles->setPath(''); //重要
+
         $rand_articles=$this->get_rand_data(3);
         /*
         $tmp_cache = 'dark_index_articles_5_' . Input::get('page');

@@ -7,11 +7,11 @@
             @if ($articles->count()==0) <div class="alert alert-default" >查無「{{$q}}」相關文章 </div>@endif
             @foreach ($articles as $k=> $article)
 
-                <div class="row center-block article-category-row" onclick="window.location='{{route('darks.show', ['id'=>$article->ez_map[0]->unique_id])}}'" itemscope itemtype="http://schema.org/ImageObject">
+                <div class="row center-block article-category-row" onclick="window.location='/{{$article->ez_map[0]->unique_id}}'" itemscope itemtype="http://schema.org/ImageObject">
                     <div class="col-md-6 col-sm-6 col-lg-6 article-category-img ">
 
 
-                        <a href="{{route('darks.show', ['id'=>$article->ez_map[0]->unique_id])}}">
+                        <a href="/{{$article->ez_map[0]->unique_id}}">
                             @if (File::exists( public_path() . '/focus_photos'."/".$article->photo) and !empty($article->photo))
                                 <img src="{!!("/focus_photos/400/".$article->photo) !!}?lastmod={!!date("YmdH")!!}" itemprop="contentUrl"
                                      class="img-responsive img-thumbnail center-block" alt="{{$article->title}}">
@@ -29,7 +29,7 @@
 
                             <div class="head ">
                                 <h2 itemprop="name"><a
-                                            href="{{route('darks.show', ['id'=>$article->ez_map[0]->unique_id])}}">
+                                            href="/{{$article->ez_map[0]->unique_id}}">
                                         <strong>
                                             @if ((strlen(strip_tags($article->title))-mb_strlen(strip_tags($article->title))<5))
                                                 {{---english---}}
@@ -56,7 +56,7 @@
                                         <div class="col-xs-12 tag_hidden">
 
                                             @foreach ($article->tags->pluck('name')->all() as $key =>$tag_name)
-                                                <a href="{{route('darks.tag',['name'=>$tag_name])}}"
+                                                <a href="/tag/{{$tag_name}}"
                                                    class="btn btn-xs bg-orange btn-flat">{!!$tag_name!!}</a>
                                             @endforeach
                                         </div>
@@ -65,7 +65,7 @@
                             </div>
                             <HR/>
                             <div class="body rand-content">
-                                <a href="{{route('darks.show', ['id'=>$article->ez_map[0]->unique_id])}}" itemprop="description">
+                                <a href="/{{$article->ez_map[0]->unique_id}}" itemprop="description">
 
                                     @if ((strlen(strip_tags($article->summary))-mb_strlen(strip_tags($article->summary))<10))
                                         @if (strlen(strip_tags($article->content))<112)

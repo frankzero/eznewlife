@@ -59,12 +59,11 @@
 {{---DIY---}}
 <script >
     var myURL = {
-        'base' : '{{ URL::to('/') }}',
-        'current' : '{{ URL::current() }}',
-        'full' : '{{ URL::full() }}'
+        'base' : '{{ secure_url(URL::to('/')) }}',
+        'current' : '{{ secure_url(URL::current()) }}',
+        'full' : '{{ secure_url(URL::full()) }}'
     };
-
-    </script>
+</script>
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 
 </head>

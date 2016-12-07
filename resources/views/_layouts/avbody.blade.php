@@ -25,7 +25,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{URL("/")}}"><img src="{{("/images/comic_logo.png")}}" alt="logo" title="logo" class="logo">@if (Route::currentRouteName() =="avbodys.category" and $mobile==true ) - <small>{{$page['sub_title']}}</small> @endif</a>
+            <a class="navbar-brand" href="/"><img src="{{("/images/comic_logo.png")}}" alt="logo" title="logo" class="logo">@if (Route::currentRouteName() =="avbodys.category" and $mobile==true ) - <small>{{$page['sub_title']}}</small> @endif</a>
         </div>
 
         <div id="navbar" class="navbar-collapse collapse ">
@@ -37,12 +37,12 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" rel="nofollow" role="button" aria-haspopup="true" aria-expanded="true">{{Auth::av_user()->get()->nick_name}}の漫畫 <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="{{route('av.user.profile')}}" data-target="#system_maintain"><i class="fa fa-user"></i>  個人資料</a></button>
+                                <a href="/me/profile" data-target="#system_maintain"><i class="fa fa-user"></i>  個人資料</a></button>
                             </li>
                             @if (Route::currentRouteName()=='avbodies.show' and Auth::av_user()->check()==true)
                                 @if ($collects->user_collects==NULL or !in_array($article->id,$collects->collect_ids))
                                     <li id="collect_{{$article->id}}" class="hidden"><a
-                                                href="{{route('avbodies.show', ['id'=>$article->ez_map[0]->unique_id])}}" alt="{{$article->title}}">   <i class="fa fa-heart-o"></i>
+                                                href="/{{$collect->ez_map[0]->unique_id}}" alt="{{$article->title}}">   <i class="fa fa-heart-o"></i>
                                             @if (mb_strlen(strip_tags($article->title))<20 )
                                                 {!!strip_tags($article->title)!!}
                                             @else
@@ -59,7 +59,7 @@
                                 @foreach( $my_collects as $k=>$collect)
                                     <?php $i++;?>
                                     <li id="collect_{{$collect->id}}"><a
-                                                href="{{route('avbodies.show', ['id'=>$collect->ez_map[0]->unique_id])}}" alt="{{$collect->title}}">   <i class="fa fa-heart-o"></i>
+                                                href="/{{$collect->ez_map[0]->unique_id}}" alt="{{$collect->title}}">   <i class="fa fa-heart-o"></i>
                                             @if (mb_strlen(strip_tags($collect->title))<20 )
                                                 {!!strip_tags($collect->title)!!}
                                             @else
@@ -80,11 +80,11 @@
 
                             @if ($my_collects_count>4 and !empty($collects))
                                 <li>
-                                    <a href="{{route('av.user.collect')}}" ><i class="fa fa-heart"></i>  更多收藏...</a>
+                                    <a href="/me/collect" ><i class="fa fa-heart"></i>  更多收藏...</a>
                                 </li>
                             @endif
                                 <li><a data-toggle="modal" data-target="#system_maintain"><i class="fa fa-upload"></i>  我要分享</a></li>
-                            <li><a href="{{route('avbodies.logout')}}" ><i class="fa fa-sign-out"></i>  登出</a></li>
+                            <li><a href="/auth/logout" ><i class="fa fa-sign-out"></i>  登出</a></li>
 
 
 
@@ -103,7 +103,7 @@
 
 
                         <div class="dropdown-menu" style="padding:17px;">
-                            <a    href="{{route('avbodies.facebook.login')}}" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i>Facebook 註冊 / 登入</a>
+                            <a    href="/auth/facebook" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i>Facebook 註冊 / 登入</a>
 
                         </div>
 
@@ -181,7 +181,7 @@
     <footer itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <p>Copyright &copy; <a href="{{URL("/")}}" itemprop="url">AVBODY</a> {{date('Y')}}</p>
+                    <p>Copyright &copy; <a href="/" itemprop="url">AVBODY</a> {{date('Y')}}</p>
                     <div class="porn_tip">
                     <p>
 

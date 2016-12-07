@@ -26,8 +26,8 @@
                             <!-- /.direct-chat-info -->
                             <img src="{{('/images/128.png')}}" class="direct-chat-img" alt="User Image">
                             <div class="direct-chat-text form-status-holder">
-                                <a class="btn btn-xs btn-success" href="{!!route('articles.show',[$ez_map[0]['unique_id'],hyphenize($title)])!!}" target="_{{$id}}"> &nbsp;<i class="fa  fa-location-arrow"></i> 查看前台文章#{!!$ez_map[0]['unique_id']!!}</a>
-                                <a class="btn btn-xs btn-primary" href="{!!"https://www.facebook.com/sharer/sharer.php?u=".rawurlencode("http://getez.info/".$ez_map[0]['unique_id']."/".hyphenize($title))!!}" target="_{{$id}}"> &nbsp;<i class="fa  fa-facebook"></i> 分享#{!!$ez_map[0]['unique_id']!!}</a>
+                                <a class="btn btn-xs btn-success" href="{!!route('articles.show',[$ez_map[0]['unique_id'],hyphenize($title)])!!}" target="_{{$id}}"> &nbsp;<i class="fa  fa-location-arrow"></i> 查看admin前台文章#{!!$ez_map[0]['unique_id']!!}</a>
+                                <a class="btn btn-xs btn-primary" href="{!!"https://www.facebook.com/sharer/sharer.php?u=".rawurlencode("https://getez.info/".$ez_map[0]['unique_id']."/".hyphenize($title))!!}" target="_{{$id}}"> &nbsp;<i class="fa  fa-facebook"></i> 分享#{!!$ez_map[0]['unique_id']!!}</a>
                                 <a class="btn btn-xs btn-danger" href="{!!"https://developers.facebook.com/tools/debug/og/object/?q=".rawurlencode(Config::get('app.master_url')."/".$ez_map[0]['unique_id']."/".hyphenize($title))!!}" target="_{{$id}}"> &nbsp;<i class="fa  fa-bug"></i>除錯#{!!$ez_map[0]['unique_id']!!}</a>
                                 <a class="btn btn-xs btn-primary bg-navy" href="{!! route('articles.instant',$ez_map[0]['unique_id']) !!}" target="instant_{{$id}}"> &nbsp;<i class="fa  fa-rocket" ></i>即時文章#{!!$ez_map[0]['unique_id']!!}</a>
 
@@ -46,22 +46,34 @@
                         <div class="form-group">
                             <label for="url" class="col-sm-2 col-lg-1 control-label">網址</label>
                             <div class="col-sm-10 col-lg-10">
-                                <?php $i=0;?>
+                                <?php $i=0;$protocol="https";?>
+
                                 @foreach (Config::get('app.domain') as $site=>$site_url)
                                     <?php
                                     if ($site == "ENL" or $site=="Getez") $site_title = "/" . hyphenize($title); else $site_title = "";
-                                    if ($site == "Dark") $style = "style='clear:both'" ; else $style = "";
+                                    if ($site == "Dark" ) {
+                                        $style = "style='clear:both'" ;
 
+                                    } else{
+                                        $style = "";
+
+                                    }
+                                            /*
+                                    if ($site == "DarkGetez"  or $site=="Dark" or $site=="avbody") {
+                                        $protocol="http";
+                                    } else {
+                                        $protocol="https";
+                                    }*/
                                     $i++;
                                     ?>
                                     <div class="col-sm-3 col-lg-1">
                                     <a  class=" copy btn btn-xs btn-success" title="點擊可複製{!! $site !!} 網址"
                                        data-toggle="tooltip" data-clipboard-target="#{{$site}}"><i
                                                 class="fa fa-copy"></i>{{$site}}</a>
-                                    <a id="{!! $site."_url" !!}" href="{!! "http://".$site_url."/".$map[$i].$site_title !!}" target="_blank"><i class="fa fa-link"></i></a>
+                                    <a id="{!! $site."_url" !!}" href="{!! $protocol."://".$site_url."/".$map[$i].$site_title !!}" target="_blank"><i class="fa fa-link"></i></a>
                                     </div>
                                     <div class="col-sm-9 col-lg-3">
-                                        {!!Form::text($site,"http://".$site_url."/".$map[$i].$site_title,array('class' => 'form-control ','id'=>$site))!!}
+                                        {!!Form::text($site,$protocol."://".$site_url."/".$map[$i].$site_title,array('class' => 'form-control ','id'=>$site))!!}
                                     </div>
 
 
@@ -114,7 +126,7 @@
                             <div class="col-sm-5 col-lg-3">
 							
 							<div id="article_bar" class="form-group">
-                                @if($photo_url!='http://eznewlife.com/focus_photos/')<a class="col-sm-2 col-lg-2  copy btn btn-xs btn-success"  id="btn_photo" title="點擊可複製" data-toggle="tooltip" data-clipboard-target="#photo_url"><i class="fa fa-copy"></i>圖片</a>  <div class="col-sm-10 col-lg-10"> {!!Form::text('photo_url',$photo_url,array('class' => 'form-control','id'=>'photo_url'))!!}</div>@endif
+                                @if($photo_url!='https://eznewlife.com/focus_photos/')<a class="col-sm-2 col-lg-2  copy btn btn-xs btn-success"  id="btn_photo" title="點擊可複製" data-toggle="tooltip" data-clipboard-target="#photo_url"><i class="fa fa-copy"></i>圖片</a>  <div class="col-sm-10 col-lg-10"> {!!Form::text('photo_url',$photo_url,array('class' => 'form-control','id'=>'photo_url'))!!}</div>@endif
                             </div>
 
 

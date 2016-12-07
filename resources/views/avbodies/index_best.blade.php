@@ -1,9 +1,9 @@
 @foreach ($best_articles as $k=> $article)
     <div class=" col-lg-4 col-md-4 col-sm-6 col-xs-12 img-item"
-         onclick="window.location='{{route('avbodies.show', ['id'=>$article->ez_map[0]->unique_id])}}'"  itemscope itemtype="http://schema.org/ImageObject">
+         onclick="window.location='/{{$article->ez_map[0]->unique_id}}'"  itemscope itemtype="http://schema.org/ImageObject">
 
         <div class="hovereffect index_img">
-            <a href="{{route('avbodies.show', ['id'=>$article->ez_map[0]->unique_id])}}">
+            <a href="/{{$article->ez_map[0]->unique_id}}">
                 @if (File::exists( public_path() . '/focus_photos'."/".$article->photo) and !empty($article->photo))
                     <img src="{!!("/focus_photos/400/".$article->photo) !!}?lastmod={!!date("YmdH")!!}"  itemprop="contentUrl"
                          class="img-responsive img-thumbnail center-block" alt="{{$article->title}}">
@@ -15,7 +15,7 @@
             @if(substr($best_article->publish_at,0,10)!='0000-00-00') <span itemprop="datePublished" class="hidden" content="{!!substr($best_article->publish_at,0,10)!!}"> {!!substr($best_article->publish_at,0,10)!!}</span> @endif
             <span itemprop="author" class="hidden">{!!$best_article->author->name!!}</span>
             <div class="overlay">
-                <h2   itemprop="name"> <a href="{{route('avbodies.show', ['id'=>$article->ez_map[0]->unique_id])}}" >
+                <h2   itemprop="name"> <a href="/{{$article->ez_map[0]->unique_id}}" >
                         @if ((strlen(strip_tags($article->title))-mb_strlen(strip_tags($article->title))<10))
                             {{---english---}}
                             @if (strlen(strip_tags($article->title))<60)
