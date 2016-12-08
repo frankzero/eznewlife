@@ -85,7 +85,7 @@ class find_content extends ab{
 
     private function instagram_id($url){
 
-        $u = new __url($url);
+        $u = new \__url($url);
 
         $path = $u->path;
 

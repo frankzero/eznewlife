@@ -42,7 +42,7 @@
                             @if (Route::currentRouteName()=='avbodies.show' and Auth::av_user()->check()==true)
                                 @if ($collects->user_collects==NULL or !in_array($article->id,$collects->collect_ids))
                                     <li id="collect_{{$article->id}}" class="hidden"><a
-                                                href="/{{$collect->ez_map[0]->unique_id}}" alt="{{$article->title}}">   <i class="fa fa-heart-o"></i>
+                                                href="/{{$article->ez_map[0]->unique_id}}" alt="{{$article->title}}">   <i class="fa fa-heart-o"></i>
                                             @if (mb_strlen(strip_tags($article->title))<20 )
                                                 {!!strip_tags($article->title)!!}
                                             @else
@@ -103,7 +103,7 @@
 
 
                         <div class="dropdown-menu" style="padding:17px;">
-                            <a    href="/auth/facebook" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i>Facebook 註冊 / 登入</a>
+                            <a    href="{{route('avbodies.facebook.login')}}" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i>Facebook 註冊 / 登入</a>
 
                         </div>
 
@@ -139,12 +139,12 @@
         var images = new Array()
         function preload() {
             for (i = 0; i < preload.arguments.length; i++) {
-                images[i] = new Image()
-                images[i].src = preload.arguments[i]
+                images[i] = new Image();
+                images[i].src = preload.arguments[i];
             }
         }
         preload(
-                "http://avbody.info/images/comic_bar.png"
+                "https://avbody.info/images/comic_bar.png"
 
         )
         //--><!]]>

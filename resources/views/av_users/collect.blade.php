@@ -74,12 +74,12 @@
     $('.collect-content').css("min-height",height+"px");
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.3.1/jquery.twbsPagination.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.3.1/jquery.twbsPagination.min.js"></script>
 
 <script type="text/javascript">
              // give $().bootstrapDP the bootstrap-datepicker functionality
              $("#av_user_collect_search").validate();
-    var url = "<?php echo route('av.user.collect_articles')?>";
+    var url = "/me/collect_articles";
     $("#av_user_table_list th i").click(function() {
         var tmp_id=this.id;
         var tmp_name = $(this).attr("data-name");
@@ -236,7 +236,7 @@
 
             rows = rows + '<td  class="hidden-xs">'+value.collected_date+'</td>';
 
-            rows = rows +'<td> <form method="POST" action="'+'{{route('av.user.article.delete')}}'+'" accept-charset="UTF-8" class="form-horizontal">'
+            rows = rows +'<td> <form method="POST" action="'+'/me/article'+'" accept-charset="UTF-8" class="form-horizontal">'
                    + '<input name="_token" type="hidden" value="'+'{{csrf_token()}}'+'">'
                +' <input name="article_id" type="hidden" value="'+value.id+'">'
                     +'<input name="_method" type="hidden" value="DELETE">'

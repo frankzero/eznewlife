@@ -58,6 +58,7 @@ $urls['plays01.com']                = [                        'article',       
 $urls['news.wayi.com.tw']           = [              'div.entry_content',                           '.h1.title',                          false];
 $urls['beststarsharing.net']        = [                    'div.content',                        '.showbody h1',                          false];
 $urls['beststarsharing.com']        = [                    'div.content',                        '.showbody h1',                          false];
+$urls['starmura.club']        = [                    'div.content',                        '.showbody h1',                          false];
 $urls['vdo.watch']                  = [                       '#content',                            'h2.title',                          false];
 //$urls['bbs.tiexue.net']             = [                   '#postContent',                        '.contents h1',                           true];
 

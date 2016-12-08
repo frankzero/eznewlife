@@ -24,17 +24,17 @@
         <ul class="nav">
 
             <li class="@if (Route::currentRouteName()==='av.user.profile')active @endif">
-                <a href="{{route('av.user.profile')}}">
+                <a href="/me/profile">
                     <i class="glyphicon glyphicon-user"></i>
                     帳號設定 </a>
             </li>
             <li  class="@if (Route::currentRouteName()==='av.user.collect')active @endif">
-                <a href="{{route('av.user.collect')}}">
+                <a href="/me/collect">
                     <i class="glyphicon glyphicon-heart"></i>
                     我的收藏 </a>
             </li>
             <li>
-                <a href="{{route('avbodies.logout')}}">
+                <a href="/auth/logout">
                     <i class="fa fa-sign-out"></i>
                     登出 </a>
             </li>

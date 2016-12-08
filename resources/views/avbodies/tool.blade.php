@@ -71,14 +71,14 @@
                         <table class="table table-responsive carousel-table">
                             <tr><td ><img src="/images/iphoto.png" class="img img-responsive" width="100px"></td><td><h3>ePhoto</h3><p>ePhoto 快速下載所有A漫 ！<br/> 滑動左右看說明</p></td></tr>
                             <tr><td>Android</td><td><a href="https://play.google.com/store/apps/details?id=com.enl.photoedit" target="_blank"><img src="/images/googleplay.png"></a></td></tr>
-                            <tr><td>iOS</td><td><a href="https://itunes.apple.com/us/app/ephotos/id1163984790?l=zh&ls=1&mt=8"  target="_blank"><img src="images/applestore.png"></a></td></tr>
+                            <tr><td>iOS</td><td><a href="https://itunes.apple.com/us/app/ephotos/id1163984790?l=zh&ls=1&mt=8"  target="_blank"><img src="/images/applestore.png"></a></td></tr>
 
                         </table>
                         </div>
                         @for ($s=1;$s<=5;$s++)
                             <div class="item">
 
-                                <img src="images/t{{$s}}.png" class="img img-responsive">
+                                <img src="/images/t{{$s}}.png" class="img img-responsive">
 
 
                             </div>

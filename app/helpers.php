@@ -299,13 +299,14 @@ function save_tag_cache($name = null, $type = null)
 
     //echo $type."<hr>";
     if ($type == "enl" or $name != null) {
+
         foreach ($all_tags as $k => $tname) {
 
             $tmp_cache = 'enl_tag_ids_' . ucfirst($tname);
 
-            $tag_articles =\App\Article::publish()->enl()->with('tagged')->orderBy('publish_at')->lists('id');
-            //->toArray();
-            dd($tmp_cache);
+            $tag_articles =\App\Article::publish()->enl()->with('tagged')->withAnyTag([$tname])->orderBy('publish_at')->lists('id')->toArray();
+            
+            
             if (count($tag_articles) > 0) cache_forever($tmp_cache, $tag_articles);
         }
     }

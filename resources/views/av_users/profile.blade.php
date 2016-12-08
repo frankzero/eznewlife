@@ -24,9 +24,10 @@
                             </div>
                         </div>
                     @endif
-                    {!!Form::open(['route'=>['av.user.update'],'method'=>'post','id' => 'profile_form','class'=>"form-horizontal",'files' => true])!!}
 
-                    <input name="_method" type="hidden" value="PUT">
+                    <form method="POST" action="/me/update" accept-charset="UTF-8" id="profile_form" class="form-horizontal" enctype="multipart/form-data">
+                        <input name="_token" type="hidden" value="{{csrf_token()}}">
+                         <input name="_method" type="hidden" value="PUT">
                         <div class="box-body">
                             <div class="form-group">
                                 <label for="nick_name" class="col-sm-2 control-label">* 暱稱（公開）</label>
@@ -37,8 +38,6 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">大頭貼</label>
                                 <div class="col-sm-5 uploadWrapper">
-
-
                                     <input type="file" name="avatar" class="form-control" id="avatar" placeholder="大頭貼"   >
                                     <img id="target" src=@if(strpos(Auth::av_user()->get()->avatar,"facebook"))"{{Auth::av_user()->get()->avatar."&".rand()}}" @else "{{Auth::av_user()->get()->avatar}}" @endif alt="your image" style="width:120px;height:120px" class="img img-rounded img-thumnail"/>
                                     <h6 class="text-muted text-center mar-t-2">上傳大頭貼</h6>
@@ -59,10 +58,7 @@
 
                         </div><!-- /.box-body -->
                         <div class="box-footer ">
-
                             <button type="submit" class="btn btn-warning col-lg-4 col-lg-offset-4 col-xs-8 col-xs-offset-2">設定</button>
-
-
                         </div><!-- /.box-footer -->
 
 
@@ -130,7 +126,7 @@
             },
             email: {
                 remote: {
-                    url: "{{https(route('av.user.check_repeat'))}}",
+                    url: "/me/check_repeat",
                     type: "post",
                     data: {
                         type: 'update_email',

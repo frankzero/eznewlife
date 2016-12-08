@@ -145,7 +145,7 @@ class AvUserController extends Controller
         }
 
         $items = $items ->paginate(7);
-
+        $items->setPath(''); //重要
         foreach ($items as $k=>$article){
             $items[$k]['unique_id']=get_unique_id($article->id);
         }
@@ -247,7 +247,8 @@ class AvUserController extends Controller
 
 
             $message="資訊已修改";
-            return redirect('me/profile')->with('message', $message);
+          //  return redirect('me/profile')->with('message', $message);
+            if (\App::environment('production')) return redirect()->secure('/me/profile')->with('message', $message); else return redirect('/me/profile')->with('message', $message);;
         }
 
     }
@@ -258,6 +259,8 @@ class AvUserController extends Controller
         AvUserCollect::where('av_user_id',  $av_user_id)->where('article_id',$data['article_id'])->delete();
        // set_av_user_info();
         $message="收藏文章已移除";
-        return redirect('me/collect'."?page=".$data['page'])->with('message', $message);
+        if (\App::environment('production')) return redirect()->secure('me/collect'."?page=".$data['page'])->with('message', $message); else return redirect('me/collect'."?page=".$data['page'])->with('message', $message);;
+
+       // return redirect('me/collect'."?page=".$data['page'])->with('message', $message);
     }
 }

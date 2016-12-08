@@ -410,6 +410,10 @@ class ArticleController extends Controller
             /**取得tag文章*/
             $tmp_cache = 'enl_tag_ids_' . $name;
             if (cache_has($tmp_cache)) {
+
+
+                // $tt =cache_get($tmp_cache);
+
                 $tag_articles = array_reverse(cache_get($tmp_cache));
                 //日本、女夏
                 foreach ($tag_articles as $k => $tag_id) {

@@ -315,7 +315,7 @@
         requestRunning = true;
         $.ajax({
             type: "GET",
-            url: "{{https(route('avbodies.collect',$article->id))}}",
+            url: "/collect/{{$article->id}}",
             cache: false,
             contentType: false,
             processData: false,
@@ -387,7 +387,7 @@
         scoreIng = true;
         $.ajax({
             type: "POST",
-            url: "{{route('avbodies.vote',$article->id)}}",
+            url: "vote/{{$article->id}}",
             data: {_token: CSRF_TOKEN,rating:$("#input-1").val()},
 
             success: function (data) {
