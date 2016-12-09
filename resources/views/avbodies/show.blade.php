@@ -28,7 +28,7 @@
     <div class="">
         <div class="col-lg-9" id="main-show-comic">
 
-            <article class="article-main"  itemscope itemtype="http://schema.org/ImageGallery">
+            <article class="article-main"  itemscope itemtype="https://schema.org/ImageGallery">
                 <link itemprop="mainEntityOfPage" href="/{{$article->ez_map[0]->unique_id}}?page={!!Input::get('page')?Input::get('page'):1!!}" />
                 <div class="body">
                     <h1  itemprop="headline name">{{ $article->title }}</h1>
@@ -89,7 +89,7 @@
 
 
                                                 <div class="modal-footer">
-                                                    <a href="{{route('avbodies.facebook.login')}}" class="btn btn-social btn-facebook btn-lg btn-block "><i class="fa fa-facebook"></i>Facebook 註冊/登入</a>
+                                                    <a href="/auth/facebook" class="btn btn-social btn-facebook btn-lg btn-block "><i class="fa fa-facebook"></i>Facebook 註冊/登入</a>
 
                                                 </div> </div>
                                         </div>
@@ -111,10 +111,11 @@
                             {!!$article->content!!}
 
                                     <!---評分機制---->
+                        <form method="POST" action="/vote/{{$article->id}}" accept-charset="UTF-8" id="article_search" class=" form-inline article_search">
 
-                            {!!Form::open(['route'=>['avbodies.vote',$article->id],'method'=>'post','id' => 'article_search','class'=>" form-inline article_search"])!!}
+                            <input name="_token" type="hidden" value="{{csrf_token()}}">
                              @if($rate_score >0)
-                            <div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating" class="row">
+                            <div itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating" class="row">
                              @else
                             <div class="row">
                            @endif

@@ -31,7 +31,7 @@
             @endif
 
             @foreach ($articles as $k=> $article)
-                <div class=" col-lg-4 col-md-4 col-sm-6 col-xs-12 img-item"   itemscope itemtype="http://schema.org/ImageObject"
+                <div class=" col-lg-4 col-md-4 col-sm-6 col-xs-12 img-item"   itemscope itemtype="https://schema.org/ImageObject"
                      onclick="window.location='/{{$article->ez_map[0]->unique_id}}'">
 
                     <div class="hovereffect" >

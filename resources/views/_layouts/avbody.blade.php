@@ -6,11 +6,11 @@
     <meta name="robots" content="all" />
     @include('_layouts/avbody/meta')
 </head>
-<body  itemscope="" itemtype="http://schema.org/WebPage">
+<body  itemscope="" itemtype="https://schema.org/WebPage">
 
 
 <!-- Navigation -->
-<marquee class="marquee" direction="right" height="30" scrollamount="5" behavior="alternate"  style="clear:both;background-color: #060202;z-index: 9999" >
+<marquee class="marquee" direction="right" height="30" scrollamount="5" behavior="alternate"  style="clear:both;background-color: #060202;z-index: 99" >
     <div>
         <span><a href="/tool"><i class="fa fa-bolt "></i>下載AVBody專用APP<small>(iOS/Android)</small>!!</a> </span>
   </div>
@@ -102,8 +102,8 @@
                         <a class="dropdown-toggle" href="#" data-toggle="dropdown" title=" 會員獨享快速閱讀模式！完全免費！" id="navLogin">註冊 / 登入 <i class="fa  fa-sign-in"></i></a>
 
 
-                        <div class="dropdown-menu" style="padding:17px;">
-                            <a    href="{{route('avbodies.facebook.login')}}" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i>Facebook 註冊 / 登入</a>
+                        <div class="dropdown-menu" style="padding:1px;">
+                            <a    href="/auth/facebook" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i>Facebook 註冊 / 登入</a>
 
                         </div>
 
@@ -178,7 +178,7 @@
         <!-- Footer -->
 
 
-    <footer itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <footer itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <p>Copyright &copy; <a href="/" itemprop="url">AVBODY</a> {{date('Y')}}</p>

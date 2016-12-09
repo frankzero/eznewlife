@@ -22,7 +22,7 @@
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
     @endif
-    <article class="article-main" itemscope itemtype="http://schema.org/Article">
+    <article class="article-main" itemscope itemtype="https://schema.org/Article">
         <div class="body">
             <h1  itemprop="headline name">{{ $article->title }}</h1>
             <span itemprop="author" class="hidden">{{$article->author->name}}</span>
@@ -205,7 +205,7 @@
             @if(isset($rand_articles[$i]))
                 <div class=" col-lg-4 col-xs-12 col-sm-6"
                      onclick="window.location='{{route('getezs.show', ['id'=>$rand_articles[$i]->ez_map[0]->unique_id])}}'">
-                    <div class="thumbnail rand_hover "   itemscope itemtype="http://schema.org/ImageObject" >
+                    <div class="thumbnail rand_hover "   itemscope itemtype="https://schema.org/ImageObject" >
 
 
                         <a href="{{route('getezs.show', ['id'=>$rand_articles[$i]->ez_map[0]->unique_id])}}">
@@ -274,7 +274,7 @@
 
         <div class="row center-block  "
              onclick="window.location='{{route('getezs.show', ['id'=>$rand_articles[$i]->ez_map[0]->unique_id])}}'">
-            <div class="thumbnail rand_hover "  itemscope itemtype="http://schema.org/ImageObject">
+            <div class="thumbnail rand_hover "  itemscope itemtype="https://schema.org/ImageObject">
 
 
                 <a href="{{route('getezs.show', ['id'=>$rand_articles[$i]->ez_map[0]->unique_id])}}">

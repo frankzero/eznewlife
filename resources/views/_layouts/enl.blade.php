@@ -14,7 +14,7 @@
     @include('_layouts/enl/meta')
     @include('_layouts/enl/ad')
 </head>
-<body  itemscope="" itemtype="http://schema.org/WebPage">
+<body  itemscope="" itemtype="https://schema.org/WebPage">
 <div id="fb-root"></div>
 <script>
     window.fbAsyncInit = function() {
@@ -61,7 +61,7 @@
 <footer>
     <div class="widewrapper footer"></div>
     <div class="widewrapper copyright">
-        <address itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <address itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
            <a itemprop="url" href="/" style="color:dimgrey">簡單新生活</a> Copyright 2015- {{date('Y')}}
         </address>
     </div>

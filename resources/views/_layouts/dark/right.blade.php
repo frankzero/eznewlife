@@ -25,7 +25,7 @@
             @for ($i = 0; $i < 1; $i++)
                 <div class="row center-block  "
                      onclick="window.location='/{{$rand_articles[$i]->ez_map[0]->unique_id}}' "></div>
-                    <div class="thumbnail rand_hover "  itemscope itemtype="http://schema.org/ImageObject">
+                    <div class="thumbnail rand_hover "  itemscope itemtype="https://schema.org/ImageObject">
 
 
                         <a href="/{{$rand_articles[$i]->ez_map[0]->unique_id}}">

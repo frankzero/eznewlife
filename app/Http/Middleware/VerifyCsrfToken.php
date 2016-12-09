@@ -14,6 +14,7 @@ class VerifyCsrfToken extends BaseVerifier
     protected $except = [
         //
 		'notfound',
-		'404'
+		'404',
+        'sm'
     ];
 }

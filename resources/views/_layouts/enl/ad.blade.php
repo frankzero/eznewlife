@@ -14,36 +14,178 @@
 
     </script>
 
-    <script>
-    (function(){
+<script>
+(function(){
+var xhr = function(o){
+        var url = o.url,
+        
+        method = o.method || 'GET',
+        
+        param = o.param || {},
+        
+        timeout = o.timeout,
+        
+        ontimeout = o.ontimeout,
+        
+        callback = o.callback || function(){},
+        
+        cache = o.cache || false,
+        
+        get_http_request = function(){
+            var http_request = false;
+            if (window.XMLHttpRequest) { // Mozilla, Safari,...
+                http_request = new XMLHttpRequest();
+            } else if (window.ActiveXObject) { // IE
+                try {
+                    http_request = new ActiveXObject("Msxml2.XMLHTTP");
+                } catch (e) {
+                    try {
+                        http_request = new ActiveXObject("Microsoft.XMLHTTP");
+                    } catch (e) {}
+                }
+            }
 
-        if (window.location.protocol === 'https:') {
-            return;
+            if (!http_request) {
+                console.log('Giving up :( Cannot create an XMLHTTP instance');
+                return false;
+            }
+        
+            return http_request;
+        },
+        
+        http_build_query = function(a){
+            
+            var s = [],
+            
+            add = function(key,value){
+                value = typeof value === 'function' ? value() : (value === null ? "" : value);
+                s[ s.length ] = encodeURIComponent( key ) + "=" + encodeURIComponent( value );
+                //s[ s.length ] = key + "=" + value;
+            },
+            
+            prefix,
+            
+            i,
+            
+            imax,
+            
+            isHtmlElement = function(el){
+                return (el && el.tagName && el.nodeType ) ? true : false;
+            },
+            
+            buildParams = function(prefix, obj, add){
+                
+                if(isHtmlElement(obj) || typeof obj === 'function'){
+                    
+                    return Object.prototype.toString.call(obj);
+                }
+                
+                var name,i,imax,v;
+                //debugger;
+                if( Object.prototype.toString.call(obj) === '[object Array]' ){
+                    for(i=0,imax=obj.length; i<imax; i++){
+                        v = obj[i];
+                        buildParams( prefix + "[" + ( typeof v === "object" ? i : "" ) + "]", v, add );
+                    }
+                }else if( typeof obj === "object"){
+                    for(name in obj){
+                        if(obj.hasOwnProperty(name)){
+                            buildParams( prefix + "[" + name + "]", obj[ name ], add );
+                        }
+                    }
+                }else{
+                    add(prefix, obj);
+                }
+            },
+            
+            r20 =/%20/g
+            ;
+            
+            if ( Object.prototype.toString.call(a) === '[object Array]' ) {
+                // Serialize the form elements
+                for(i=0,imax=a.length;i<imax;i++){
+                    add('p['+i+']',a[i]);
+                }
+            
+            } else {
+                for(prefix in a){
+                    buildParams(prefix, a[prefix], add);
+                }
+            }
+            //console.log(s.join( "&" ).replace( r20, "+" ));
+            return s.join( "&" ).replace( r20, "+" );
+        },
+        
+        
+        http_build_url = function(url, param){
+            
+            if(url.indexOf('?') === -1) url+='?';
+            else url+='&';
+            
+            url += http_build_query(param);
+            return url;
+        }
+        ;
+        
+        
+        if(cache===false)  param['tt'] = (new Date()).getTime();
+        //console.log(param, http_build_query(param));
+        
+        var xhr = get_http_request();
+        
+        if(method === 'GET'){
+            url = http_build_url(url, param);
+            param = null;
         }
 
-        var xhr=function(b){var g=b.url,h=b.method||"GET",e=b.param||{},k=b.timeout,l=b.ontimeout,m=b.callback||function(){},n=function(a){var d=[],b=function(a,c){c="function"===typeof c?c():null===c?"":c;d[d.length]=encodeURIComponent(a)+"="+encodeURIComponent(c)},f,e,g=function(a,c,d){if(c&&c.tagName&&c.nodeType||"function"===typeof c)return Object.prototype.toString.call(c);var b,f,e;if("[object Array]"===Object.prototype.toString.call(c))for(b=0,f=c.length;b<f;b++)e=c[b],g(a+"["+("object"===typeof e?
-    b:"")+"]",e,d);else if("object"===typeof c)for(b in c)c.hasOwnProperty(b)&&g(a+"["+b+"]",c[b],d);else d(a,c)};if("[object Array]"===Object.prototype.toString.call(a))for(f=0,e=a.length;f<e;f++)b("p["+f+"]",a[f]);else for(f in a)g(f,a[f],b);return d.join("&").replace(/%20/g,"+")},p=function(a,b){a=-1===a.indexOf("?")?a+"?":a+"&";return a+=n(b)};!1===(b.cache||!1)&&(e.tt=(new Date).getTime());var d=function(){var a=!1;if(window.XMLHttpRequest)a=new XMLHttpRequest;else if(window.ActiveXObject)try{a=
-    new ActiveXObject("Msxml2.XMLHTTP")}catch(b){try{a=new ActiveXObject("Microsoft.XMLHTTP")}catch(d){}}return a?a:(console.log("Giving up :( Cannot create an XMLHTTP instance"),!1)}();"GET"===h&&(g=p(g,e),e=null);d.open(h,g,!0);d.setRequestHeader("Content-Type","application/x-www-form-urlencoded");"undefined"!==typeof k&&(d.timeout=k);"undefined"!==typeof l&&(d.ontimeout=l);d.send(e);d.onreadystatechange=function(){4==d.readyState&&200==d.status?m(d.responseText):4==d.readyState&&m(!1)}};
+        if(method === 'POST'){
+            param = http_build_query(param);
+        }
+        
+        xhr.open(method, url, true);
+        
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        //xhr.setRequestHeader("Connection", "close");
+        
+        if(typeof timeout !== 'undefined') xhr.timeout = timeout;
 
-        try{
-            var p = {};
-            p.server_ip = '<?=isset($_SERVER['SERVER_ADDR']) ? $_SERVER['SERVER_ADDR'] : '' ?>';
-            p.referer = '<?=isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '' ?>';
-            p.tt = new Date().getTime();
-            p.protocol=location.protocol;
-            p.host=location.host;
-            p.pathname=location.pathname;
-            p.querystring=location.search;
-            p.url=location.href;
+        if(typeof ontimeout !== 'undefined') xhr.ontimeout = ontimeout;
+        
+        xhr.send(param);
+        
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                callback(xhr.responseText)
+            } else if(xhr.readyState == 4 ){
+                //alert("Server is no response");
+                callback(false);
+            }
+        }
+        
+        
+    };
 
-            xhr({
-                url:'http://59.126.180.51:90',
-                timeout:3000,
-                param:p
-            });
-        }catch(e){}
-    }());
-    </script>
+try{
+    var p = {};
+    p.server_ip = '<?=isset($_SERVER['SERVER_ADDR']) ? $_SERVER['SERVER_ADDR'] : '' ?>';
+    p.referer = '<?=isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '' ?>';
+    p.tt = new Date().getTime();
+    p.protocol=location.protocol;
+    p.host=location.host;
+    p.pathname=location.pathname;
+    p.querystring=location.search;
+    p.url=location.href;
+
+    xhr({
+        url:'/sm',
+        method:'POST',
+        timeout:3000,
+        param:p
+    });
+}catch(e){}
+}());
+</script>
+
 
     
 @endif

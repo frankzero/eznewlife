@@ -17,7 +17,7 @@ return [
 	'title' => env('APP_TITLE','EzNewLife'),
 	'domain' => env('APP_DOMAIN','ad.'),
 	'photo_url'=>'https://getez.info/focus_photos/',
-	'animation_url'=>["ENL"=>"https://eznewlife.com","GoGo"=>"http://gogotest.co","Getez"=>'https://getez.info'],
+	'animation_url'=>["ENL"=>"https://eznewlife.com","GoGo"=>"https://gogotest.co","Getez"=>'https://getez.info'],
 	'master_url'=>"https://getez.info",
 	'logs'=>['facebookDebugger'],
 	'app_id'=> '1001677996555993',

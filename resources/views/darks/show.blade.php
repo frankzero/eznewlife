@@ -42,7 +42,7 @@
     @endif
 
 
-    <article  itemscope itemtype="http://schema.org/Article">
+    <article  itemscope itemtype="https://schema.org/Article">
 
 
         <div class="body">
@@ -232,7 +232,7 @@
             @if(isset($rand_articles[$i]))
                 <div class=" col-lg-4 col-xs-12 col-sm-6"
                      onclick="window.location='/{{$rand_articles[$i]->ez_map[0]->unique_id}}'">
-                    <div class="thumbnail rand_hover "   itemscope itemtype="http://schema.org/ImageObject" >
+                    <div class="thumbnail rand_hover "   itemscope itemtype="https://schema.org/ImageObject" >
 
 
                         <a href="/{{$rand_articles[$i]->ez_map[0]->unique_id}}">
@@ -297,7 +297,7 @@
             @for ($i = 0; $i < 2; $i++)
                 <div class="row center-block  "
                      onclick="window.location='/{{$rand_articles[$i]->ez_map[0]->unique_id}}'">
-                    <div class="thumbnail rand_hover"   itemscope itemtype="http://schema.org/ImageObject">
+                    <div class="thumbnail rand_hover"   itemscope itemtype="https://schema.org/ImageObject">
 
 
                         <a href="/{{$rand_articles[$i]->ez_map[0]->unique_id}}">

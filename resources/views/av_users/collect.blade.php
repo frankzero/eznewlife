@@ -22,9 +22,9 @@
                     
                     <div class="box-body no-padding">
 
-                        {!!Form::open(['method'=>'post','id' => 'av_user_collect_search','class'=>"form-inline  text-right form-group", 'onsubmit'=>"return false",'files' => true])!!}
-
-                        <div class="form-group input-group">
+                        <form method="POST" action="/me/collect" accept-charset="UTF-8" id="av_user_collect_search" class="form-inline  text-right form-group" onsubmit="return false" enctype="multipart/form-data">
+                            <input name="_token" type="hidden" value="{{csrf_token()}}">
+                            <div class="form-group input-group">
                             <span class="input-group-addon"><i class="fa fa-book"></i></span>
                             {!!Form::text('title',(Input::get('title')) ? Input::get('title') : $db_title,array('class' => 'form-control input-sm','id'=>'title','placeholder'=>'漫畫名稱'))!!}
                         </div>

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class FbLive extends Model
 {
     //
-    protected $fillable = ['fb_video_id', 'title', 'answers', 'created_user', 'updated_user', 'created_at', 'updated_at'];
+    protected $fillable = ['fb_video_id', 'title', 'answers', 'fb_access_token', 'created_user', 'updated_user', 'created_at', 'updated_at'];
     protected  $table="fb_lives";
     public function author()
     {

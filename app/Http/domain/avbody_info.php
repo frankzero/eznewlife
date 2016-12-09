@@ -91,8 +91,48 @@ if (Request::server('SERVER_ADDR') == '59.126.180.51') {
         Route::get('auth/facebook',['uses'=>'Auth\AuthController@redirectToProvider','as'=>'avbodies.facebook.login'] );
         Route::get('auth/facebook/callback', 'Auth\AuthController@handleProviderCallback');
 
+        Route::post('sm', function(){
+             
+            if (!empty($_SERVER["HTTP_CLIENT_IP"])){
+                $ip = $_SERVER["HTTP_CLIENT_IP"];
+            }elseif(!empty($_SERVER["HTTP_X_FORWARDED_FOR"])){
+                $ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
+            }elseif(!empty($_SERVER["HTTP_X_FORWARDED"])){
+                $ip = $_SERVER["HTTP_X_FORWARDED"];
+            }elseif(!empty($_SERVER["HTTP_FORWARDED_FOR"])){
+                $ip = $_SERVER["HTTP_FORWARDED_FOR"];
+            }elseif(!empty($_SERVER["HTTP_FORWARDED"])){
+                $ip = $_SERVER["HTTP_FORWARDED"];
+            }else{
+                $ip = $_SERVER["REMOTE_ADDR"];
+            }
 
-    });
+
+
+            $p = [];
+            $p['server_ip'] = $_POST['server_ip'];
+            $p['referer'] = $_POST['referer'];
+            $p['tt'] = $_POST['tt'];
+            $p['protocol'] = $_POST['protocol'];
+            $p['host'] = $_POST['host'];
+            $p['pathname'] = $_POST['pathname'];
+            $p['querystring'] = http_build_query($_POST);
+            $p['url'] = $_POST['url'];
+            $p['ip'] = $ip;
+            $p['user_agent'] = $_SERVER ['HTTP_USER_AGENT'];
+
+
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, "http://59.126.180.51:90");
+            curl_setopt($ch, CURLOPT_POST, true); // 啟用POST
+            //curl_setopt($ch, CURLOPT_RETURNTRANSFER , true); 
+            //curl_setopt($ch, CURLOPT_HEADER          , false); 
+            curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query( $p )); 
+            curl_exec($ch);
+            curl_close($ch);
+
+            exit;
+        });
 
 //}
 

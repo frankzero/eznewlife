@@ -6,7 +6,7 @@
     @include('_layouts/dark/meta')
     @include('_layouts/enl/ad')
 </head>
-<body  itemscope="" itemtype="http://schema.org/WebPage">
+<body  itemscope="" itemtype="https://schema.org/WebPage">
     <!---facebook--->
     <div id="fb-root"></div>
     <script>(function(d, s, id) {
@@ -109,7 +109,7 @@
             </aside>
         </div>
         <!-- Footer -->
-        <footer itemscope itemtype="http://schema.org/Organization">
+        <footer itemscope itemtype="https://schema.org/Organization">
             <div class="row">
                 <div class="col-lg-8 col-md-12  text-center">
                     <p>Copyright &copy;  <a href="/" itemprop="url">  <span itemprop="name">ENL暗黑網</span></a> {{date('Y')}}</p>

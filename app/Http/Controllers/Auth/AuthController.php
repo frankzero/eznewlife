@@ -96,7 +96,7 @@ class AuthController extends Controller
     public function redirectToProvider()
     {
         if (strpos(URL::previous(), 'avbody.info') === false) {
-            $referrer = "http://avbody.info";
+            $referrer = "https://avbody.info";
         } else {
             $referrer = URL::previous();;
         }
@@ -111,13 +111,13 @@ class AuthController extends Controller
     public function handleProviderCallback()
     {
         if (Request::Input('error') == 'access_denied') {
-            return redirect('/');
+            if (\App::environment('production')) return redirect()->secure('/'); else return redirect('/');
         }
         try {
             Socialite::driver('facebook')->stateless();
             $user = Socialite::driver('facebook')->user();
         } catch (Exception $e) {
-            return redirect('auth/facebook');
+            if (\App::environment('production')) return redirect()->secure('auth/facebook'); else return redirect('auth/facebook');
         }
 
         $authUser = $this->findOrCreateUser($user);
@@ -148,7 +148,7 @@ class AuthController extends Controller
     public function redirectToEnl()
     {
         if (strpos(URL::previous(), 'eznewlife.com') === false) {
-            $referrer = "http://eznewlife.com";
+            $referrer = "https://eznewlife.com";
         } else {
             $referrer = URL::previous();;
         }
@@ -164,7 +164,12 @@ class AuthController extends Controller
     public function handleEnlCallback()
     {
         if (Request::Input('error') == 'access_denied') {
-            return redirect('/');
+
+            if (\App::environment('production')) {
+                return  redirect()->secure("/");
+            } else {
+                return redirect('/');
+            }
         }
         try {
             Socialite::driver('enlfacebook')->stateless();
@@ -274,6 +279,8 @@ class AuthController extends Controller
         Auth::av_user()->logout();
 		//AvUser::on('master')->update(['remember_token'])
         //Auth::logout();
-        return redirect()->back();
+        if (\App::environment('production')) return redirect()->secure("/"); else return redirect()->back();;
+
+      //  return redirect()->back();
     }
 }

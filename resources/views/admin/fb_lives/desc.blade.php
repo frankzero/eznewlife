@@ -21,13 +21,14 @@
 
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs" role="tablist">
-                                <li role="presentation" class="active"><a href="#one" aria-controls="home" role="tab" data-toggle="tab">1</a></li>
-                                <li role="presentation"><a href="#two" aria-controls="profile" role="tab" data-toggle="tab">2</a></li>
-                                <li role="presentation"><a href="#three" aria-controls="messages" role="tab" data-toggle="tab">3</a></li>
-                                <li role="presentation"><a href="#four" aria-controls="settings" role="tab" data-toggle="tab">4</a></li>
-                                <li role="presentation"><a href="#five" aria-controls="settings" role="tab" data-toggle="tab">5</a></li>
-                                <li role="presentation"><a href="#six" aria-controls="settings" role="tab" data-toggle="tab">6</a></li>
-                                <li role="presentation"><a href="#seven" aria-controls="settings" role="tab" data-toggle="tab">7</a></li>
+                                <li role="presentation" class="active"><a href="#one" aria-controls="home" role="tab" data-toggle="tab">到自己粉絲專頁</a></li>
+                                <li role="presentation"><a href="#two" aria-controls="profile" role="tab" data-toggle="tab">點選直播</a></li>
+                                <li role="presentation"><a href="#three" aria-controls="messages" role="tab" data-toggle="tab">OBS設定1</a></li>
+                                <li role="presentation"><a href="#four" aria-controls="settings" role="tab" data-toggle="tab">OBS設定2</a></li>
+                                <li role="presentation"><a href="#five" aria-controls="settings" role="tab" data-toggle="tab">OBS設定3</a></li>
+                                <li role="presentation"><a href="#six" aria-controls="settings" role="tab" data-toggle="tab">fb video id</a></li>
+                                <li role="presentation"><a href="#six-1" aria-controls="settings" role="tab" data-toggle="tab">Access Token</a></li>
+                                <li role="presentation"><a href="#seven" aria-controls="settings" role="tab" data-toggle="tab">開始串流</a></li>
                             </ul>
 
                             <!-- Tab panes -->
@@ -38,6 +39,7 @@
                                 <div role="tabpanel" class="tab-pane" id="four"><p><img src="/images/f4.png" class="img img-thumbnail"></div>
                                 <div role="tabpanel" class="tab-pane" id="five"><p><img src="/images/f5.png" class="img img-thumbnail"></div>
                                 <div role="tabpanel" class="tab-pane" id="six"><p><img src="/images/f6.png" class="img img-thumbnail"></div>
+                                <div role="tabpanel" class="tab-pane" id="six-1"><p><img src="/images/fb-access-token.png" class="img img-thumbnail"></div>
                                 <div role="tabpanel" class="tab-pane" id="seven"><p><img src="/images/f7.png" class="img img-thumbnail"></div>
                             </div>
 

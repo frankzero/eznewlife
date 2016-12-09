@@ -12,7 +12,7 @@
     <h1 id="index" class="hidden">Dark 最新文章列表</h1>
     <div class="row center-block article-category-main  hover11 column">
         @foreach ($articles as $k=> $article)
-            <div class="row center-block article-category-row"  onclick="window.location='/{{$article->ez_map[0]->unique_id}}"  itemscope itemtype="http://schema.org/ImageObject">
+            <div class="row center-block article-category-row"  onclick="window.location='/{{$article->ez_map[0]->unique_id}}"  itemscope itemtype="https://schema.org/ImageObject">
                 <div class="col-md-6 col-sm-6 col-lg-6 article-category-img " >
                     <a href="/{{$article->ez_map[0]->unique_id}}">
                         @if (File::exists( public_path() . '/focus_photos'."/".$article->photo) and !empty($article->photo))

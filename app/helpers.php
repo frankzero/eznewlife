@@ -5,18 +5,22 @@
  * Date: 2015/12/22
  * Time: 上午 10:50
  */
-function https($url){
-    $url=str_replace("http:","https:",$url);
+function https($url)
+{
+    $url = str_replace("http:", "https:", $url);
     return $url;
 }
-function see_also($url){
-    if (preg_match("/http:\/\//i",$url)){
-        return urldecode(str_replace("http","https",$url));
+
+function see_also($url)
+{
+    if (preg_match("/http:\/\//i", $url)) {
+        return urldecode(str_replace("http", "https", $url));
     }
-    if (preg_match("/https:\/\//i",$url)){
-        return urldecode(str_replace("https","http",$url));
+    if (preg_match("/https:\/\//i", $url)) {
+        return urldecode(str_replace("https", "http", $url));
     }
 }
+
 function Gradient($HexFrom, $HexTo, $ColorSteps)
 {
     $FromRGB['r'] = hexdec(substr($HexFrom, 0, 2));
@@ -70,7 +74,7 @@ function random_num_color()
 
 /**
  * SEO 麵包屑
-**/
+ **/
 function seo_breadcrumb_list($site, $category, $categroy_url = '')
 {
 
@@ -269,22 +273,18 @@ function save_tag_cache($name = null, $type = null)
 {
 
 
-
 //   $all_tags = App\Article::existingTags()->pluck('name')->all();
 
     $conn = oconn('M');
 
     $all_tags = [];
 
-    $sql="select distinct tag_name from tagging_tagged;";
+    $sql = "select distinct tag_name from tagging_tagged;";
     $stmt = $conn->select($sql);
-    while($row = $stmt->fetch(\PDO::FETCH_NUM)){
+    while ($row = $stmt->fetch(\PDO::FETCH_NUM)) {
         //echo $row[0]."\n";
-        $all_tags[]= $row[0];
+        $all_tags[] = $row[0];
     }
-
-
-
 
 
     $tmp_cache = 'tag_all';
@@ -294,29 +294,21 @@ function save_tag_cache($name = null, $type = null)
         $all_tags[] = $name;
     }
 
-    
-
 
     //echo $type."<hr>";
     if ($type == "enl" or $name != null) {
-
         foreach ($all_tags as $k => $tname) {
-
             $tmp_cache = 'enl_tag_ids_' . ucfirst($tname);
-
-            $tag_articles =\App\Article::publish()->enl()->with('tagged')->withAnyTag([$tname])->orderBy('publish_at')->lists('id')->toArray();
-            
-            
+            $tag_articles = \App\Article::publish()->enl()->with('tagged')->withAnyTag([$tname])->orderBy('publish_at')->lists('id')->toArray();
             if (count($tag_articles) > 0) cache_forever($tmp_cache, $tag_articles);
         }
     }
 
 
-
     if ($type == "dark" or $name != null) {
         foreach ($all_tags as $k => $tname) {
             $tmp_cache = 'dark_tag_ids_' . ucfirst($tname);
-            $tag_articles =\App\Article::publish()->dark()->with('tagged')->withAnyTag([$tname])->orderBy('publish_at')->lists('id')->toArray();
+            $tag_articles = \App\Article::publish()->dark()->with('tagged')->withAnyTag([$tname])->orderBy('publish_at')->lists('id')->toArray();
             if (count($tag_articles) > 0) cache_forever($tmp_cache, $tag_articles);
             //echo $tmp_cache."<br>";
         }
@@ -332,23 +324,26 @@ function save_tag_cache($name = null, $type = null)
         }
     }
     */
-    
+
 }
-function get_site_id($category_id){
+
+function get_site_id($category_id)
+{
 
     $parameters['enl'] = (cache_get('enl_parameters')->toArray());
     $parameters['dark'] = (cache_get('dark_parameters')->toArray());
     $parameters['getez'] = (cache_get('getez_parameters')->toArray());
     $parameters['avbody'] = (cache_get('avbody_parameters')->toArray());
     $parameters['god'] = (cache_get('god_parameters')->toArray());
- //  dd($parameters);
-    foreach ($parameters as $k=>$p){
-        $tmp=explode(",",$p["categories"]);
-        if (in_array($category_id,$tmp)) return $p['site_id'];
+    //  dd($parameters);
+    foreach ($parameters as $k => $p) {
+        $tmp = explode(",", $p["categories"]);
+        if (in_array($category_id, $tmp)) return $p['site_id'];
     }
 
     //if (categorie_id)
 }
+
 function save_cate_cache($category_id)
 {
 
@@ -360,26 +355,26 @@ function save_cate_cache($category_id)
     $god_categories = array_keys(cache_get('god_categories')->toArray());
 
 
-
-   // var_dump($god_parameters);
+    // var_dump($god_parameters);
     $enl_all_loop = ['id' => 'enl_ids', 'unique_id' => 'enl_unique_ids', 'my_cate' => $enl_categories];
     $dark_all_loop = ['id' => 'dark_ids', 'unique_id' => 'dark_unique_ids', 'my_cate' => $dark_categories];
     $avbody_all_loop = ['id' => 'avbody_ids', 'unique_id' => 'avbody_unique_ids', 'my_cate' => $avbody_categories];
     $getez_all_loop = ['id' => 'getez_ids', 'unique_id' => 'getez_unique_ids', 'my_cate' => $getez_categories];
     $god_all_loop = ['id' => 'god_ids', 'unique_id' => 'god_unique_ids', 'my_cate' => $god_categories];
     $expert_all_loop = ['id' => 'expert_ids', 'unique_id' => 'expert_unique_ids', 'my_cate' => [1, 2]];
-    $all = [$enl_all_loop, $dark_all_loop, $getez_all_loop, $avbody_all_loop, $expert_all_loop,$god_all_loop];
+    $all = [$enl_all_loop, $dark_all_loop, $getez_all_loop, $avbody_all_loop, $expert_all_loop, $god_all_loop];
     foreach ($tmp_loop as $k => $v) {
         if (cache_has($v)) {
             $$v = cache_get($v);
         }
     }
-    $site_id=get_site_id($category_id); if ($site_id !=6) $site_id=1;
+    $site_id = get_site_id($category_id);
+    if ($site_id != 6) $site_id = 1;
     //echo $site_id;
 
-    $cate_articles = App\Article::join('articles_map', function($q) use ($site_id){
+    $cate_articles = App\Article::join('articles_map', function ($q) use ($site_id) {
         $q->on('articles_map.articles_id', '=', 'articles.id')
-            ->where('articles_map.site_id','=',$site_id);
+            ->where('articles_map.site_id', '=', $site_id);
     })
         ->publish()->where('category_id', $category_id)
         ->orderBy('publish_at')->get(['articles_map.unique_id', 'articles.id'])->toArray();
@@ -403,9 +398,9 @@ function save_cate_cache($category_id)
     if (!in_array($category_id, $god_categories)) unset($all[5]);
     foreach ($all as $i => $tmp_all_loop) {
         //var_dump($tmp_all_loop); echo"<br>";
-        $all_articles = App\Article::join('articles_map', function($q) use ($site_id){
+        $all_articles = App\Article::join('articles_map', function ($q) use ($site_id) {
             $q->on('articles_map.articles_id', '=', 'articles.id')
-                ->where('articles_map.site_id','=',$site_id);
+                ->where('articles_map.site_id', '=', $site_id);
         })
             ->publish()
             ->whereIn('category_id', $tmp_all_loop['my_cate'])
@@ -680,7 +675,7 @@ function set_enl_user_info()
 function cdn($asset)
 {
 
-    return asset($asset,secure());
+    return asset($asset, secure());
     if (substr($asset, 0, 2) === '//') return $asset;
     if (strpos($asset, 'http') !== false) return $asset;
 
@@ -726,11 +721,10 @@ function cdnPath_KILL($cdn, $asset)
 }
 
 
-
 function secure()
 {
     //Request::server('REQUEST_SCHEME') ;
-    if (Request::server('HTTP_X_FORWARDED_PROTO') == 'https' or Request::server('REQUEST_SCHEME')=="https") {
+    if (Request::server('HTTP_X_FORWARDED_PROTO') == 'https' or Request::server('REQUEST_SCHEME') == "https") {
         return true;
     } else {
         return false;
@@ -738,16 +732,15 @@ function secure()
 }
 
 
-
 function secure2()
 {
 
-    if( isset($_SERVER['HTTP_X_FORWARDED_PROTO'])  && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https'){
+    if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
         return true;
     }
 
 
-    if( isset($_SERVER['REQUEST_SCHEME'])  && $_SERVER['REQUEST_SCHEME'] === 'https'){
+    if (isset($_SERVER['REQUEST_SCHEME']) && $_SERVER['REQUEST_SCHEME'] === 'https') {
         return true;
     }
 
@@ -772,7 +765,7 @@ $results->total() (Not available when using simplePaginate)
 $results->url($page)
 
     */
-  // var_dump($article);
+    // var_dump($article);
     //   dd($article->url(1));
     if ($article->lastPage() > 1) {
 //dd( $article->currentPage());
@@ -980,10 +973,10 @@ function article_instant_content($content)
     $content = preg_replace('/<span([^<]*)style="([^<]*)color: #ff0000;([^<]*)">([^<]*)<\/span>/i', '</p><aside>$4</aside><p>', $content);
 
     //pp($content);
-   // pp(strlen($content));
-    $content=Purifier::clean($content);
-   // pp($content);
-  //  pp(strlen($content));
+    // pp(strlen($content));
+    //$content=Purifier::clean($content);
+    // pp($content);
+    //  pp(strlen($content));
     /// h1 -h6 是強調
     //$content  = preg_replace('/<h[1-6]>(.*?)<\/h[1-6]>/', '<adide>$1<adide>',  $content );
     /***所有div 換成p*/
@@ -1065,13 +1058,13 @@ function article_instant_content($content)
     $content = preg_replace('/(<p[^>]*>)(\s?)(.*?)(\s?)(<\/p>)/i', '$1$3$5', $content);
     $content = preg_replace('#<p>(\s|&nbsp;)*+(<br\s*/*>)*(\s|&nbsp;)*</p>#i', '', $content);
     //
-   // pp($content);
-   $content = add_p($content);
+    // pp($content);
+    $content = add_p($content);
     $content = remove_empty_p($content);
-  ///  pp($content);
+    ///  pp($content);
     $content = preg_replace("/<p[^>]*><strong[^>]*>(.*?)<\/strong><\/p>/i", "<aside>$1</aside>", $content);
     $content = preg_replace('/(<p[^>]*>\s?)(\s)*(<figure.*?)(<\/p>)/i', '<p>$2</p>$3', $content);
-   // pp($content);
+    // pp($content);
     return $content;
 
 }
@@ -1085,31 +1078,31 @@ function add_p($content)
     $content = preg_replace("/<aside[^>]*>.*?<\/aside>/i", "", $content);
     $content = preg_replace("/<p[^>]*>.*?<\/p>/i", "<cut/>", $content);
 //echo "<hr>";
-   // pp($content);
+    // pp($content);
 
     $cut = explode('<cut/>', $content);
     $cut = array_filter($cut, function ($value) {
-        return trim($value) != '' and trim($value)!=":"  and trim($value)!="/" and trim($value)!="h" and trim($value)!="t" and trim($value)!="p";
+        return trim($value) != '' and trim($value) != ":" and trim($value) != "/" and trim($value) != "h" and trim($value) != "t" and trim($value) != "p";
     });
-  //  var_dump($cut);
+    //  var_dump($cut);
 
     if (count($cut) > 0) {
         foreach ($cut as $v) {
-            if($v==".") continue;
+            if ($v == ".") continue;
             $org_content = str_replace($v, "<p>$v</p>", $org_content);;
         }
-      //  echo "1<hr>";
-       // pp($org_content); echo "2<hr>";
+        //  echo "1<hr>";
+        // pp($org_content); echo "2<hr>";
         $org_content = preg_replace("/(<figure.*?>.*?<\/figure>)/i", "$1\n", $org_content);//pp($org_content);
 
         $org_content = preg_replace("/(<p.*?>.*?<\/p>)/i", "$1\n", $org_content);//pp($org_content);
         $org_content = preg_replace("/(<aside.*?>.*?<\/aside>)/i", "$1\n", $org_content);//pp($org_content);
     }
-  $org_content=str_replace("</p>\n<p>)</p>\n",")</p>\n" ,$org_content);
-    $org_content=str_replace("<p></aside>\n</p>","</aside>\n" ,$org_content);
-    $org_content=str_replace("<p></aside>\n</p>","</aside>\n" ,$org_content);
-    $org_content=str_replace("<p></p>","" ,$org_content);
-  //  pp($org_content);
+    $org_content = str_replace("</p>\n<p>)</p>\n", ")</p>\n", $org_content);
+    $org_content = str_replace("<p></aside>\n</p>", "</aside>\n", $org_content);
+    $org_content = str_replace("<p></aside>\n</p>", "</aside>\n", $org_content);
+    $org_content = str_replace("<p></p>", "", $org_content);
+    //  pp($org_content);
     return $org_content;
     $content = $org_content;
 
@@ -1381,14 +1374,15 @@ function check_p($ereg, $content)
 
 function pp($content)
 {
-   // echo __FUNCTION__;echo "<br>";
-  echo "<textarea cols='100' rows='5'>$content</textarea><br>";
+    // echo __FUNCTION__;echo "<br>";
+    echo "<textarea cols='100' rows='5'>$content</textarea><br>";
 }
-function trim_img($content){
-     $content=str_replace('<img alt="" />',"",$content);
-    $content=str_replace('<img alt="">',"",$content);
-    return $content;
 
+function trim_img($content)
+{
+    $content = str_replace('<img alt="" />', "", $content);
+    $content = str_replace('<img alt="">', "", $content);
+    return $content;
 
 
     $doc = new DOMDocument();
@@ -1397,15 +1391,16 @@ function trim_img($content){
     $tags = $doc->getElementsByTagName('img');
     foreach ($tags as $tag) {
         if (empty($tag->getAttribute('src'))) {
-        /**不區分大小寫，取代空圖*/
-            $regex = '/<img[^>]?(src=)?'.addcslashes($tag->getAttribute('src'), "/") . '[^>]*>/i';
+            /**不區分大小寫，取代空圖*/
+            $regex = '/<img[^>]?(src=)?' . addcslashes($tag->getAttribute('src'), "/") . '[^>]*>/i';
             $content = preg_replace($regex, '', $content);
-         }
+        }
 
     }
     return $content;
 
 }
+
 function only_one_image($content)
 {
     $doc = new DOMDocument();
@@ -1469,6 +1464,7 @@ function check_comic_show($article)
         return url("/");
     }// dd('abc');
 }
+
 //不要那 enl 的文章 跟 comic 有關連
 function check_god_show($article)
 {
@@ -1478,6 +1474,7 @@ function check_god_show($article)
         return url("/");
     }// dd('abc');
 }
+
 function check_dark_show($article)
 {
     $dark_categories = App\Category::dark();
@@ -1663,7 +1660,9 @@ function facebookDebugger($url)
     curl_close($r);
     return $data;
 }
-function string_optimize($string){
+
+function string_optimize($string)
+{
     $string = html_entity_decode($string);
     $string = htmlentities($string);
 
@@ -1672,6 +1671,7 @@ function string_optimize($string){
     return $string;
 
 }
+
 function hyphenize($string)
 {
     $string = html_entity_decode($string);
@@ -1687,7 +1687,7 @@ function hyphenize($string)
 
 /*
     若有下列字元，在某些格式下，必須經過編碼處理，以免發生錯誤
-    # % { } | \ ^ ~ [ ] `<>空白 
+    # % { } | \ ^ ~ [ ] `<>空白
     依據RFC1630、RFC1738、RFC2141、RFC2732、RFC2396、RFC3986，URL中有下列保留字
     ()‘!,[]+$= ;/#?:@&% 空白
 */
@@ -1784,17 +1784,17 @@ function article_handle_content($content)
 
     $content = cdn_handle($content);
 
-    //lazyload 
+    //lazyload
     //$content= preg_replace("#(<img[^>]*)\ssrc=([^>]+>)#", '$1 data-original= $2', $content);
 
-    // 移除 img 的 寬高 
+    // 移除 img 的 寬高
     $content = preg_replace("#(<img[^>]+style=\"[^\"]*)width:[^;]+;*([^>]+>)#", '$1 $2', $content);
     $content = preg_replace("#(<img[^>]+style=\"[^\"]*)height:[^;]+;*([^>]+>)#", '$1 $2', $content);
 
-    // 針對 peer 處理 移除 srcset 因為裡面有一堆 peer的資訊 
+    // 針對 peer 處理 移除 srcset 因為裡面有一堆 peer的資訊
     $content = preg_replace("#(<img[^>]+)srcset=\"[^\"]+\"([^>]+>)#", '$1 $2', $content);
 
-    // 讓換行好看一點  增加 p  tag 
+    // 讓換行好看一點  增加 p  tag
     $content = wwpautop($content);
 
 
@@ -2002,12 +2002,12 @@ class __content_paging
             if ($this->prev_page == null) $bar .= ' disabled ';
 
             if ($this->prev_page == 1) {
-                $tmp=Request::url();
-            }else{
-                $tmp='?page=' . $this->prev_page;
+                $tmp = Request::url();
+            } else {
+                $tmp = '?page=' . $this->prev_page;
             }
             $bar .= '" href="'
-                .$tmp
+                . $tmp
                 . '"  ' . 'alt="' . $this->title . ' - 第' . $this->prev_page . '頁" rel="prev">上一頁</a>'
                 . ' </span>';
             // dd([$this->prev_page,$this->page]);
@@ -2022,8 +2022,8 @@ class __content_paging
                 for ($i = 1; $i <= $this->content_count; $i++) {
                     $bar .= ' <option ';
                     if ($this->page == $i) $bar .= ' selected ';
-                    if ($i==1){
-                        $bar .= 'value="'.Request::url().'" >' . $i . '</option>' . "\n";
+                    if ($i == 1) {
+                        $bar .= 'value="' . Request::url() . '" >' . $i . '</option>' . "\n";
                     } else {
                         $bar .= 'value="?page=' . $i . '" >' . $i . '</option>' . "\n";
                     }
@@ -2032,9 +2032,9 @@ class __content_paging
                 $bar .= '<span class="input-group-btn"><a class="btn btn-default btn-lg bg-black ';
                 if ($this->next_page == null) $bar .= ' disabled ';
                 if ($this->next_page == 1) {
-                    $tmp=Request::url();
-                }else{
-                    $tmp='?page=' . $this->next_page;
+                    $tmp = Request::url();
+                } else {
+                    $tmp = '?page=' . $this->next_page;
                 }
                 $bar .= '" href="'
                     . $tmp
@@ -2403,22 +2403,24 @@ function closetags($html)
 }
 
 
+function replace_eznewlife($content)
+{
 
 
-function replace_eznewlife($content){
-
-    
-    if(secure()){
+    if (secure()) {
         $content = str_replace('http://cdn.eznewlife.com', 'https://eznewlife.com', $content);
         $content = str_replace('http://eznewlife.com', 'https://eznewlife.com', $content);
         $content = str_replace('http://getez.info', 'https://getez.info', $content);
+        $content = str_replace('http://dark.getez.info', 'https://dark.getez.info', $content);
+        $content = str_replace('http://dark.eznewlife.com', 'https://dark.eznewlife.com', $content);
+
     }
 
 
-    $content = str_replace('<meta property="og:url" content="https',  '<meta property="og:url" content="http', $content);
+    $content = str_replace('<meta property="og:url" content="https', '<meta property="og:url" content="http', $content);
 
 
-    if( strpos(__DOMAIN__, 'getez.info') === false ) return $content;
+    if (strpos(__DOMAIN__, 'getez.info') === false) return $content;
 
 
     $content = str_replace('//cdn.eznewlife.com', '//getez.info', $content);
@@ -2427,34 +2429,29 @@ function replace_eznewlife($content){
     $content = str_replace('dark.eznewlife.com', 'dark.getez.info', $content);
 
 
-
-
-
     return $content;
 
-} 
+}
 
 
+function cache_forever($prop, $value)
+{
 
-
-
-function cache_forever($prop, $value){
-    
 
     return Cache::forever($prop, $value);
 
 
-    static $conn=null;    
+    static $conn = null;
 
-    if($conn===null) $conn = oconn('M');
+    if ($conn === null) $conn = oconn('M');
 
 
     $content = serialize($value);
 
-    $sql="select id from filedb where prop=:prop";
+    $sql = "select id from filedb where prop=:prop";
     $row = $conn->getOne($sql, $prop);
 
-    if($row === false){
+    if ($row === false) {
         $conn->insert("INSERT INTO filedb SET prop=:prop, content=:content", $prop, $content);
         return;
     }
@@ -2469,29 +2466,22 @@ function cache_forever($prop, $value){
 }
 
 
-
-
-
-
-function cache_has($prop){
+function cache_has($prop)
+{
     return Cache::has($prop);
 }
 
 
-
-
-
-function cache_forget($prop){
+function cache_forget($prop)
+{
     return Cache::forget($prop);
 }
 
 
+function cache_get($prop)
+{
 
-
-
-function cache_get($prop){
-
-    if(isset($_COOKIE['debug'])){
+    if (isset($_COOKIE['debug'])) {
         //echo "<!--".$prop."-->\n";
     }
 
@@ -2499,26 +2489,23 @@ function cache_get($prop){
 }
 
 
-
-
-function cache_put($prop, $value, $expire){
+function cache_put($prop, $value, $expire)
+{
     Cache::put($prop, $value, $expire);
 }
 
 
+function timer()
+{
+    static $t = null;
 
-
-
-function timer(){
-    static $t=null;
-
-    if($t===null){
+    if ($t === null) {
         $t = microtime(true);
         return 0;
     }
 
 
     $now = microtime(true);
-    
-    return (($now - $t)*1000);
+
+    return (($now - $t) * 1000);
 }

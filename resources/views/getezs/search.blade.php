@@ -7,7 +7,7 @@
             @if ($articles->count()==0) <div class="alert alert-default" >查無「{{$q}}」相關文章 </div>@endif
             @foreach ($articles as $k=> $article)
 
-                <div class="row center-block article-category-row" onclick="window.location='{{route('getezs.show', ['id'=>$article->ez_map[0]->unique_id])}}'"   itemscope itemtype="http://schema.org/ImageObject">
+                <div class="row center-block article-category-row" onclick="window.location='{{route('getezs.show', ['id'=>$article->ez_map[0]->unique_id])}}'"   itemscope itemtype="https://schema.org/ImageObject">
                     <div class="col-md-6 col-sm-6 col-lg-6 article-category-img ">
 
 
