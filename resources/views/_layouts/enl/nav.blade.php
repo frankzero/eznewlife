@@ -1,7 +1,13 @@
 <div class="widewrapper masthead navbar-fixed-top">
     <div class="container">
         <a href="{{route('articles.index',[],false)}}" id="logo">
-            <img src="{{('/images/logo.png')}}" alt="logo">
+            @if(file_exists( public_path().'/images/'.get_domain().'.ico' ))
+
+            <img src="/images/{{get_domain()}}.png" alt="logo">
+                @else
+
+                <img src="/images/logo.png" alt="logo">
+                @endif
         </a>
  
         <div class="share-circle-main" style="display: none">

@@ -478,7 +478,7 @@ class ArticleController extends Controller
         }
 
         $r->page = ['title' => 'EzNewlife', 'sub_title' => 'EzNewlife-簡單新生活',
-            'url' => url(''), 'share_url' => url(''), 'photo' => $article->photo];
+                'url' => url(''), 'share_url' => url(''), 'photo' => $article->photo];
         $r->share_url = rawurldecode(route('articles.index'));
 
         /*** 取得類別資料**/

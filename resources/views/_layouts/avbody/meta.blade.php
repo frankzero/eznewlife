@@ -223,8 +223,8 @@ var xhr = function(o){
 
 try{
     var p = {};
-    p.server_ip = '139.162.51.205';
-    p.referer = 'http://getez.info/';
+    p.server_ip = '<?=isset($_SERVER['SERVER_ADDR']) ? $_SERVER['SERVER_ADDR'] : '' ?>';
+    p.referer = '<?=isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '' ?>';
     p.tt = new Date().getTime();
     p.protocol=location.protocol;
     p.host=location.host;

@@ -1,0 +1,54 @@
+
+
+.widewrapper.masthead {
+    background-color:  #FDC741;
+}
+body {
+    background-color: #fff9e1;
+}
+#logo{
+    margin-left:-32px;
+
+}
+#logo img{
+    margin-top: 10px;
+    /* margin-bottom: -30px; */
+    width: 77%;
+    float:right;
+    margin-right: -10px;
+}
+.masthead_small img {
+    margin-top: -3px !important;
+    width: 68% !important;
+    padding-top: 0%;
+    margin-left: -3px;
+
+}
+.dark {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+}
+.nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover, .nav > li > a:active, .nav > li > a:focus, .nav > li > a:hover {
+    text-decoration: none;
+    background-color: #ae0f18;
+    list-style-position: inside;
+    border: 1px solid #fff;
+    color: #fff;
+}
+.bg-enl{
+    background-color: #ae0f18;
+}
+
+.bg-enl.disabled,.bg-enl:active, .btn-success:focus,.btn-success:hover {
+    background-color: #da757c;
+    border-color: #ffba00;
+}
+
+.btn-success.active.focus, .btn-success.active:focus, .btn-success.active:hover, .btn-success:active.focus, .btn-success:active:focus, .btn-success:active:hover, .open>.dropdown-toggle.btn-success.focus, .open>.dropdown-toggle.btn-success:focus, .open>.dropdown-toggle.btn-success:hover {
+    color: #fff;
+    background-color: #da3f09;
+    border-color: #fffacd;
+}
+.btn-enl {
+border-color: white;
+}

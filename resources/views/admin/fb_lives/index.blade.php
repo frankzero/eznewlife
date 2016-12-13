@@ -282,7 +282,7 @@
           // rows = rows + '<td>'+value.updated_user+'</td>';
             rows = rows + '<td>'+value.created_at+'</td>';
             rows = rows + '<td>'+value.updated_at+'</td>';     
-            rows = rows + '<td><a href="/fb_lives/'+value.id+'"  target="_blank" class="btn btn-default btn-xs small-btn" rel="nofollow" data-toggle="tooltip" data-placement="bottom" data-original-title="查看">'+'<i class="fa fa-search"></i>'+'</a> &nbsp;&nbsp;';
+            rows = rows + '<td><a href="http://vdo.land/fb_lives/'+value.id+'"  target="_blank" class="btn btn-default btn-xs small-btn" rel="nofollow" data-toggle="tooltip" data-placement="bottom" data-original-title="查看">'+'<i class="fa fa-search"></i>'+'</a> &nbsp;&nbsp;';
 
             rows = rows + '<a href="/admin/fb_lives/'+value.id+'/edit"  class="btn btn-default btn-xs small-btn" rel="nofollow" data-toggle="tooltip" data-placement="bottom" data-original-title="修改">'+'<i class="fa fa-edit"></i>'+'</a> &nbsp;&nbsp;';
             rows = rows + '<form  method="POST"  action="/admin/fb_lives/'+value.id+'" accept-charset="UTF-8" style="display:inline-block"><input name="_method" type="hidden" value="DELETE">'

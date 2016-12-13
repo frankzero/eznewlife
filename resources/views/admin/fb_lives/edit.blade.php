@@ -78,7 +78,7 @@
                                 <label for="fb_question" class="col-sm-4 col-lg-2 control-label">FB TOKEN</label>
                                 <div class="col-sm-10 col-lg-5">
 
-                                    {!!Form::text('fb_access_token',(Input::old('fb_access_token')) ? Input::old('fb_access_token') : $title,array('class' => 'form-control','id'=>'fb_access_token','placeholder'=>'請輸入你的FB 專頁 TOKEN',''))!!}
+                                    {!!Form::text('fb_access_token',(Input::old('fb_access_token')) ? Input::old('fb_access_token') : $fb_access_token,array('class' => 'form-control','id'=>'fb_access_token','placeholder'=>'請輸入你的FB 專頁 TOKEN',''))!!}
                                     <a href="https://developers.facebook.com/tools/explorer/" target="_blank" class="btn btn-primary btn-xs btn-facebook "><i class="fa fa-wrench"></i> 取得 <i class="fa fa-facebbok">access token </i></a>
                                     <button type="button" class="btn btn-xs btn-default" data-toggle="popover"  data-html="true"   data-original-title="如何取得token ID"
                                                                                                                                  data-content="<img src='/images/fb-access-token.png'>">取得tokenID</button>

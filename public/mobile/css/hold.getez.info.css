@@ -1,0 +1,160 @@
+
+html,body,h1, .h2, .h3, .h4, .h5, .h6, body, h1, h2, h3, h4, h5, h6 {
+    font-family: 'Source Sans Pro', sans-serif, "微軟正黑體", "微软雅黑", "Helvetica Neue", Helvetica, Arial, "メイリオ", "맑은 고딕" !important;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+@include clearfix;
+    margin: 0 20px;
+}
+#logo{
+    width: 68% !important;
+    padding-top: 0%;
+    margin-left: 0px;
+    margin-top: 5px;
+}
+
+.site-content {
+    padding-top: 66px;
+}
+#main #enl_title h1 a:first-child {
+    display: inline-block;
+    vertical-align: top;
+    color: #ff4f4f;
+}
+/* HEADER */
+#main #enl_title {
+    background-color: #FDC741;
+    color:black
+}
+#main #enl_content ,#main{
+
+    background-color: #fff9e1;
+}
+#main #enl_nav {
+    background-color: #FDC741;
+}
+#main #enl_nav form .nav {
+    background-color: #FDC741;
+    color:black;
+
+    border-bottom: 0px solid #0D66CC;
+    display: block;
+    padding: 0 5px;
+     box-shadow: 0px 1px 0px rgb(218, 63, 9);
+    font-size: 1.1rem;
+     text-shadow: 0px 0px 0px rgba(0,0,0,0.5);
+    line-height: 45px;
+    height: 45px;
+    font-weight: normal;
+    text-decoration: none;
+    cursor: pointer;
+}
+#main #enl_nav form div:first-child {
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, rgba(1, 1, 2, 0.81)), color-stop(0, rgba(1, 1, 2, 0.81)));
+    outline: 1px solid #d58512;
+
+}
+#main #enl_nav form div:first-child  p{
+    font-family: 'Source Sans Pro', sans-serif, "微軟正黑體", "微软雅黑", "Helvetica Neue", Helvetica, Arial, "メイリオ", "맑은 고딕" !important;
+    font-size: 18px;
+}
+
+#main #enl_nav form div:first-child span {
+    background-image:url('/images/hold.getez.info.small.png');
+    color:transparent;
+    background-repeat: no-repeat;
+    padding-right: 20px;
+}
+#main #enl_title {
+
+
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0,  #fdc741), color-stop(1,  #fdc741));
+    box-shadow: 0 1px 6px rgba(42, 37, 13, 0.78);
+    background-color: #fdc741;
+    color: #fff;
+    border: none;
+}
+#main #enl_title h1 a:first-child {
+    border:0px;
+    box-shadow: 1px 0px 0px rgba(217, 147, 27, 0.52);
+}
+
+#main #enl_content .link p .tab {
+    position: relative;
+    padding: 0;
+    overflow: hidden;
+    border-width: 0;
+    outline: none;
+    border-radius: 0px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+    background-color: #398439;
+    color: #ecf0f1;
+    padding: 2px 11px;
+    transition: background-color .3s;
+}
+
+#main #enl_content .link p .tab:hover, #main #enl_content .link p .tab:focus {
+    background-color: #27ae60;
+}
+#main #enl_content .link {
+    box-shadow: 0 1px 4px rgba(0,0,0,0.5);
+    display: block;
+    background-image: none;
+    background-color: white;
+    border-color: black;
+    border-style: dashed;
+}
+
+#main #enl_content .link p .tab:before {
+    content: "";
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    display: block;
+    width: 0;
+    padding-top: 0;
+
+    border-radius: 100%;
+
+    background-color: rgba(236, 240, 241, .3);
+
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+#main #enl_content .link p .tab:active:before {
+    width: 120%;
+    padding-top: 120%;
+
+    transition: width .2s ease-out, padding-top .2s ease-out;
+}
+
+.gray_btns {
+    background-image: none;
+    background-color: white;
+    border:0px;
+}
+.page_around {
+    background-image: none;
+    background-color: #FDC741;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+;
+}
+.gray_btns,.page_around {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .6) !important;
+}
+#main .footer {
+    background-color: #2f1d0b;
+    background-image: none;
+}

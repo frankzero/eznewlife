@@ -145,11 +145,11 @@
     "use strict";
     //var access_token = 'EAACEdEose0cBACtKE7oKfLoXkkkvvkbFFoKpjyvM0i6b3SrMZC3nfP0ZBdpnOag2DGxNIyMQLjU9FyQevV6Cj1ba3OTCeypwJIFNqMtSmNr6QEG36BdSRfGXuguwZBxGuQUuNsgZCoYgP57HVuo1i2Qk9vrOZBKi0cR71gU1601VqyzNCY9ML'; // PASTE HERE YOUR FACEBOOK ACCESS TOKEN
     /*開發者user token 會員 約一個小時會過期喔*/
-    var access_token='EAAFABSiyhnkBAPQagkOfC2dGZCsTdbTylC38BofiGk0Un7txZBWPkMi0SFjtKy0D77bbbCzwViZAdaGLuggqO9HZA8Uco8HuMO638oZCoqLZC60ZCDanzZBaRod2ZCt8YmxBu3hiAXQZBJyYnEzwxNV6ZAmCCLVzhwem4UZD';
+    var access_token='{!!$fb_lives->fb_access_token!!}';
     //  var access_token='EAACEdEose0cBACY2zyLuAevCKrJs6tuSlztrLhKkbOYNZAsU3zqhqvZB8mMpuf1lziOzXtZBDSVdvZCDs5Ygsj3WJVGSKyAA9ZCRYRzeAZChlcU9GYgA3KIFLDwf9NomepWwIdTXnOOyAz399lfi81b9EfL3DvvGZBCJa5fvpnIPgZDZD';
     /*發文的文章的postid 1161536443883444*/
     var postID = '{!!$fb_lives->fb_video_id!!}'; // PASTE HERE YOUR POST ID
-    var refreshTime = 1; // Refresh time in seconds
+    var refreshTime = 2; // Refresh time in seconds
     var defaultCount = 0; // Default count to start with
     /*
      rtmp://rtmp-api.facebook.com:80/rtmp/

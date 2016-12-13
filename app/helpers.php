@@ -5,6 +5,22 @@
  * Date: 2015/12/22
  * Time: 上午 10:50
  */
+function get_domain($type=null){
+    $url = url("/");
+    $url = preg_replace('#^https?://#', '', rtrim($url, '/'));
+    if($type=="title") {
+        switch ($url) {
+            case "hold.getez.info":
+                $title = "就Hold糗 x 趣味新聞";
+                break;
+            default:
+                $title = "ENL 簡單新生活";
+                break;
+        }
+        return $title;
+    }
+    return $url;
+}
 function https($url)
 {
     $url = str_replace("http:", "https:", $url);

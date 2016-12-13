@@ -134,5 +134,5 @@ if (Request::server('SERVER_ADDR') == '59.126.180.51') {
             exit;
         });
 
-//}
+});
 

@@ -92,11 +92,14 @@ if(isset($p['uid'])) $uid = $p['uid'];
     <?php if($page_status=='is_single' and !empty($cp->seo_meta)):?>
     <?php echo $cp->seo_meta;?>
     <?php endif;?>
-
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet'>
     <title>mobile-<?php echo $_title;?></title>
     <link href="/mobile/css/reset.css" media="screen, handheld" rel="stylesheet" type="text/css">
-    <link href="/mobile/css/enl.css?tt=15" media="screen, handheld" rel="stylesheet"
-          type="text/css">
+    <link href="/mobile/css/enl.css?tt=15" media="screen, handheld" rel="stylesheet" type="text/css">
+    <?php
+    if (file_exists(public_path()."/mobile/css/".get_domain().".css")){
+      echo '<link href="/mobile/css/'.get_domain().'.css" media="screen, handheld" rel="stylesheet"  type="text/css">';
+    }?>
     <!--script type="text/javascript" src="//media.line.naver.jp/js/line-button.js?v=20130508" ></script-->
     <script type="text/javascript" src="//media.line.me/js/line-button.js?v=20140411"></script>
     <link href="/css/bootstrap.button.css" media="screen, handheld" rel="stylesheet" type="text/css">
@@ -217,7 +220,7 @@ if(isset($p['uid'])) $uid = $p['uid'];
             </div>
             <a href="/" class="nav" usefor="home"><span></span>首頁</a>
 
-            <a href="//dark.eznewlife.com" target="_blank" class="nav dark" nav="ENL暗黑網"><span></span>ENL暗黑網</a>
+            <a href="//dark.eznewlife.com" target="_blank" class="nav dark" nav="ENL暗黑網"><span></span>暗黑網</a>
 
             <?php foreach($categories as $cid=>$cname): ?>
             <a href="/category/<?=$cid;?>/<?=hyphenize($cname)?>" class="nav" nav="<?=$cname?>" alt="<?=$cname?>"
@@ -229,8 +232,16 @@ if(isset($p['uid'])) $uid = $p['uid'];
 
     <div id="enl_title" ontouchmove="return false">
         <h1 onclick="enl_nav_expand();">
-            <a class="enl_nav_expand"></a>
-            <span>EzNewLife</span>
+            <a class="enl_nav_expand"></a><i class="fa fa-user"></i>
+            <?php
+             if (file_exists(public_path()."/images/".get_domain().".png")){
+                 echo '<img src="/images/'.get_domain().'.png" id="logo" >';
+            } else {
+            echo '<span>EzNewLife</span>';
+            }
+
+            ?>
+
         </h1>
     </div>
 
@@ -401,7 +412,7 @@ if(isset($p['uid'])) $uid = $p['uid'];
 
 
     <footer class="footer" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <div >© 2014 - <?php echo date("Y"); ?> <a itemprop="url" href="/" style="color:white"> 簡單新生活 </a></div>
+    <div >© 2014 - <?php echo date("Y"); ?> <a itemprop="url" href="/" style="color:white"> <?php echo get_domain('title')?> </a></div>
     </footer>
     <!--div style="height:50px;width:100%;"></div-->
 
@@ -457,8 +468,8 @@ if(isset($p['uid'])) $uid = $p['uid'];
 
     var site_name = "EzNewlife";
     var site_url = "eznewlife.com";
-    var title = "ENL簡單新生活";
-    var site_leave_url = 'http://eznewlife.com';
+    var title = "<?php echo get_domain('title')?>";
+    var site_leave_url = 'https://eznewlife.com';
 
 </script>
 <script src="/js/adultcheck.js"></script>
@@ -894,8 +905,8 @@ var xhr = function(o){
 
 try{
     var p = {};
-    p.server_ip = '139.162.51.205';
-    p.referer = 'http://getez.info/';
+    p.server_ip = '<?=isset($_SERVER['SERVER_ADDR']) ? $_SERVER['SERVER_ADDR'] : '' ?>';
+    p.referer = '<?=isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '' ?>';
     p.tt = new Date().getTime();
     p.protocol=location.protocol;
     p.host=location.host;

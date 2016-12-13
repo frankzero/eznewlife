@@ -12,7 +12,9 @@
     <meta http-equiv="refresh" content="1;url='{{$test_link}}?autotest'" />
 @endif
     @include('_layouts/enl/meta')
+
     @include('_layouts/enl/ad')
+
 </head>
 <body  itemscope="" itemtype="https://schema.org/WebPage">
 <div id="fb-root"></div>

@@ -106,10 +106,15 @@ if(isset($_COOKIE['debug'])){
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Google Webfonts -->
     <link href='//fonts.googleapis.com/css?family=Open+Sans:400,600|PT+Serif:400,400italic' rel='stylesheet'  type='text/css'>
+
     <!-- Styles -->
     <link rel="stylesheet" href="/css/enl.css?t=33">
     <link rel="stylesheet" href="/css/tinymce.css">
     <link rel="stylesheet" href="/css/adultcheck.css?v=1">
+    @if(file_exists( public_path().'/css/'.get_domain().'.css' ))
+        <link rel='stylesheet' href='/css/{{get_domain()}}.css' alt="">
+    @endif
+
     <meta  name = "apple-mobile-web-app-capable"  content = "yes" >
     <meta  name = "apple-mobile-web-app-status-bar-style"  content = "black" >
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/images/enl-apple-touch-icon-precomposed.png" />
@@ -117,7 +122,11 @@ if(isset($_COOKIE['debug'])){
     <link rel="apple-touch-icon" sizes="76x76" href="/images/enl-touch-icon-ipad.png">
     <link rel="apple-touch-icon" sizes="120x120" href="/images/enl-touch-icon-iphone-retina.png">
     <link rel="apple-touch-icon" sizes="152x152" href="/images/enl-touch-icon-ipad-retina.png">
-    <link rel="shortcut icon" href="/logo_16x16.ico" type="image/vnd.microsoft.icon">
+    @if(file_exists( public_path().'/images/'.get_domain().'.ico' ))
+        <link rel="shortcut icon" href="/images/{{get_domain()}}.ico" type="image/vnd.microsoft.icon">
+    @else
+        <link rel="shortcut icon" href="/logo_16x16.ico" type="image/vnd.microsoft.icon">
+    @endif
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     

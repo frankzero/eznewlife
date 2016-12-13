@@ -20,6 +20,14 @@ class FbLiveController extends Controller
     {
         //
     }
+    public function  notfound(){
+       // $agent = new Agent();
+        $page = ['title' => '404', 'sub_title' =>'頁面不存在',
+            'url' => '', 'share_url' => url("/"), 'photo' => ''];
+        return view('fb_lives.404')->with('plan', 1)
+          //  ->with('mobile', $agent->isMobile())
+            ->withPage($page);//->with('categories', $categories);
+    }
 
     /**
      * Show the form for creating a new resource.
